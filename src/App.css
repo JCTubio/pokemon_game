@@ -157,13 +157,28 @@ body {
 .answer {
   margin-bottom: 10px;
   margin-top: 10px;
-  padding: 10px 10px 5px 30px;
+  padding: 10px 10px 5px 10px;
   cursor: pointer;
   width: 250px;
   border: 1px solid black;
   border-radius: 20px;
   background-color: aliceblue;
+  border-bottom: 4px solid grey;
+  transition: all 0.3s ease;
 }
+
+.answer:hover {
+  transform: translateY(-1px);
+  background-color: rgb(236, 236, 236);
+}
+
+.answer:active {
+  transform: translateY(1px);
+  background-color: #fff;
+  border-bottom: 2px solid grey;
+  outline: none;
+}
+
 .pkmnSprite {
   position: absolute;
   top: 30%;
