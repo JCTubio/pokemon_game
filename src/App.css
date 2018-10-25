@@ -164,11 +164,6 @@ body {
   border-radius: 20px;
   background-color: aliceblue;
 }
-.continue {
-  position: absolute;
-  left: 28%;
-  top: 73.2%;
-}
 .pkmnSprite {
   position: absolute;
   top: 30%;
@@ -200,6 +195,7 @@ body {
   display: flex;
   padding-top: 15px;
   justify-content: space-between;
+  position: relative;
 }
 
 .leftSpace {
@@ -214,5 +210,9 @@ body {
 }
 
 .score {
+  transform: translate(-50%, -50%);
   color: white;
+  position: absolute;
+  top: 87%;
+  left: 50%;
 }

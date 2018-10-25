@@ -4,18 +4,6 @@ import "./App.css";
 import "./resources/bootstrap.min.css";
 import Turn from "./pokedex/Turn";
 
-function Continue({ show, onContinue }) {
-  return (
-    <div>
-      {show ? (
-        <button className="btn btn-basic btn-lg continue" onClick={onContinue}>
-          Continue
-        </button>
-      ) : null}
-    </div>
-  );
-}
-
 function mapStateToProps(state) {
   return {
     turnData: state.turnData,
@@ -31,9 +19,9 @@ function mapDispatchToProps(dispatch) {
   return {
     onAnswerSelected: answer => {
       dispatch({ type: "ANSWER_SELECTED", answer });
-    },
-    onContinue: () => {
-      dispatch({ type: "CONTINUE" });
+      setTimeout(function() {
+        dispatch({ type: "CONTINUE" });
+      }, 500);
     }
   };
 }
@@ -45,7 +33,6 @@ const App = connect(
   turnData,
   highlight,
   onAnswerSelected,
-  onContinue,
   turnNumber,
   clickedThisTurn,
   correctAnswers,
@@ -71,7 +58,6 @@ const App = connect(
         />
         <div className="rightSpace" />
       </div>
-      <Continue show={highlight === true} onContinue={onContinue} />
       <h2 className="score">
         {correctAnswers}:{wrongAnswers}
       </h2>
