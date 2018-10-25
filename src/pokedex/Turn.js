@@ -13,15 +13,12 @@ export default class Turn extends React.Component {
   };
 
   getPkmnSprite = () => {
-    fetch(
-      "https://pokeapi.co/api/v2/pokemon/" + parseInt(this.props.sprite.id, 10)
-    )
-      .then(results => {
-        return results.json();
-      })
-      .then(data => {
-        this.setState({ spriteImg: data.sprites.front_default });
-      });
+    this.setState({
+      spriteImg:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" +
+        parseInt(this.props.sprite.id, 10) +
+        ".png"
+    });
   };
 
   render() {
