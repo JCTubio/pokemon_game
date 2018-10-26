@@ -30,7 +30,8 @@ function reducer(
     turnNumber: 1,
     clickedThisTurn: false,
     correctAnswers: 0,
-    wrongAnswers: 0
+    wrongAnswers: 0,
+    currentSong: ""
   },
   action
 ) {
@@ -51,6 +52,10 @@ function reducer(
         turnData: getTurnData(state.pkmnJson),
         turnNumber: state.turnNumber + 1,
         clickedThisTurn: false
+      });
+    case "SONG_SELECTED":
+      return Object.assign({}, state, {
+        currentSong: action.songName
       });
     default:
       return state;

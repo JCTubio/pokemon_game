@@ -4,6 +4,7 @@ import "./App.css";
 import "./resources/bootstrap.min.css";
 import Turn from "./pokedex/Turn";
 import Sound from "react-sound";
+import Jukebox from "./jukebox/Jukebox";
 
 function mapStateToProps(state) {
   return {
@@ -12,7 +13,8 @@ function mapStateToProps(state) {
     turnNumber: state.turnNumber,
     clickedThisTurn: state.clickedThisTurn,
     correctAnswers: state.correctAnswers,
-    wrongAnswers: state.wrongAnswers
+    wrongAnswers: state.wrongAnswers,
+    currentSong: state.currentSong
   };
 }
 
@@ -23,6 +25,9 @@ function mapDispatchToProps(dispatch) {
       setTimeout(function() {
         dispatch({ type: "CONTINUE" });
       }, 1200);
+    },
+    onSongSelected: songName => {
+      dispatch({ type: "SONG_SELECTED", songName });
     }
   };
 }
@@ -37,18 +42,21 @@ const App = connect(
   turnNumber,
   clickedThisTurn,
   correctAnswers,
-  wrongAnswers
+  wrongAnswers,
+  onSongSelected,
+  currentSong
 }) {
   return (
     <div className="container-fluid">
       <Sound
-        url={"/pokemonMusic/Wild Pokemon Battle by The Greatest Bits.mp3"}
+        url={"/pokemonMusic/" + currentSong + ".mp3"}
         playStatus={Sound.status.PLAYING}
         volume={50}
         autoLoad={false}
         loop={true}
       />
       <div className="header">
+        <Jukebox onSongSelected={onSongSelected} />
         <img
           src="../../images/whosthatpokemon.png"
           alt="title"
