@@ -164,7 +164,7 @@ body {
   border-radius: 20px;
   background-color: aliceblue;
   border-bottom: 4px solid grey;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .answer:hover {
@@ -185,6 +185,24 @@ body {
   left: 16%;
   width: 130px;
   height: auto;
+}
+
+.pkmnSpriteShowing {
+  animation: appear 0.5s reverse;
+}
+
+@keyframes appear {
+  from {
+    width: 130px;
+    top: 30%;
+    left: 16%;
+  }
+
+  to {
+    width: 170px;
+    top: 27%;
+    left: 13%;
+  }
 }
 
 .respuestas {
