@@ -1,0 +1,75 @@
+.songItem > p {
+  color: white;
+  margin: 0;
+}
+
+.songItem > p:hover {
+  color: green;
+  cursor: pointer;
+}
+.songList {
+  display: inline-block;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  border: white solid 1px;
+  padding: 55px 5px 5px 5px;
+  border-radius: 10px;
+  background-color: rgba(75, 196, 28, 0.5);
+  z-index: 10;
+}
+
+.noDisplay {
+  display: none;
+}
+
+.ant-btn-primary {
+  color: #fff;
+  background-color: #4bc41c;
+  border-color: #4bc41c;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 20;
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  color: #fff;
+  background-color: #4bc41c;
+  border-color: #4bc41c;
+}
+
+.ant-btn-primary:active {
+  color: #fff;
+  background-color: #3d9e17;
+  border-color: #3d9e17;
+}
+
+.muteToggle {
+  position: absolute;
+  top: 20px;
+  left: 114px;
+  z-index: 20;
+}
+
+.ant-btn {
+  color: #fff;
+  background-color: #4bc41c;
+  border-color: #4bc41c;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.ant-btn:hover,
+.ant-btn:focus {
+  color: #fff;
+  background-color: #4bc41c;
+  border-color: #4bc41c;
+}
+
+.ant-btn:active {
+  color: #fff;
+  background-color: #3d9e17;
+  border-color: #3d9e17;
+}

@@ -249,17 +249,3 @@ body {
   top: 87%;
   left: 50%;
 }
-
-.songItem > p {
-  color: white;
-  margin: 0;
-}
-
-.songItem > p:hover {
-  color: green;
-  cursor: pointer;
-}
-.songList {
-  display: inline-block;
-  position: absolute;
-}

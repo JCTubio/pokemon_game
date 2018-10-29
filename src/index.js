@@ -31,7 +31,8 @@ function reducer(
     clickedThisTurn: false,
     correctAnswers: 0,
     wrongAnswers: 0,
-    currentSong: ""
+    currentSong: "The Pokemon Journey",
+    playbackStatus: true
   },
   action
 ) {
@@ -56,6 +57,10 @@ function reducer(
     case "SONG_SELECTED":
       return Object.assign({}, state, {
         currentSong: action.songName
+      });
+    case "MUTE_TOGGLED":
+      return Object.assign({}, state, {
+        playbackStatus: state.playbackStatus ? false : true
       });
     default:
       return state;

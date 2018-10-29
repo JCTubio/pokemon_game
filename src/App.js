@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "./App.css";
 import "./resources/bootstrap.min.css";
+import "antd/dist/antd.css";
 import Turn from "./pokedex/Turn";
 import Sound from "react-sound";
 import Jukebox from "./jukebox/Jukebox";
@@ -14,7 +15,8 @@ function mapStateToProps(state) {
     clickedThisTurn: state.clickedThisTurn,
     correctAnswers: state.correctAnswers,
     wrongAnswers: state.wrongAnswers,
-    currentSong: state.currentSong
+    currentSong: state.currentSong,
+    playbackStatus: state.playbackStatus
   };
 }
 
@@ -24,10 +26,13 @@ function mapDispatchToProps(dispatch) {
       dispatch({ type: "ANSWER_SELECTED", answer });
       setTimeout(function() {
         dispatch({ type: "CONTINUE" });
-      }, 1200);
+      }, 1000);
     },
     onSongSelected: songName => {
       dispatch({ type: "SONG_SELECTED", songName });
+    },
+    onMuteToggled: playbackStatus => {
+      dispatch({ type: "MUTE_TOGGLED", playbackStatus });
     }
   };
 }
@@ -44,19 +49,25 @@ const App = connect(
   correctAnswers,
   wrongAnswers,
   onSongSelected,
-  currentSong
+  currentSong,
+  onMuteToggled,
+  playbackStatus
 }) {
   return (
     <div className="container-fluid">
       <Sound
         url={"/pokemonMusic/" + currentSong + ".mp3"}
-        playStatus={Sound.status.PLAYING}
+        playStatus={playbackStatus ? Sound.status.PLAYING : Sound.status.PAUSED}
         volume={50}
         autoLoad={false}
         loop={true}
       />
       <div className="header">
-        <Jukebox onSongSelected={onSongSelected} />
+        <Jukebox
+          onSongSelected={onSongSelected}
+          onMuteToggled={onMuteToggled}
+          playbackStatus={playbackStatus}
+        />
         <img
           src="../../images/whosthatpokemon.png"
           alt="title"
