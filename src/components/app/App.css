@@ -147,70 +147,6 @@ body {
 .header {
   align-content: center;
 }
-
-.turn {
-  height: 600px;
-  position: relative;
-  display: inline-block;
-}
-
-.answer {
-  margin-bottom: 10px;
-  margin-top: 10px;
-  padding: 10px 10px 5px 10px;
-  cursor: pointer;
-  width: 250px;
-  border: 1px solid black;
-  border-radius: 20px;
-  background-color: aliceblue;
-  border-bottom: 4px solid grey;
-  transition: all 0.2s ease;
-}
-
-.answer:hover {
-  transform: translateY(-1px);
-  background-color: rgb(236, 236, 236);
-}
-
-.answer:active {
-  transform: translateY(1px);
-  background-color: #fff;
-  border-bottom: 2px solid grey;
-  outline: none;
-}
-
-.pkmnSprite {
-  position: absolute;
-  top: 30%;
-  left: 16%;
-  width: 130px;
-  height: auto;
-}
-
-.pkmnSpriteShowing {
-  animation: appear 0.5s reverse;
-}
-
-@keyframes appear {
-  from {
-    width: 130px;
-    top: 30%;
-    left: 16%;
-  }
-
-  to {
-    width: 170px;
-    top: 27%;
-    left: 13%;
-  }
-}
-
-.respuestas {
-  position: absolute;
-  top: 31%;
-  left: 59.5%;
-}
-
 .headerImg {
   width: 325px;
   margin-top: 25px;
@@ -219,18 +155,12 @@ body {
   margin-right: auto;
   display: block;
 }
-
-.pokedex {
-  z-index: -999;
-}
-
 .turnContainer {
   display: flex;
   padding-top: 15px;
   justify-content: space-between;
   position: relative;
 }
-
 .leftSpace {
   width: 15%;
   height: 600px;
@@ -241,36 +171,10 @@ body {
   height: 600px;
   display: inline-block;
 }
-
 .score {
   transform: translate(-50%, -50%);
   color: white;
   position: absolute;
   top: 87%;
   left: 50%;
-}
-
-.correctAnswer {
-  background-color: green;
-  border-bottom: 4px solid rgb(23, 80, 23);
-}
-.wrongAnswer {
-  background-color: red;
-  border-bottom: 4px solid rgb(87, 19, 19);
-}
-
-.correctAnswer:hover {
-  background-color: green;
-}
-.wrongAnswer:hover {
-  background-color: red;
-}
-
-.correctAnswer:active {
-  background-color: green;
-  border-bottom: 2px solid rgb(23, 80, 23);
-}
-.wrongAnswer:active {
-  background-color: red;
-  border-bottom: 2px solid rgb(97, 20, 20);
 }

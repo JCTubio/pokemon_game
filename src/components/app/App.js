@@ -3,7 +3,7 @@ import "./App.css";
 import "../../resources/bootstrap.min.css";
 import "antd/dist/antd.css";
 import Turn from "../pokedex/Turn";
-import JukeboxContainer from "../jukebox/JukeboxContainer";
+import JukeboxContainer from "../jukebox";
 
 const App = ({
   turnData,

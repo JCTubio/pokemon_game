@@ -1,16 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import AppContainer from "./components/app/AppContainer";
+import AppContainer from "./components/app";
 import * as serviceWorker from "./serviceWorker";
 import * as Redux from "redux";
 import * as ReactRedux from "react-redux";
 import reducers from "./store/reducers";
-import turnReducer from "./store/reducers/turnReducer";
 
 const store = Redux.createStore(reducers);
-console.log(Redux.createStore(turnReducer).getState());
-console.log(store.getState());
 
 ReactDOM.render(
   <ReactRedux.Provider store={store}>

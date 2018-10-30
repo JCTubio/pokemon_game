@@ -1,6 +1,7 @@
 import React from "react";
-import Pokemon from "./Pokemon";
+import PkmnOption from "./PkmnOption";
 import Sound from "react-sound";
+import "./Turn.css";
 
 export default class Turn extends React.Component {
   constructor(props) {
@@ -63,7 +64,7 @@ export default class Turn extends React.Component {
         )}
         <div className="respuestas">
           {options.map(name => (
-            <Pokemon
+            <PkmnOption
               key={name}
               name={name}
               onClick={onAnswerSelected}
