@@ -1,47 +1,54 @@
 import React from "react";
-import { connect } from "react-redux";
 import "./App.css";
-import "./resources/bootstrap.min.css";
+import "../../resources/bootstrap.min.css";
 import "antd/dist/antd.css";
-import Turn from "./pokedex/Turn";
-import Sound from "react-sound";
-import Jukebox from "./jukebox/Jukebox";
+import Turn from "../pokedex/Turn";
+import JukeboxContainer from "../jukebox/JukeboxContainer";
 
-function mapStateToProps(state) {
-  return {
-    turnData: state.turnData,
-    highlight: state.highlight,
-    turnNumber: state.turnNumber,
-    clickedThisTurn: state.clickedThisTurn,
-    correctAnswers: state.correctAnswers,
-    wrongAnswers: state.wrongAnswers,
-    currentSong: state.currentSong,
-    playbackStatus: state.playbackStatus,
-    buttonHighlight: state.buttonHighlight
-  };
-}
+const App = ({
+  turnData,
+  highlight,
+  onAnswerSelected,
+  turnNumber,
+  clickedThisTurn,
+  correctAnswers,
+  wrongAnswers,
+  buttonHighlight
+}) => {
+  return (
+    <div className="container-fluid">
+      <div className="header">
+        {console.log(turnData)}
+        <JukeboxContainer />
+        <img
+          src="../../images/whosthatpokemon.png"
+          alt="title"
+          className="headerImg"
+        />
+      </div>
+      <div className="turnContainer">
+        <div className="leftSpace" />
+        <Turn
+          key={turnNumber}
+          {...turnData}
+          highlight={highlight}
+          onAnswerSelected={onAnswerSelected}
+          clickedThisTurn={clickedThisTurn}
+          buttonHighlight={buttonHighlight}
+        />
+        <div className="rightSpace" />
+      </div>
+      <h2 className="score">
+        {correctAnswers}:{wrongAnswers}
+      </h2>
+    </div>
+  );
+};
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onAnswerSelected: answer => {
-      dispatch({ type: "ANSWER_SELECTED", answer });
-      setTimeout(function() {
-        dispatch({ type: "CONTINUE" });
-      }, 1000);
-    },
-    onSongSelected: songName => {
-      dispatch({ type: "SONG_SELECTED", songName });
-    },
-    onMuteToggled: playbackStatus => {
-      dispatch({ type: "MUTE_TOGGLED", playbackStatus });
-    }
-  };
-}
+export default App;
 
-const App = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(function({
+/*
+const App = function({
   turnData,
   highlight,
   onAnswerSelected,
@@ -93,6 +100,4 @@ const App = connect(
       </h2>
     </div>
   );
-});
-
-export default App;
+};*/

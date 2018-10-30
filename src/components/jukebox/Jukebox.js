@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "antd";
 import "./jukebox.css";
+import Sound from "react-sound";
 
 library.add(faMusic);
 library.add(faVolumeMute);
@@ -16,6 +17,7 @@ library.add(faVolumeUp);
 
 export default class Jukebox extends Component {
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
       displayValue: "noDisplay"
@@ -34,6 +36,17 @@ export default class Jukebox extends Component {
   render() {
     return (
       <Fragment>
+        <Sound
+          url={"/pokemonMusic/" + this.props.currentSong + ".mp3"}
+          playStatus={
+            this.props.playbackStatus
+              ? Sound.status.PLAYING
+              : Sound.status.PAUSED
+          }
+          volume={50}
+          autoLoad={false}
+          loop={true}
+        />
         <Button
           type="primary"
           shape="circle"
