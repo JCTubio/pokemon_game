@@ -249,3 +249,24 @@ body {
   top: 87%;
   left: 50%;
 }
+
+.correctAnswer {
+  background-color: green;
+}
+.wrongAnswer {
+  background-color: red;
+}
+
+.correctAnswer:hover {
+  background-color: green;
+}
+.wrongAnswer:hover {
+  background-color: red;
+}
+
+.correctAnswer:active {
+  background-color: green;
+}
+.wrongAnswer:active {
+  background-color: red;
+}

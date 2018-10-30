@@ -16,7 +16,8 @@ function mapStateToProps(state) {
     correctAnswers: state.correctAnswers,
     wrongAnswers: state.wrongAnswers,
     currentSong: state.currentSong,
-    playbackStatus: state.playbackStatus
+    playbackStatus: state.playbackStatus,
+    buttonHighlight: state.buttonHighlight
   };
 }
 
@@ -51,7 +52,8 @@ const App = connect(
   onSongSelected,
   currentSong,
   onMuteToggled,
-  playbackStatus
+  playbackStatus,
+  buttonHighlight
 }) {
   return (
     <div className="container-fluid">
@@ -82,6 +84,7 @@ const App = connect(
           highlight={highlight}
           onAnswerSelected={onAnswerSelected}
           clickedThisTurn={clickedThisTurn}
+          buttonHighlight={buttonHighlight}
         />
         <div className="rightSpace" />
       </div>

@@ -1,9 +1,9 @@
 import React from "react";
 
-function Pokemon({ name, onClick, disabled }) {
+function Pokemon({ name, onClick, disabled, buttonHighlight }) {
   return (
     <button
-      className="answer"
+      className={"answer ".concat( disabled ? buttonHighlight === "correct" ? "correctAnswer" : "wrongAnswer" : "")}
       onClick={() => {
         onClick(name);
       }}

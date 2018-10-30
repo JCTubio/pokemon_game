@@ -27,7 +27,8 @@ export default class Turn extends React.Component {
       options,
       highlight,
       onAnswerSelected,
-      clickedThisTurn
+      clickedThisTurn,
+      buttonHighlight
     } = this.props;
 
     return (
@@ -67,6 +68,7 @@ export default class Turn extends React.Component {
               name={name}
               onClick={onAnswerSelected}
               disabled={clickedThisTurn}
+              buttonHighlight={buttonHighlight}
             />
           ))}
         </div>

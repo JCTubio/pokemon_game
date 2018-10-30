@@ -32,7 +32,8 @@ function reducer(
     correctAnswers: 0,
     wrongAnswers: 0,
     currentSong: "The Pokemon Journey",
-    playbackStatus: true
+    playbackStatus: true,
+    buttonHighlight: ""
   },
   action
 ) {
@@ -45,14 +46,16 @@ function reducer(
         correctAnswers: isCorrect
           ? state.correctAnswers + 1
           : state.correctAnswers,
-        wrongAnswers: isCorrect ? state.wrongAnswers : state.wrongAnswers + 1
+        wrongAnswers: isCorrect ? state.wrongAnswers : state.wrongAnswers + 1,
+        buttonHighlight: isCorrect ? state.buttonHighlight="correct" : state.buttonHighlight="wrong"
       });
     case "CONTINUE":
       return Object.assign({}, state, {
         highlight: false,
         turnData: getTurnData(state.pkmnJson),
         turnNumber: state.turnNumber + 1,
-        clickedThisTurn: false
+        clickedThisTurn: false,
+        buttonHighlight: ""
       });
     case "SONG_SELECTED":
       return Object.assign({}, state, {
