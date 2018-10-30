@@ -252,9 +252,11 @@ body {
 
 .correctAnswer {
   background-color: green;
+  border-bottom: 4px solid rgb(23, 80, 23);
 }
 .wrongAnswer {
   background-color: red;
+  border-bottom: 4px solid rgb(87, 19, 19);
 }
 
 .correctAnswer:hover {
@@ -266,7 +268,9 @@ body {
 
 .correctAnswer:active {
   background-color: green;
+  border-bottom: 2px solid rgb(23, 80, 23);
 }
 .wrongAnswer:active {
   background-color: red;
+  border-bottom: 2px solid rgb(97, 20, 20);
 }
