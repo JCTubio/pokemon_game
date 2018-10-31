@@ -2,6 +2,7 @@ import React from "react";
 import PkmnOption from "./PkmnOption";
 import Sound from "react-sound";
 import "./Turn.css";
+import PokedexGlow from "./pokedexGlow";
 
 export default class Turn extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class Turn extends React.Component {
       spriteImg: null
     };
   }
+
   componentDidMount = () => {
     this.getPkmnSprite();
   };
@@ -29,7 +31,10 @@ export default class Turn extends React.Component {
       highlight,
       onAnswerSelected,
       clickedThisTurn,
-      buttonHighlight
+      buttonHighlight,
+      pokedexGlow,
+      correctAnswers,
+      bestStreak
     } = this.props;
 
     return (
@@ -62,6 +67,8 @@ export default class Turn extends React.Component {
         ) : (
           <div />
         )}
+        {console.log(pokedexGlow)}
+        <PokedexGlow color={pokedexGlow} />
         <div className="respuestas">
           {options.map(name => (
             <PkmnOption
@@ -72,6 +79,17 @@ export default class Turn extends React.Component {
               buttonHighlight={buttonHighlight}
             />
           ))}
+        </div>
+        <div className="scoreBoard">
+          <img
+            src="/images/scorePanel.png"
+            className="scorePanel"
+            alt="scorePanel"
+          />
+          <div className="currentScoreLabel ">current</div>
+          <div className="bestStreakLabel ">best</div>
+          <div className="currentScore">{correctAnswers}</div>
+          <div className="bestStreak">{bestStreak}</div>
         </div>
       </div>
     );

@@ -9,8 +9,9 @@ function mapStateToProps(state) {
     turnNumber: state.turn.turnNumber,
     clickedThisTurn: state.turn.clickedThisTurn,
     correctAnswers: state.turn.correctAnswers,
-    wrongAnswers: state.turn.wrongAnswers,
-    buttonHighlight: state.turn.buttonHighlight
+    bestStreak: state.turn.bestStreak,
+    buttonHighlight: state.turn.buttonHighlight,
+    pokedexGlow: state.turn.pokedexGlow
   };
 }
 

@@ -37,3 +37,59 @@
   top: 31%;
   left: 59.5%;
 }
+
+.pokedexGlow {
+  position: absolute;
+  left: 3.3%;
+  top: 0.2%;
+  height: 90px;
+  width: 90px;
+}
+
+@font-face {
+  font-family: calculator;
+  src: url(../../resources/digital-7.ttf);
+}
+
+.scorePanel {
+  position: absolute;
+  top: 72.6%;
+  left: 11.5%;
+}
+
+.currentScoreLabel {
+  position: absolute;
+  top: 68.7%;
+  left: 14%;
+  font-family: calculator;
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+}
+.bestStreakLabel {
+  position: absolute;
+  top: 82%;
+  left: 23.5%;
+  font-family: calculator;
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+}
+.currentScore {
+  position: absolute;
+  top: 72%;
+  left: 14%;
+  font-family: calculator;
+  font-weight: bold;
+  font-size: 35px;
+  color: black;
+}
+.bestStreak {
+  position: absolute;
+  top: 75%;
+  left: 24%;
+  font-family: calculator;
+  font-weight: bold;
+  font-size: 35px;
+  color: white;
+}

@@ -171,10 +171,3 @@ body {
   height: 600px;
   display: inline-block;
 }
-.score {
-  transform: translate(-50%, -50%);
-  color: white;
-  position: absolute;
-  top: 87%;
-  left: 50%;
-}

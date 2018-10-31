@@ -22,9 +22,10 @@ export default function turnReducer(
     highlight: false,
     turnNumber: 1,
     clickedThisTurn: false,
+    bestStreak: 0,
     correctAnswers: 0,
-    wrongAnswers: 0,
-    buttonHighlight: ""
+    buttonHighlight: "",
+    pokedexGlow: "rgb(0, 205, 255)"
   },
   action
 ) {
@@ -34,13 +35,13 @@ export default function turnReducer(
       return Object.assign({}, state, {
         highlight: true,
         clickedThisTurn: true,
-        correctAnswers: isCorrect
-          ? state.correctAnswers + 1
-          : state.correctAnswers,
-        wrongAnswers: isCorrect ? state.wrongAnswers : state.wrongAnswers + 1,
-        buttonHighlight: isCorrect
-          ? (state.buttonHighlight = "correct")
-          : (state.buttonHighlight = "wrong")
+        correctAnswers: isCorrect ? state.correctAnswers + 1 : 0,
+        bestStreak:
+          isCorrect && state.bestStreak <= state.correctAnswers
+            ? state.bestStreak + 1
+            : state.bestStreak,
+        buttonHighlight: isCorrect ? "correct" : "wrong",
+        pokedexGlow: isCorrect ? "#00FF00" : "#FF0000"
       });
     case CONTINUE:
       return Object.assign({}, state, {
@@ -48,7 +49,8 @@ export default function turnReducer(
         turnData: getTurnData(state.pkmnJson),
         turnNumber: state.turnNumber + 1,
         clickedThisTurn: false,
-        buttonHighlight: ""
+        buttonHighlight: "",
+        pokedexGlow: "rgb(0, 205, 255)"
       });
     default:
       return state;
