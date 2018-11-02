@@ -1,0 +1,52 @@
+.rotomDex {
+  position: absolute;
+  top: -13%;
+  left: 100vw;
+  width: 450px;
+  pointer-events: none;
+}
+
+.rotomDexShowing {
+  animation-name: rotomdexEntry;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes rotomdexEntry {
+  0% {
+    left: 100vw;
+  }
+
+  10% {
+    left: 71%;
+  }
+
+  90% {
+    left: 71%;
+  }
+
+  100% {
+    left: 100vw;
+  }
+}
+
+.rotomDexContainer {
+  position: relative;
+}
+
+.rotomDexContainer > p {
+  font-family: pokemon;
+  font-size: 11px;
+  color: black;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 200px;
+  height: 90px;
+  overflow: hidden;
+  white-space: pre;
+  line-height: 1.6;
+}
+.rotomDexContainer > img {
+  pointer-events: none;
+  width: 450px;
+}

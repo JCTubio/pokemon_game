@@ -17,7 +17,6 @@ library.add(faVolumeUp);
 
 export default class Jukebox extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       displayValue: "noDisplay"

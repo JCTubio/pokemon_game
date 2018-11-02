@@ -1,52 +1,56 @@
-import React from "react";
-import PkmnOption from "./PkmnOption";
-import Sound from "react-sound";
-import "./Turn.css";
-import PokedexGlow from "./pokedexGlow";
+import React from 'react'
+import PkmnOption from './PkmnOption'
+import Sound from 'react-sound'
+import './Turn.css'
+import PokedexGlow from './pokedexGlow'
+import RotomContainer from '../rotom/RotomContainer'
 
 export default class Turn extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      spriteImg: null
-    };
+      spriteImg: null,
+    }
+  }
+
+  validateAnswer = answer => {
+    return this.props.onAnswerSelected(this.props.sprite.ename === answer)
   }
 
   componentDidMount = () => {
-    this.getPkmnSprite();
-  };
+    this.getPkmnSprite()
+  }
 
   getPkmnSprite = () => {
     this.setState({
       spriteImg:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" +
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' +
         parseInt(this.props.sprite.id, 10) +
-        ".png"
-    });
-  };
+        '.png',
+    })
+  }
 
   render() {
     const {
       options,
       highlight,
-      onAnswerSelected,
       clickedThisTurn,
       buttonHighlight,
       pokedexGlow,
       correctAnswers,
-      bestStreak
-    } = this.props;
+      bestStreak,
+    } = this.props
 
     return (
       <div className="turn">
         {highlight && (
           <Sound
             url={
-              "/pokemonCries/" +
+              '/pokemonCries/' +
               this.props.sprite.id +
-              " - " +
+              ' - ' +
               this.props.sprite.ename +
-              ".wav"
+              '.wav'
             }
             playStatus={Sound.status.PLAYING}
             volume={50}
@@ -57,29 +61,29 @@ export default class Turn extends React.Component {
           <img
             src={this.state.spriteImg}
             className={
-              highlight ? "pkmnSprite pkmnSpriteShowing" : "pkmnSprite"
+              highlight ? 'pkmnSprite pkmnSpriteShowing' : 'pkmnSprite'
             }
             alt="sprite"
             style={{
-              filter: highlight ? "" : "brightness(0)"
+              filter: highlight ? '' : 'brightness(0)',
             }}
           />
         ) : (
           <div />
         )}
-        {console.log(pokedexGlow)}
         <PokedexGlow color={pokedexGlow} />
         <div className="respuestas">
           {options.map(name => (
             <PkmnOption
               key={name}
               name={name}
-              onClick={onAnswerSelected}
+              onClick={this.validateAnswer}
               disabled={clickedThisTurn}
               buttonHighlight={buttonHighlight}
             />
           ))}
         </div>
+        <RotomContainer />
         <div className="scoreBoard">
           <img
             src="/images/scorePanel.png"
@@ -92,6 +96,6 @@ export default class Turn extends React.Component {
           <div className="bestStreak">{bestStreak}</div>
         </div>
       </div>
-    );
+    )
   }
 }

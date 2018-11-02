@@ -1,9 +1,9 @@
-import React from "react";
-import "./App.css";
-import "../../resources/bootstrap.min.css";
-import "antd/dist/antd.css";
-import Turn from "../answerPanel/Turn";
-import JukeboxContainer from "../jukebox";
+import React from 'react'
+import './App.css'
+import '../../resources/bootstrap.min.css'
+import 'antd/dist/antd.css'
+import Turn from '../answerPanel/Turn'
+import JukeboxContainer from '../jukebox'
 
 const App = ({
   turnData,
@@ -14,12 +14,11 @@ const App = ({
   correctAnswers,
   bestStreak,
   buttonHighlight,
-  pokedexGlow
+  pokedexGlow,
 }) => {
   return (
     <div className="container-fluid">
       <div className="header">
-        {console.log(turnData)}
         <JukeboxContainer />
         <img
           src="../../images/whosthatpokemon.png"
@@ -43,7 +42,7 @@ const App = ({
         <div className="rightSpace" />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

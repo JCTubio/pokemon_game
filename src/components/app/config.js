@@ -1,0 +1,2 @@
+export const REGULAR_TURN_DURATION = 3000
+export const QUICK_TURN_DURATION = 1500

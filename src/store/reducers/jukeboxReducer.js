@@ -3,7 +3,7 @@ import { SONG_SELECTED, MUTE_TOGGLED } from "../actions/Actions";
 export default function jukeboxReducer(
   state = {
     currentSong: "Battle Theme (Instrumental)",
-    playbackStatus: true
+    playbackStatus: false
   },
   action
 ) {

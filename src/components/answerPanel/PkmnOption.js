@@ -16,7 +16,7 @@ function PkmnOption({ name, onClick, disabled, buttonHighlight }) {
       }}
       disabled={disabled}
     >
-      <h4>{name}</h4>
+      <p>{name.toUpperCase()}</p>
     </button>
   );
 }

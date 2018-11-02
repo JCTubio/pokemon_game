@@ -33,17 +33,16 @@ export default function pokedexGlow({ color }) {
         r="100"
         fill="#FFF"
         stroke="#000"
-        stroke-width="4"
+        strokeWidth="4"
       />
       {/* Main circle */}
-      {console.log(color)}
       <circle
         cx="114"
         cy="102"
         r="81"
         fill={color}
         stroke="#000"
-        stroke-width="4"
+        strokeWidth="4"
       />
       {/* Shadow */}
       <circle
@@ -51,7 +50,7 @@ export default function pokedexGlow({ color }) {
         cy="110"
         r="75"
         fill="#000"
-        fill-opacity="0.2"
+        fillOpacity="0.2"
         style={{ filter: "url(#myblurfilter1)" }}
       />
       {/* Inner Circle */}
@@ -68,7 +67,7 @@ export default function pokedexGlow({ color }) {
         cy="60"
         r="20"
         fill="#FFF"
-        fill-opacity="0.5"
+        fillOpacity="0.5"
         style={{ filter: "url(#myblurfilter2)" }}
       />
     </svg>

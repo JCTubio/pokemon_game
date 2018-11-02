@@ -171,3 +171,7 @@ body {
   height: 600px;
   display: inline-block;
 }
+@font-face {
+  font-family: pokemon;
+  src: url(../../resources/fonts/PokemonGB.ttf);
+}
