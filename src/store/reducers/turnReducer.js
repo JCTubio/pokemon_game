@@ -28,7 +28,6 @@ export default function turnReducer(
     clickedThisTurn: false,
     bestStreak: 0,
     correctAnswers: 0,
-    buttonHighlight: '',
     pokedexGlow: 'rgb(0, 205, 255)',
     rotomMessage: '',
     turnDuration: REGULAR_TURN_DURATION,
@@ -45,7 +44,6 @@ export default function turnReducer(
           action.answer && state.bestStreak <= state.correctAnswers
             ? state.bestStreak + 1
             : state.bestStreak,
-        buttonHighlight: action.answer ? 'correct' : 'wrong',
         pokedexGlow: action.answer ? '#00FF00' : '#FF0000',
         rotomMessage: action.answer
           ? correctPokemonRotomMessage(state.turnData.sprite)
@@ -60,7 +58,6 @@ export default function turnReducer(
         turnData: getTurnData(state.pkmnJson),
         turnNumber: state.turnNumber + 1,
         clickedThisTurn: false,
-        buttonHighlight: '',
         pokedexGlow: 'rgb(0, 205, 255)',
         rotomMessage: '',
         turnDuration: REGULAR_TURN_DURATION,

@@ -1,24 +1,18 @@
-import React from "react";
-import "./PkmnOption.css";
+import React from 'react'
+import './PkmnOption.css'
 
-function PkmnOption({ name, onClick, disabled, buttonHighlight }) {
+function PkmnOption({ name, onClick, disabled }) {
   return (
     <button
-      className={"answer ".concat(
-        disabled
-          ? buttonHighlight === "correct"
-            ? "correctAnswer"
-            : "wrongAnswer"
-          : ""
-      )}
+      className={'answer'}
       onClick={() => {
-        onClick(name);
+        onClick(name)
       }}
       disabled={disabled}
     >
       <p>{name.toUpperCase()}</p>
     </button>
-  );
+  )
 }
 
-export default PkmnOption;
+export default PkmnOption

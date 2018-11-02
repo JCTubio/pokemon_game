@@ -12,7 +12,6 @@ function mapStateToProps(state) {
     clickedThisTurn: state.turn.clickedThisTurn,
     correctAnswers: state.turn.correctAnswers,
     bestStreak: state.turn.bestStreak,
-    buttonHighlight: state.turn.buttonHighlight,
     pokedexGlow: state.turn.pokedexGlow,
   }
 }

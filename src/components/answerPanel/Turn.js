@@ -35,7 +35,6 @@ export default class Turn extends React.Component {
       options,
       highlight,
       clickedThisTurn,
-      buttonHighlight,
       pokedexGlow,
       correctAnswers,
       bestStreak,
@@ -79,7 +78,6 @@ export default class Turn extends React.Component {
               name={name}
               onClick={this.validateAnswer}
               disabled={clickedThisTurn}
-              buttonHighlight={buttonHighlight}
             />
           ))}
         </div>

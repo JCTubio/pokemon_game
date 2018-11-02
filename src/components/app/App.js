@@ -13,7 +13,6 @@ const App = ({
   clickedThisTurn,
   correctAnswers,
   bestStreak,
-  buttonHighlight,
   pokedexGlow,
 }) => {
   return (
@@ -34,7 +33,6 @@ const App = ({
           highlight={highlight}
           onAnswerSelected={onAnswerSelected}
           clickedThisTurn={clickedThisTurn}
-          buttonHighlight={buttonHighlight}
           pokedexGlow={pokedexGlow}
           correctAnswers={correctAnswers}
           bestStreak={bestStreak}
