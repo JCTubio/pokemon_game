@@ -1,9 +1,18 @@
-import { ANSWER_SELECTED, CONTINUE } from '../actions/Actions'
+import {
+  ANSWER_SELECTED,
+  CONTINUE,
+  RESET_STANDARD_MODE,
+  TT_ANSWER_SELECTED,
+  TT_CONTINUE,
+  NATURAL_TIME_COUNTDOWN,
+  RESET_TT_MODE,
+} from '../actions/Actions'
 import pkmnJson from '../../resources/pokedex'
 import { shuffle, sample } from 'underscore'
 import {
   QUICK_TURN_DURATION,
   REGULAR_TURN_DURATION,
+  TIME_TRIAL_TURN_DURATION,
 } from '../../components/app/config'
 
 function getTurnData(pkmnJson) {
@@ -31,6 +40,8 @@ export default function turnReducer(
     pokedexGlow: 'rgb(0, 205, 255)',
     rotomMessage: '',
     turnDuration: REGULAR_TURN_DURATION,
+    timeLeft: 15000,
+    timerActive: false,
   },
   action
 ) {
@@ -61,6 +72,50 @@ export default function turnReducer(
         pokedexGlow: 'rgb(0, 205, 255)',
         rotomMessage: '',
         turnDuration: REGULAR_TURN_DURATION,
+      })
+    case RESET_STANDARD_MODE:
+      return Object.assign({}, state, {
+        turnData: getTurnData(state.pkmnJson),
+        highlight: false,
+        turnNumber: state.turnNumber + 1,
+        clickedThisTurn: false,
+        bestStreak: 0,
+        correctAnswers: 0,
+        pokedexGlow: 'rgb(0, 205, 255)',
+        rotomMessage: '',
+        turnDuration: REGULAR_TURN_DURATION,
+      })
+    case TT_ANSWER_SELECTED:
+      return Object.assign({}, state, {
+        highlight: true,
+        clickedThisTurn: true,
+        timeLeft: action.answer ? state.timeLeft + 1000 : state.timeLeft - 1000,
+        pokedexGlow: action.answer ? '#00FF00' : '#FF0000',
+        timerActive: false,
+      })
+    case TT_CONTINUE:
+      return Object.assign({}, state, {
+        highlight: false,
+        turnData: getTurnData(state.pkmnJson),
+        turnNumber: state.turnNumber + 1,
+        clickedThisTurn: false,
+        pokedexGlow: 'rgb(0, 205, 255)',
+        timerActive: true,
+      })
+    case NATURAL_TIME_COUNTDOWN:
+      return Object.assign({}, state, {
+        timeLeft: state.timerActive ? state.timeLeft - 1000 : state.timeLeft,
+      })
+    case RESET_TT_MODE:
+      return Object.assign({}, state, {
+        turnData: getTurnData(state.pkmnJson),
+        highlight: false,
+        turnNumber: state.turnNumber + 1,
+        clickedThisTurn: false,
+        pokedexGlow: 'rgb(0, 205, 255)',
+        turnDuration: TIME_TRIAL_TURN_DURATION,
+        timeLeft: 15000,
+        timerActive: false,
       })
     default:
       return state

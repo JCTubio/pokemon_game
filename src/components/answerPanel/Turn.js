@@ -4,6 +4,8 @@ import Sound from 'react-sound'
 import './Turn.css'
 import PokedexGlow from './pokedexGlow'
 import RotomContainer from '../rotom/RotomContainer'
+import { STANDARD_MODE, TIME_TRIAL } from '../../store/actions/Actions'
+import ScoreBoard from './ScoreBoard'
 
 export default class Turn extends React.Component {
   constructor(props) {
@@ -14,7 +16,7 @@ export default class Turn extends React.Component {
   }
 
   validateAnswer = answer => {
-    return this.props.onAnswerSelected(this.props.sprite.ename === answer)
+    return this.props.handleSelect(this.props.sprite.ename === answer)
   }
 
   componentDidMount = () => {
@@ -38,6 +40,8 @@ export default class Turn extends React.Component {
       pokedexGlow,
       correctAnswers,
       bestStreak,
+      gameMode,
+      timeLeft,
     } = this.props
 
     return (
@@ -81,18 +85,22 @@ export default class Turn extends React.Component {
             />
           ))}
         </div>
-        <RotomContainer />
-        <div className="scoreBoard">
-          <img
-            src="/images/scorePanel.png"
-            className="scorePanel"
-            alt="scorePanel"
+        {gameMode === STANDARD_MODE && <RotomContainer />}
+        {gameMode === STANDARD_MODE && (
+          <ScoreBoard
+            panelToDisplay="/images/scorePanel.png"
+            correctAnswers={correctAnswers}
+            bestStreak={bestStreak}
+            gameMode={gameMode}
           />
-          <div className="currentScoreLabel ">current</div>
-          <div className="bestStreakLabel ">best</div>
-          <div className="currentScore">{correctAnswers}</div>
-          <div className="bestStreak">{bestStreak}</div>
-        </div>
+        )}
+        {gameMode === TIME_TRIAL && (
+          <ScoreBoard
+            panelToDisplay="/images/ttScorePanel.png"
+            timeLeft={timeLeft}
+            gameMode={gameMode}
+          />
+        )}
       </div>
     )
   }

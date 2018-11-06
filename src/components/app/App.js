@@ -4,17 +4,25 @@ import '../../resources/bootstrap.min.css'
 import 'antd/dist/antd.css'
 import Turn from '../answerPanel/Turn'
 import JukeboxContainer from '../jukebox'
+import { STANDARD_MODE, TIME_TRIAL } from '../../store/actions/Actions'
 
 const App = ({
   turnData,
   highlight,
-  onAnswerSelected,
+  handleSelect,
   turnNumber,
   clickedThisTurn,
   correctAnswers,
   bestStreak,
   pokedexGlow,
+  onModeChanged,
+  gameMode,
+  timeLeft,
 }) => {
+  function gameModeChangeHandler(mode) {
+    return gameMode === mode ? null : onModeChanged(mode)
+  }
+
   return (
     <div className="container-fluid">
       <div className="header">
@@ -31,13 +39,29 @@ const App = ({
           key={turnNumber}
           {...turnData}
           highlight={highlight}
-          onAnswerSelected={onAnswerSelected}
+          handleSelect={handleSelect}
           clickedThisTurn={clickedThisTurn}
           pokedexGlow={pokedexGlow}
           correctAnswers={correctAnswers}
           bestStreak={bestStreak}
+          gameMode={gameMode}
+          timeLeft={timeLeft}
         />
         <div className="rightSpace" />
+      </div>
+      <div className="footer">
+        <button
+          className="toMainModeButton"
+          onClick={() => gameModeChangeHandler(STANDARD_MODE)}
+        >
+          {'Standard\nMode'}
+        </button>
+        <button
+          className="toTimeTrialButton"
+          onClick={() => gameModeChangeHandler(TIME_TRIAL)}
+        >
+          {'Time\nTrial'}
+        </button>
       </div>
     </div>
   )

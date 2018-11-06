@@ -1,5 +1,5 @@
 .turn {
-  height: 600px;
+  height: 550px;
   position: relative;
   display: inline-block;
 }
@@ -7,7 +7,7 @@
 .pkmnSprite {
   position: absolute;
 
-  top: 30%;
+  top: 32%;
   left: 16%;
   width: 130px;
   height: auto;
@@ -18,12 +18,12 @@
 @keyframes appear {
   from {
     width: 130px;
-    top: 30%;
+    top: 32%;
     left: 16%;
   }
   to {
     width: 170px;
-    top: 27%;
+    top: 29%;
     left: 13%;
   }
 }
@@ -34,7 +34,7 @@
 
 .respuestas {
   position: absolute;
-  top: 31%;
+  top: 33%;
   left: 59.5%;
 }
 
@@ -53,13 +53,13 @@
 
 .scorePanel {
   position: absolute;
-  top: 72.6%;
+  top: 78.6%;
   left: 11.5%;
 }
 
 .currentScoreLabel {
   position: absolute;
-  top: 68.7%;
+  top: 74.5%;
   left: 14%;
   font-family: calculator;
   font-weight: bold;
@@ -68,7 +68,7 @@
 }
 .bestStreakLabel {
   position: absolute;
-  top: 82%;
+  top: 88.8%;
   left: 23.5%;
   font-family: calculator;
   font-weight: bold;
@@ -77,7 +77,7 @@
 }
 .currentScore {
   position: absolute;
-  top: 72%;
+  top: 78%;
   left: 14%;
   font-family: calculator;
   font-weight: bold;
@@ -86,10 +86,37 @@
 }
 .bestStreak {
   position: absolute;
-  top: 75%;
+  top: 81.5%;
   left: 24%;
   font-family: calculator;
   font-weight: bold;
   font-size: 35px;
   color: white;
+}
+
+.timeLeftLabel {
+  position: absolute;
+  top: 74.5%;
+  left: 14%;
+  font-family: calculator;
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+}
+.timeLeft {
+  position: absolute;
+  top: 80%;
+  left: 14.5%;
+}
+.timeLeft > .number {
+  font-family: calculator;
+  font-weight: bold;
+  font-size: 35px;
+  color: black;
+}
+.timeLeft > .unit {
+  font-family: pokemon;
+  font-weight: bold;
+  font-size: 21px;
+  color: black;
 }

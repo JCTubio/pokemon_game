@@ -164,15 +164,46 @@ body {
 }
 .leftSpace {
   width: 15%;
-  height: 600px;
+  height: 550px;
   display: inline-block;
 }
 .rightSpace {
   width: 15%;
-  height: 600px;
+  height: 550px;
   display: inline-block;
 }
 @font-face {
   font-family: pokemon;
   src: url(../../resources/fonts/PokemonGB.ttf);
+}
+.footer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.toMainModeButton {
+  padding: 10px 10px 10px 10px;
+  color: black;
+  display: inline-block;
+  background-color: white;
+  font-size: 20px;
+  text-align: center;
+  font-family: pokemon;
+  white-space: pre;
+  line-height: 1.5;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.toTimeTrialButton {
+  padding: 10px 10px 10px 10px;
+  color: black;
+  display: inline-block;
+  background-color: white;
+  font-size: 20px;
+  text-align: center;
+  font-family: pokemon;
+  white-space: pre;
+  line-height: 1.5;
+  margin-right: 10px;
+  margin-left: 10px;
 }
