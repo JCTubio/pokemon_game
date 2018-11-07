@@ -35,13 +35,13 @@ function mapStateToProps(state) {
     pokedexGlow: state.turn.pokedexGlow,
     timeLeft: state.turn.timeLeft,
     timerActive: state.turn.timeLeft,
+    pokemonsEncountered: state.turn.pokemonsEncountered,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     onAnswerSelected: answer => {
-      console.log(answer)
       dispatch(answerSelected(answer))
       dispatch(rotomTalk(answer))
       setTimeout(function() {
@@ -59,6 +59,7 @@ function mapDispatchToProps(dispatch) {
         ? dispatch(resetStandardMode())
         : dispatch(resetTTMode())
       setTimeout(function() {
+        mode === TIME_TRIAL && dispatch(nextTTTurn())
         dispatch(changeGameMode(mode))
       }, mode === STANDARD_MODE ? 0 : 2000)
     },

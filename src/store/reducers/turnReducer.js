@@ -45,6 +45,7 @@ export default function turnReducer(
     timeLeft: 15000,
     timerActive: false,
     showRotomMessage: false,
+    pokemonsEncountered: [],
   },
   action
 ) {
@@ -53,6 +54,13 @@ export default function turnReducer(
       return Object.assign({}, state, {
         highlight: true,
         clickedThisTurn: true,
+        pokemonsEncountered: [
+          ...state.pokemonsEncountered,
+          {
+            pokemon: getPkmnSprite(state.turnData.sprite.id),
+            correct: action.answer,
+          },
+        ],
         correctAnswers: action.answer ? state.correctAnswers + 1 : 0,
         bestStreak:
           action.answer && state.bestStreak <= state.correctAnswers
@@ -94,6 +102,7 @@ export default function turnReducer(
         showRotomMessage: false,
         turnDuration: REGULAR_TURN_DURATION,
         timerActive: false,
+        timeLeft: 15000,
       })
     case TT_ANSWER_SELECTED:
       return Object.assign({}, state, {
@@ -103,7 +112,7 @@ export default function turnReducer(
         correctAnswers: action.answer
           ? state.correctAnswers + 1
           : state.correctAnswers,
-        timeLeft: action.answer ? state.timeLeft + 1000 : state.timeLeft - 1000,
+        timeLeft: action.answer ? state.timeLeft + 2000 : state.timeLeft - 1000,
         pokedexGlow: action.answer ? '#00FF00' : '#FF0000',
         timerActive: false,
         showRotomMessage: false,
@@ -123,9 +132,7 @@ export default function turnReducer(
       })
     case RESET_TT_MODE:
       return Object.assign({}, state, {
-        turnData: getTurnData(state.pkmnJson),
         highlight: false,
-        turnNumber: state.turnNumber + 1,
         clickedThisTurn: false,
         pokedexGlow: 'rgb(0, 205, 255)',
         turnDuration: 2000,
@@ -144,6 +151,14 @@ export default function turnReducer(
     default:
       return state
   }
+}
+
+function getPkmnSprite(id) {
+  return (
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' +
+    parseInt(id, 10) +
+    '.png'
+  )
 }
 
 function timeTrialStartRotomMessage() {
