@@ -1,11 +1,15 @@
 import React from 'react'
 import './Rotom.css'
+import { STANDARD_MODE } from '../../store/actions/Actions'
 
-function Rotom({ highlight, rotomMessage, turnDuration }) {
-  console.log(turnDuration)
+function Rotom({ gameMode, showRotomMessage, rotomMessage, turnDuration }) {
   return (
     <div
-      className={highlight ? 'rotomDex rotomDexShowing' : 'rotomDex'}
+      className={
+        showRotomMessage && gameMode === STANDARD_MODE
+          ? 'rotomDex rotomDexShowing'
+          : 'rotomDex'
+      }
       style={{
         animationDuration: turnDuration + 'ms',
       }}

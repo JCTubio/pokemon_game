@@ -4,8 +4,10 @@ import {
   RESET_STANDARD_MODE,
   TT_ANSWER_SELECTED,
   TT_CONTINUE,
+  TT_GAME_FINISHED,
   NATURAL_TIME_COUNTDOWN,
   RESET_TT_MODE,
+  ROTOM_TALK,
 } from '../actions/Actions'
 import pkmnJson from '../../resources/pokedex'
 import { shuffle, sample } from 'underscore'
@@ -42,6 +44,7 @@ export default function turnReducer(
     turnDuration: REGULAR_TURN_DURATION,
     timeLeft: 15000,
     timerActive: false,
+    showRotomMessage: false,
   },
   action
 ) {
@@ -56,12 +59,16 @@ export default function turnReducer(
             ? state.bestStreak + 1
             : state.bestStreak,
         pokedexGlow: action.answer ? '#00FF00' : '#FF0000',
-        rotomMessage: action.answer
-          ? correctPokemonRotomMessage(state.turnData.sprite)
-          : wrongPokemonRotomMessage(state.turnData.sprite),
         turnDuration: action.answer
           ? QUICK_TURN_DURATION
           : REGULAR_TURN_DURATION,
+      })
+    case ROTOM_TALK:
+      return Object.assign({}, state, {
+        showRotomMessage: true,
+        rotomMessage: action.answer
+          ? correctPokemonRotomMessage(state.turnData.sprite)
+          : wrongPokemonRotomMessage(state.turnData.sprite),
       })
     case CONTINUE:
       return Object.assign({}, state, {
@@ -71,6 +78,7 @@ export default function turnReducer(
         clickedThisTurn: false,
         pokedexGlow: 'rgb(0, 205, 255)',
         rotomMessage: '',
+        showRotomMessage: false,
         turnDuration: REGULAR_TURN_DURATION,
       })
     case RESET_STANDARD_MODE:
@@ -83,15 +91,22 @@ export default function turnReducer(
         correctAnswers: 0,
         pokedexGlow: 'rgb(0, 205, 255)',
         rotomMessage: '',
+        showRotomMessage: false,
         turnDuration: REGULAR_TURN_DURATION,
+        timerActive: false,
       })
     case TT_ANSWER_SELECTED:
       return Object.assign({}, state, {
         highlight: true,
         clickedThisTurn: true,
+        turnDuration: TIME_TRIAL_TURN_DURATION,
+        correctAnswers: action.answer
+          ? state.correctAnswers + 1
+          : state.correctAnswers,
         timeLeft: action.answer ? state.timeLeft + 1000 : state.timeLeft - 1000,
         pokedexGlow: action.answer ? '#00FF00' : '#FF0000',
         timerActive: false,
+        showRotomMessage: false,
       })
     case TT_CONTINUE:
       return Object.assign({}, state, {
@@ -113,13 +128,26 @@ export default function turnReducer(
         turnNumber: state.turnNumber + 1,
         clickedThisTurn: false,
         pokedexGlow: 'rgb(0, 205, 255)',
-        turnDuration: TIME_TRIAL_TURN_DURATION,
+        turnDuration: 2000,
+        correctAnswers: 0,
         timeLeft: 15000,
+        timerActive: true,
+        showRotomMessage: true,
+        rotomMessage: timeTrialStartRotomMessage(),
+      })
+    case TT_GAME_FINISHED:
+      return Object.assign({}, state, {
+        clickedThisTurn: true,
+        highlight: true,
         timerActive: false,
       })
     default:
       return state
   }
+}
+
+function timeTrialStartRotomMessage() {
+  return 'Get ready for\nTime Trial!'
 }
 
 function correctPokemonRotomMessage(answer) {

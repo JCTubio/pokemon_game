@@ -1,4 +1,8 @@
-import { STANDARD_MODE } from '../actions/Actions'
+import {
+  STANDARD_MODE,
+  CHANGE_GAME_MODE,
+  GAME_FINISHED,
+} from '../actions/Actions'
 
 export default function turnReducer(
   state = {
@@ -7,9 +11,13 @@ export default function turnReducer(
   action
 ) {
   switch (action.type) {
-    case 'CHANGE_GAME_MODE':
+    case CHANGE_GAME_MODE:
       return Object.assign({}, state, {
         gameMode: action.mode,
+      })
+    case GAME_FINISHED:
+      return Object.assign({}, state, {
+        gameMode: GAME_FINISHED,
       })
     default:
       return state

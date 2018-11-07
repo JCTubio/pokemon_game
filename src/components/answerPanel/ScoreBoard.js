@@ -1,5 +1,9 @@
 import React from 'react'
-import { STANDARD_MODE, TIME_TRIAL } from '../../store/actions/Actions'
+import {
+  STANDARD_MODE,
+  TIME_TRIAL,
+  GAME_FINISHED,
+} from '../../store/actions/Actions'
 
 export default function ScoreBoard({
   panelToDisplay,
@@ -8,7 +12,6 @@ export default function ScoreBoard({
   timeLeft = 0,
   gameMode,
 }) {
-  //A TERMINAR
   return (
     <div className="scoreBoard">
       <img src={panelToDisplay} className="scorePanel" alt="scorePanel" />
@@ -24,10 +27,10 @@ export default function ScoreBoard({
       {gameMode === STANDARD_MODE && (
         <div className="bestStreak">{bestStreak}</div>
       )}
-      {gameMode === TIME_TRIAL && (
+      {(gameMode === TIME_TRIAL || gameMode === GAME_FINISHED) && (
         <div className="timeLeftLabel">Time Left:</div>
       )}
-      {gameMode === TIME_TRIAL && (
+      {(gameMode === TIME_TRIAL || gameMode === GAME_FINISHED) && (
         <div className="timeLeft">
           <span className="number">{timeLeft / 1000}</span>
           <span className="unit">s</span>

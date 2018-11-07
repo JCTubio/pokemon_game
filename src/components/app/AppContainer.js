@@ -5,11 +5,16 @@ import {
   answerSelected,
   ttAnswerSelected,
   nextTurn,
+  nextTTTurn,
   changeGameMode,
   STANDARD_MODE,
   resetStandardMode,
   resetTTMode,
   TIME_TRIAL,
+  rotomTalk,
+  naturalTimeCountdown,
+  ttGameFinished,
+  gameFinished,
 } from '../../store/actions/Actions'
 import {
   REGULAR_TURN_DURATION,
@@ -38,6 +43,7 @@ function mapDispatchToProps(dispatch) {
     onAnswerSelected: answer => {
       console.log(answer)
       dispatch(answerSelected(answer))
+      dispatch(rotomTalk(answer))
       setTimeout(function() {
         dispatch(nextTurn())
       }, answer ? QUICK_TURN_DURATION : REGULAR_TURN_DURATION)
@@ -45,14 +51,23 @@ function mapDispatchToProps(dispatch) {
     onTTAnswerSelected: answer => {
       dispatch(ttAnswerSelected(answer))
       setTimeout(function() {
-        dispatch(nextTurn())
+        dispatch(nextTTTurn())
       }, TIME_TRIAL_TURN_DURATION)
     },
     onModeChanged: mode => {
-      dispatch(changeGameMode(mode))
       mode === STANDARD_MODE
         ? dispatch(resetStandardMode())
         : dispatch(resetTTMode())
+      setTimeout(function() {
+        dispatch(changeGameMode(mode))
+      }, mode === STANDARD_MODE ? 0 : 2000)
+    },
+    onNaturalTimeCountdown: () => {
+      dispatch(naturalTimeCountdown())
+    },
+    onGameFinished: () => {
+      dispatch(gameFinished())
+      dispatch(ttGameFinished())
     },
   }
 }
@@ -67,6 +82,18 @@ class AppContainer extends React.Component {
       default:
         return this.props.onAnswerSelected(answer)
     }
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(() => this.tick(), 1000)
+  }
+
+  tick() {
+    return this.props.timeLeft > 0
+      ? this.props.gameMode === TIME_TRIAL
+        ? this.props.onNaturalTimeCountdown()
+        : null
+      : this.props.onGameFinished()
   }
 
   render() {

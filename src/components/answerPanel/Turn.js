@@ -4,7 +4,11 @@ import Sound from 'react-sound'
 import './Turn.css'
 import PokedexGlow from './pokedexGlow'
 import RotomContainer from '../rotom/RotomContainer'
-import { STANDARD_MODE, TIME_TRIAL } from '../../store/actions/Actions'
+import {
+  STANDARD_MODE,
+  TIME_TRIAL,
+  GAME_FINISHED,
+} from '../../store/actions/Actions'
 import ScoreBoard from './ScoreBoard'
 
 export default class Turn extends React.Component {
@@ -85,7 +89,7 @@ export default class Turn extends React.Component {
             />
           ))}
         </div>
-        {gameMode === STANDARD_MODE && <RotomContainer />}
+        <RotomContainer />
         {gameMode === STANDARD_MODE && (
           <ScoreBoard
             panelToDisplay="/images/scorePanel.png"
@@ -94,7 +98,7 @@ export default class Turn extends React.Component {
             gameMode={gameMode}
           />
         )}
-        {gameMode === TIME_TRIAL && (
+        {(gameMode === TIME_TRIAL || gameMode === GAME_FINISHED) && (
           <ScoreBoard
             panelToDisplay="/images/ttScorePanel.png"
             timeLeft={timeLeft}
