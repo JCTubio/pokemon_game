@@ -14,6 +14,8 @@ export const RESET_STANDARD_MODE = 'RESET_STANDARD_MODE'
 export const RESET_TT_MODE = 'RESET_TT_MODE'
 export const ROTOM_TALK = 'ROTOM_TALK'
 export const TT_GAME_FINISHED = 'TT_GAME_FINISHED'
+export const TIME_TRIAL_STARTED = 'TIME_TRIAL_STARTED'
+export const CUT_THE_MUSIC = 'CUT_THE_MUSIC'
 
 /*Action creators*/
 export function changeGameMode(mode) {
@@ -58,4 +60,10 @@ export function gameFinished() {
 }
 export function ttGameFinished() {
   return { type: TT_GAME_FINISHED }
+}
+export function playMusicForTTStarted() {
+  return { type: TIME_TRIAL_STARTED }
+}
+export function cutTheMusic() {
+  return { type: CUT_THE_MUSIC }
 }

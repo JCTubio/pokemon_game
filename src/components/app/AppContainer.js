@@ -11,9 +11,11 @@ import {
   resetStandardMode,
   resetTTMode,
   TIME_TRIAL,
+  playMusicForTTStarted,
   rotomTalk,
   naturalTimeCountdown,
   ttGameFinished,
+  cutTheMusic,
   gameFinished,
 } from '../../store/actions/Actions'
 import {
@@ -35,7 +37,6 @@ function mapStateToProps(state) {
     pokedexGlow: state.turn.pokedexGlow,
     timeLeft: state.turn.timeLeft,
     timerActive: state.turn.timeLeft,
-    pokemonsEncountered: state.turn.pokemonsEncountered,
   }
 }
 
@@ -44,9 +45,12 @@ function mapDispatchToProps(dispatch) {
     onAnswerSelected: answer => {
       dispatch(answerSelected(answer))
       dispatch(rotomTalk(answer))
-      setTimeout(function() {
-        dispatch(nextTurn())
-      }, answer ? QUICK_TURN_DURATION : REGULAR_TURN_DURATION)
+      setTimeout(
+        function() {
+          dispatch(nextTurn())
+        },
+        answer ? QUICK_TURN_DURATION : REGULAR_TURN_DURATION
+      )
     },
     onTTAnswerSelected: answer => {
       dispatch(ttAnswerSelected(answer))
@@ -58,15 +62,20 @@ function mapDispatchToProps(dispatch) {
       mode === STANDARD_MODE
         ? dispatch(resetStandardMode())
         : dispatch(resetTTMode())
-      setTimeout(function() {
-        mode === TIME_TRIAL && dispatch(nextTTTurn())
-        dispatch(changeGameMode(mode))
-      }, mode === STANDARD_MODE ? 0 : 2000)
+      setTimeout(
+        function() {
+          mode === TIME_TRIAL && dispatch(nextTTTurn())
+          mode === TIME_TRIAL && dispatch(playMusicForTTStarted())
+          dispatch(changeGameMode(mode))
+        },
+        mode === STANDARD_MODE ? 0 : 2000
+      )
     },
     onNaturalTimeCountdown: () => {
       dispatch(naturalTimeCountdown())
     },
     onGameFinished: () => {
+      dispatch(cutTheMusic())
       dispatch(gameFinished())
       dispatch(ttGameFinished())
     },

@@ -32,7 +32,7 @@ export default function ScoreBoard({
       )}
       {(gameMode === TIME_TRIAL || gameMode === GAME_FINISHED) && (
         <div className="timeLeft">
-          <span className="number">{timeLeft / 1000}</span>
+          <span className="number">{timeLeft < 0 ? 0 : timeLeft / 1000}</span>
           <span className="unit">s</span>
         </div>
       )}

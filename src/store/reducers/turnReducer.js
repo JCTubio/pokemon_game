@@ -45,6 +45,7 @@ export default function turnReducer(
     timeLeft: 15000,
     timerActive: false,
     showRotomMessage: false,
+    rotomMessageStyle: '',
     pokemonsEncountered: [],
   },
   action
@@ -74,6 +75,9 @@ export default function turnReducer(
     case ROTOM_TALK:
       return Object.assign({}, state, {
         showRotomMessage: true,
+        rotomMessageStyle: action.answer
+          ? 'rotomResponseForCorrectAnswer'
+          : 'rotomResponseForWrongAnswer',
         rotomMessage: action.answer
           ? correctPokemonRotomMessage(state.turnData.sprite)
           : wrongPokemonRotomMessage(state.turnData.sprite),
@@ -91,6 +95,7 @@ export default function turnReducer(
       })
     case RESET_STANDARD_MODE:
       return Object.assign({}, state, {
+        pokemonsEncountered: [],
         turnData: getTurnData(state.pkmnJson),
         highlight: false,
         turnNumber: state.turnNumber + 1,
@@ -108,11 +113,18 @@ export default function turnReducer(
       return Object.assign({}, state, {
         highlight: true,
         clickedThisTurn: true,
+        pokemonsEncountered: [
+          ...state.pokemonsEncountered,
+          {
+            pokemon: getPkmnSprite(state.turnData.sprite.id),
+            correct: action.answer,
+          },
+        ],
         turnDuration: TIME_TRIAL_TURN_DURATION,
         correctAnswers: action.answer
           ? state.correctAnswers + 1
           : state.correctAnswers,
-        timeLeft: action.answer ? state.timeLeft + 2000 : state.timeLeft - 1000,
+        timeLeft: action.answer ? state.timeLeft + 2000 : state.timeLeft - 2000,
         pokedexGlow: action.answer ? '#00FF00' : '#FF0000',
         timerActive: false,
         showRotomMessage: false,
@@ -132,21 +144,27 @@ export default function turnReducer(
       })
     case RESET_TT_MODE:
       return Object.assign({}, state, {
+        pokemonsEncountered: [],
         highlight: false,
-        clickedThisTurn: false,
+        turnNumber: state.turnNumber + 1,
+        clickedThisTurn: true,
         pokedexGlow: 'rgb(0, 205, 255)',
         turnDuration: 2000,
         correctAnswers: 0,
         timeLeft: 15000,
-        timerActive: true,
+        timerActive: false,
         showRotomMessage: true,
-        rotomMessage: timeTrialStartRotomMessage(),
+        rotomMessage: 'Get ready\nfor...\nTime Trial!',
+        rotomMessageStyle: 'rotomResponseForTimeTrialStart',
       })
     case TT_GAME_FINISHED:
       return Object.assign({}, state, {
         clickedThisTurn: true,
         highlight: true,
         timerActive: false,
+        turnDuration: 3000,
+        rotomMessage: "Time's up!\nLet's see how\nwell you did...",
+        rotomMessageStyle: 'rotomResponseForTimeTrialFinished',
       })
     default:
       return state
@@ -161,24 +179,8 @@ function getPkmnSprite(id) {
   )
 }
 
-function timeTrialStartRotomMessage() {
-  return 'Get ready for\nTime Trial!'
-}
-
 function correctPokemonRotomMessage(answer) {
-  return answer.type.length > 1
-    ? "Correct!\nThat's " +
-        answer.ename +
-        '.\na ' +
-        answer.type[0] +
-        '/' +
-        answer.type[1] +
-        '\ntype pokemon!'
-    : "Correct!\nThat's " +
-        answer.ename +
-        '.\na ' +
-        answer.type[0] +
-        '\ntype pokemon!'
+  return "Good Job!\nThat's\n" + answer.ename + '!'
 }
 
 function wrongPokemonRotomMessage(answer) {

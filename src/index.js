@@ -8,7 +8,6 @@ import * as ReactRedux from 'react-redux'
 import reducers from './store/reducers'
 
 const store = Redux.createStore(reducers)
-console.log(store.getState())
 
 ReactDOM.render(
   <ReactRedux.Provider store={store}>

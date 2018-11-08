@@ -18,7 +18,6 @@ const App = ({
   onModeChanged,
   gameMode,
   timeLeft,
-  pokemonsEncountered,
 }) => {
   function gameModeChangeHandler(mode) {
     return gameMode === mode ? null : onModeChanged(mode)
@@ -35,29 +34,6 @@ const App = ({
         />
       </div>
       <div className="turnContainer">
-        <div className="encounteredPokemonPanel">
-          <h2 className="pokemonsEncounteredTitle">Pokemons Encountered</h2>
-          <div className="scrollBarRemover">
-            <ul className="encounteredPokemonList">
-              {pokemonsEncountered.map(pokemon => (
-                <li>
-                  <img
-                    className="encounteredPokemon"
-                    src={pokemon.pokemon}
-                    alt="encounteredPKMN"
-                    style={
-                      pokemon.correct
-                        ? {
-                            backgroundColor: 'green',
-                          }
-                        : { backgroundColor: 'red' }
-                    }
-                  />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
         <div className="leftSpace" />
         <Turn
           key={turnNumber}

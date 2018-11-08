@@ -10,6 +10,7 @@ import {
   GAME_FINISHED,
 } from '../../store/actions/Actions'
 import ScoreBoard from './ScoreBoard'
+import EncounteredPokemonContainer from '../encounteredPokemon/EncounteredPokemonContainer'
 
 export default class Turn extends React.Component {
   constructor(props) {
@@ -50,6 +51,7 @@ export default class Turn extends React.Component {
 
     return (
       <div className="turn">
+        <EncounteredPokemonContainer />
         {highlight && (
           <Sound
             url={

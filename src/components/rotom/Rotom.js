@@ -1,12 +1,19 @@
 import React from 'react'
 import './Rotom.css'
-import { STANDARD_MODE } from '../../store/actions/Actions'
+import { TIME_TRIAL } from '../../store/actions/Actions'
 
-function Rotom({ gameMode, showRotomMessage, rotomMessage, turnDuration }) {
+function Rotom({
+  gameMode,
+  rotomMessageStyle,
+  showRotomMessage,
+  rotomMessage,
+  turnDuration,
+}) {
+  console.log(rotomMessageStyle)
   return (
     <div
       className={
-        showRotomMessage && gameMode === STANDARD_MODE
+        showRotomMessage && gameMode !== TIME_TRIAL
           ? 'rotomDex rotomDexShowing'
           : 'rotomDex'
       }
@@ -14,8 +21,8 @@ function Rotom({ gameMode, showRotomMessage, rotomMessage, turnDuration }) {
         animationDuration: turnDuration + 'ms',
       }}
     >
-      <div className="rotomDexContainer">
-        <p className="rotomMessage">{rotomMessage.toUpperCase()} </p>
+      <div className={'rotomDexContainer ' + rotomMessageStyle}>
+        <p className="rotomMessage ">{rotomMessage.toUpperCase()} </p>
         <img src="/images/rotomDex.png" alt="rotom dex" />
       </div>
     </div>

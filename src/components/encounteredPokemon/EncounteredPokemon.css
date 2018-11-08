@@ -1,0 +1,50 @@
+.encounteredPokemonPanel {
+  position: absolute;
+  z-index: 250;
+  left: -16%;
+  top: 0%;
+  width: 110px;
+  height: 535px;
+  overflow: hidden;
+}
+.pokemonsEncounteredTitle {
+  color: whitesmoke;
+  max-width: 100%;
+  font-size: 1.3em;
+  display: block;
+  height: 10%;
+  text-align: center;
+  margin-bottom: 0;
+}
+.scrollBarRemover {
+  height: 90%;
+  width: 100%;
+  overflow: hidden;
+}
+.encounteredPokemonList {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-left: 7%;
+  padding-right: 20px; /* Increase/decrease this value for cross-browser compatibility */
+  box-sizing: content-box; /* So the width will be 100% + 17px */
+}
+.encounteredPokemonList > li {
+  float: left;
+  max-width: 48%;
+  margin-bottom: 5px;
+}
+
+.encounteredPokemonList > li:nth-child(even) {
+  margin-left: 4%;
+}
+
+.encounteredPokemon {
+  width: 100%;
+}
+
+@media only screen and (max-width: 990px) {
+  .encounteredPokemonPanel {
+    display: none;
+  }
+}

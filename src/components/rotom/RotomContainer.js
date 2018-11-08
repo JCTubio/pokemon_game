@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
 import Rotom from './Rotom'
-//import { answerSelected, nextTurn } from "../../store/actions/Actions";
 
 function mapStateToProps(state) {
   return {
     showRotomMessage: state.turn.showRotomMessage,
+    rotomMessageStyle: state.turn.rotomMessageStyle,
     rotomMessage: state.turn.rotomMessage,
     turnDuration: state.turn.turnDuration,
     gameMode: state.app.gameMode,
