@@ -7,8 +7,8 @@ import {
 
 export default function ScoreBoard({
   panelToDisplay,
-  correctAnswers = 0,
-  bestStreak = 0,
+  currentScore = 0,
+  highScore = 0,
   timeLeft = 0,
   gameMode,
 }) {
@@ -19,13 +19,13 @@ export default function ScoreBoard({
         <div className="currentScoreLabel ">current</div>
       )}
       {gameMode === STANDARD_MODE && (
-        <div className="bestStreakLabel ">best</div>
+        <div className="highScoreLabel ">best</div>
       )}
       {gameMode === STANDARD_MODE && (
-        <div className="currentScore">{correctAnswers}</div>
+        <div className="currentScore">{currentScore}</div>
       )}
       {gameMode === STANDARD_MODE && (
-        <div className="bestStreak">{bestStreak}</div>
+        <div className="highScore">{highScore}</div>
       )}
       {(gameMode === TIME_TRIAL || gameMode === GAME_FINISHED) && (
         <div className="timeLeftLabel">Time Left:</div>

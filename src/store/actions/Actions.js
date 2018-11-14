@@ -14,7 +14,10 @@ export const RESET_STANDARD_MODE = 'RESET_STANDARD_MODE'
 export const RESET_TT_MODE = 'RESET_TT_MODE'
 export const ROTOM_TALK = 'ROTOM_TALK'
 export const TT_GAME_FINISHED = 'TT_GAME_FINISHED'
-export const TIME_TRIAL_STARTED = 'TIME_TRIAL_STARTED'
+export const PLAY_TIME_TRIAL_BACKGROUND_MUSIC =
+  'PLAY_TIME_TRIAL_BACKGROUND_MUSIC'
+export const PLAY_STANDARD_GAME_BACKGROUND_MUSIC =
+  'PLAY_STANDARD_GAME_BACKGROUND_MUSIC'
 export const CUT_THE_MUSIC = 'CUT_THE_MUSIC'
 
 /*Action creators*/
@@ -32,20 +35,20 @@ export function ttAnswerSelected(answer) {
 export function naturalTimeCountdown() {
   return { type: NATURAL_TIME_COUNTDOWN }
 }
-export function nextTurn() {
-  return { type: CONTINUE }
+export function nextTurn(turnData) {
+  return { type: CONTINUE, turnData }
 }
-export function nextTTTurn() {
-  return { type: TT_CONTINUE }
+export function nextTTTurn(turnData) {
+  return { type: TT_CONTINUE, turnData }
 }
 export function songSelected(songName) {
   return { type: SONG_SELECTED, songName }
 }
-export function muteToggled(playbackStatus) {
-  return { type: MUTE_TOGGLED, playbackStatus }
+export function muteToggled() {
+  return { type: MUTE_TOGGLED }
 }
-export function resetStandardMode() {
-  return { type: RESET_STANDARD_MODE }
+export function resetStandardMode(turnData) {
+  return { type: RESET_STANDARD_MODE, turnData }
 }
 export function resetTTMode() {
   return { type: RESET_TT_MODE }
@@ -62,7 +65,10 @@ export function ttGameFinished() {
   return { type: TT_GAME_FINISHED }
 }
 export function playMusicForTTStarted() {
-  return { type: TIME_TRIAL_STARTED }
+  return { type: PLAY_TIME_TRIAL_BACKGROUND_MUSIC }
+}
+export function playMusicForSGStarted() {
+  return { type: PLAY_STANDARD_GAME_BACKGROUND_MUSIC }
 }
 export function cutTheMusic() {
   return { type: CUT_THE_MUSIC }

@@ -4,20 +4,21 @@ import '../../resources/bootstrap.min.css'
 import 'antd/dist/antd.css'
 import Turn from '../answerPanel/Turn'
 import JukeboxContainer from '../jukebox'
+import ResultsModal from '../resultsModal/ResultsModal'
 import { STANDARD_MODE, TIME_TRIAL } from '../../store/actions/Actions'
 
 const App = ({
   turnData,
-  highlight,
+  isAnswerSelected,
   handleSelect,
   turnNumber,
-  clickedThisTurn,
-  correctAnswers,
-  bestStreak,
-  pokedexGlow,
+  currentScore,
+  highScore,
+  pokedexGlowColor,
   onModeChanged,
   gameMode,
   timeLeft,
+  volume,
 }) => {
   function gameModeChangeHandler(mode) {
     return gameMode === mode ? null : onModeChanged(mode)
@@ -25,6 +26,7 @@ const App = ({
 
   return (
     <div className="container-fluid">
+      {/*<ResultsModal /> A TERMINAR*/}
       <div className="header">
         <JukeboxContainer />
         <img
@@ -38,14 +40,14 @@ const App = ({
         <Turn
           key={turnNumber}
           {...turnData}
-          highlight={highlight}
+          isAnswerSelected={isAnswerSelected}
           handleSelect={handleSelect}
-          clickedThisTurn={clickedThisTurn}
-          pokedexGlow={pokedexGlow}
-          correctAnswers={correctAnswers}
-          bestStreak={bestStreak}
+          pokedexGlowColor={pokedexGlowColor}
+          currentScore={currentScore}
+          highScore={highScore}
           gameMode={gameMode}
           timeLeft={timeLeft}
+          volume={volume}
         />
         <div className="rightSpace" />
       </div>

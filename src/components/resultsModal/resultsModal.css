@@ -1,0 +1,13 @@
+.resultsModal {
+  z-index: 9000;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  background-color: blanchedalmond;
+}
+.modalShadow {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100vw;
+  height: 100vh;
+  z-index: 8999;
+}

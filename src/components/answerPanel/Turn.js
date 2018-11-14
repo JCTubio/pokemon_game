@@ -40,19 +40,19 @@ export default class Turn extends React.Component {
   render() {
     const {
       options,
-      highlight,
-      clickedThisTurn,
-      pokedexGlow,
-      correctAnswers,
-      bestStreak,
+      isAnswerSelected,
+      pokedexGlowColor,
+      currentScore,
+      highScore,
       gameMode,
       timeLeft,
+      volume,
     } = this.props
 
     return (
       <div className="turn">
         <EncounteredPokemonContainer />
-        {highlight && (
+        {isAnswerSelected && (
           <Sound
             url={
               '/pokemonCries/' +
@@ -62,7 +62,7 @@ export default class Turn extends React.Component {
               '.wav'
             }
             playStatus={Sound.status.PLAYING}
-            volume={50}
+            volume={volume}
           />
         )}
         <img src="/images/pokedex.png" className="pokedex" alt="pokedex" />
@@ -70,24 +70,24 @@ export default class Turn extends React.Component {
           <img
             src={this.state.spriteImg}
             className={
-              highlight ? 'pkmnSprite pkmnSpriteShowing' : 'pkmnSprite'
+              isAnswerSelected ? 'pkmnSprite pkmnSpriteShowing' : 'pkmnSprite'
             }
             alt="sprite"
             style={{
-              filter: highlight ? '' : 'brightness(0)',
+              filter: isAnswerSelected ? '' : 'brightness(0)',
             }}
           />
         ) : (
           <div />
         )}
-        <PokedexGlow color={pokedexGlow} />
+        <PokedexGlow color={pokedexGlowColor} />
         <div className="respuestas">
           {options.map(name => (
             <PkmnOption
               key={name}
               name={name}
               onClick={this.validateAnswer}
-              disabled={clickedThisTurn}
+              disabled={isAnswerSelected}
             />
           ))}
         </div>
@@ -95,8 +95,8 @@ export default class Turn extends React.Component {
         {gameMode === STANDARD_MODE && (
           <ScoreBoard
             panelToDisplay="/images/scorePanel.png"
-            correctAnswers={correctAnswers}
-            bestStreak={bestStreak}
+            currentScore={currentScore}
+            highScore={highScore}
             gameMode={gameMode}
           />
         )}

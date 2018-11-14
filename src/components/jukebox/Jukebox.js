@@ -1,48 +1,48 @@
-import React, { Component, Fragment } from "react";
-import SongItem from "./SongItem";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { Component, Fragment } from 'react'
+import SongItem from './SongItem'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faMusic,
   faVolumeMute,
-  faVolumeUp
-} from "@fortawesome/free-solid-svg-icons";
-import { Button } from "antd";
-import "./jukebox.css";
-import Sound from "react-sound";
+  faVolumeUp,
+} from '@fortawesome/free-solid-svg-icons'
+import { Button } from 'antd'
+import './jukebox.css'
+import Sound from 'react-sound'
 
-library.add(faMusic);
-library.add(faVolumeMute);
-library.add(faVolumeUp);
+library.add(faMusic)
+library.add(faVolumeMute)
+library.add(faVolumeUp)
 
 export default class Jukebox extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      displayValue: "noDisplay"
-    };
-    this.changeDisplayValue = this.changeDisplayValue.bind(this);
+      displayValue: 'noDisplay',
+    }
+    this.changeDisplayValue = this.changeDisplayValue.bind(this)
   }
 
   changeDisplayValue = () => {
-    if (this.state.displayValue === "noDisplay") {
-      this.setState({ displayValue: "" });
+    if (this.state.displayValue === 'noDisplay') {
+      this.setState({ displayValue: '' })
     } else {
-      this.setState({ displayValue: "noDisplay" });
+      this.setState({ displayValue: 'noDisplay' })
     }
-  };
+  }
 
   render() {
     return (
       <Fragment>
         <Sound
-          url={"/pokemonMusic/" + this.props.currentSong + ".mp3"}
+          url={'/pokemonMusic/' + this.props.currentSong + '.mp3'}
           playStatus={
             this.props.playbackStatus
               ? Sound.status.PLAYING
               : Sound.status.PAUSED
           }
-          volume={50}
+          volume={this.props.volume}
           autoLoad={false}
           loop={true}
         />
@@ -57,14 +57,14 @@ export default class Jukebox extends Component {
         <Button
           ghost
           size="large"
-          className={"muteToggle " + this.state.displayValue}
+          className={'muteToggle ' + this.state.displayValue}
           onClick={this.props.onMuteToggled}
         >
           <FontAwesomeIcon
-            icon={this.props.playbackStatus ? "volume-up" : "volume-mute"}
+            icon={this.props.volume === 50 ? 'volume-up' : 'volume-mute'}
           />
         </Button>
-        <ul className={"songList " + this.state.displayValue}>
+        <ul className={'songList ' + this.state.displayValue}>
           <li className="songItem">
             <SongItem
               songName="The Pokemon Journey"
@@ -85,6 +85,6 @@ export default class Jukebox extends Component {
           </li>
         </ul>
       </Fragment>
-    );
+    )
   }
 }

@@ -3,7 +3,7 @@ import Rotom from './Rotom'
 
 function mapStateToProps(state) {
   return {
-    showRotomMessage: state.turn.showRotomMessage,
+    isRotomOnScreen: state.turn.isRotomOnScreen,
     rotomMessageStyle: state.turn.rotomMessageStyle,
     rotomMessage: state.turn.rotomMessage,
     turnDuration: state.turn.turnDuration,

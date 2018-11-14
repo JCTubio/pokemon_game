@@ -1,7 +1,8 @@
 import {
   SONG_SELECTED,
   MUTE_TOGGLED,
-  TIME_TRIAL_STARTED,
+  PLAY_TIME_TRIAL_BACKGROUND_MUSIC,
+  PLAY_STANDARD_GAME_BACKGROUND_MUSIC,
   CUT_THE_MUSIC,
 } from '../actions/Actions'
 
@@ -9,6 +10,7 @@ export default function jukeboxReducer(
   state = {
     currentSong: 'Battle Theme (Instrumental)',
     playbackStatus: false,
+    volume: 50,
   },
   action
 ) {
@@ -16,14 +18,20 @@ export default function jukeboxReducer(
     case SONG_SELECTED:
       return Object.assign({}, state, {
         currentSong: action.songName,
+        playbackStatus: true,
       })
     case MUTE_TOGGLED:
       return Object.assign({}, state, {
-        playbackStatus: state.playbackStatus ? false : true,
+        volume: state.volume === 0 ? 50 : 0,
       })
-    case TIME_TRIAL_STARTED:
+    case PLAY_TIME_TRIAL_BACKGROUND_MUSIC:
       return Object.assign({}, state, {
         currentSong: 'Battle Theme (8-Bits)',
+        playbackStatus: true,
+      })
+    case PLAY_STANDARD_GAME_BACKGROUND_MUSIC:
+      return Object.assign({}, state, {
+        currentSong: 'Battle Theme (Instrumental)',
         playbackStatus: true,
       })
     case CUT_THE_MUSIC:
