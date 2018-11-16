@@ -8,6 +8,8 @@ import {
   NATURAL_TIME_COUNTDOWN,
   RESET_TT_MODE,
   ROTOM_TALK,
+  SHOW_MODAL,
+  HIDE_MODAL,
 } from '../actions/Actions'
 import {
   QUICK_TURN_DURATION,
@@ -34,6 +36,7 @@ export default function turnReducer(
     turnNumber: 1,
     highScore: 0,
     currentScore: 0,
+    timeSurvivedInTT: 99,
     pokedexGlowColor: POKEDEX_GLOW_COLOR_DEFAULT,
     rotomMessage: '',
     turnDuration: REGULAR_TURN_DURATION,
@@ -41,6 +44,7 @@ export default function turnReducer(
     isTimerActive: false,
     isRotomOnScreen: false,
     rotomMessageStyle: ROTOM_STYLE_CLASS_DEFAULT,
+    isModalShowing: false,
     pokemonsEncountered: [],
   },
   action
@@ -123,7 +127,7 @@ export default function turnReducer(
         currentScore: action.answer
           ? state.currentScore + 1
           : state.currentScore,
-        timeLeft: action.answer ? state.timeLeft + 2000 : state.timeLeft - 2000,
+        timeLeft: action.answer ? state.timeLeft + 2000 : state.timeLeft - 3000,
         pokedexGlowColor: action.answer
           ? POKEDEX_GLOW_COLOR_CORRECT
           : POKEDEX_GLOW_COLOR_INCORRECT,
@@ -140,11 +144,13 @@ export default function turnReducer(
       })
     case NATURAL_TIME_COUNTDOWN:
       return Object.assign({}, state, {
+        timeSurvivedInTT: state.timeSurvivedInTT + 1,
         timeLeft: state.isTimerActive ? state.timeLeft - 1000 : state.timeLeft,
       })
     case RESET_TT_MODE:
       return Object.assign({}, state, {
         pokemonsEncountered: [],
+        timeSurvivedInTT: 0,
         isAnswerSelected: false,
         turnNumber: state.turnNumber + 1,
         pokedexGlowColor: POKEDEX_GLOW_COLOR_DEFAULT,
@@ -164,6 +170,14 @@ export default function turnReducer(
         rotomMessage: "Time's up!\nLet's see how\nwell you did...",
         rotomMessageStyle: ROTOM_STYLE_CLASS_TTEND,
       })
+    case SHOW_MODAL:
+      return Object.assign({}, state, {
+        isModalShowing: true,
+      })
+    case HIDE_MODAL:
+      return Object.assign({}, state, {
+        isModalShowing: false,
+      })
     default:
       return state
   }
@@ -174,17 +188,5 @@ function correctPokemonRotomMessage(answer) {
 }
 
 function wrongPokemonRotomMessage(answer) {
-  return answer.type.length > 1
-    ? "Incorrect!\nThat's " +
-        answer.ename +
-        '.\na ' +
-        answer.type[0] +
-        '/' +
-        answer.type[1] +
-        '\ntype pokemon!'
-    : "Incorrect!\nThat's " +
-        answer.ename +
-        '.\na ' +
-        answer.type[0] +
-        '\ntype pokemon!'
+  return "Incorrect!\nThat's\n" + answer.ename + '!'
 }

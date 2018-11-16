@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { shuffle, sample } from 'underscore'
 import App from './App'
-import pkmnJson from '../../resources/pokedex.json'
+import getTurnData from '../../store/selectors/turnDataSelector'
 import {
   answerSelected,
   ttAnswerSelected,
@@ -17,15 +16,22 @@ import {
   rotomTalk,
   naturalTimeCountdown,
   ttGameFinished,
-  cutTheMusic,
+  stopTheMusic,
   gameFinished,
   playMusicForSGStarted,
+  showModal,
+  playTheMusic,
 } from '../../store/actions/Actions'
 import {
   REGULAR_TURN_DURATION,
   QUICK_TURN_DURATION,
   TIME_TRIAL_TURN_DURATION,
 } from './config'
+import {
+  getChillSong,
+  getIntenseSong,
+  getCreditsSong,
+} from '../../store/selectors/musicSelector'
 
 function mapStateToProps(state) {
   return {
@@ -40,6 +46,7 @@ function mapStateToProps(state) {
     pokedexGlowColor: state.turn.pokedexGlowColor,
     timeLeft: state.turn.timeLeft,
     isTimerActive: state.turn.timeLeft,
+    isModalShowing: state.turn.isModalShowing,
   }
 }
 
@@ -50,7 +57,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(rotomTalk(answer))
       setTimeout(
         function() {
-          dispatch(nextTurn(getTurnData(pkmnJson)))
+          dispatch(nextTurn(getTurnData()))
         },
         answer ? QUICK_TURN_DURATION : REGULAR_TURN_DURATION
       )
@@ -58,18 +65,21 @@ function mapDispatchToProps(dispatch) {
     onTTAnswerSelected: answer => {
       dispatch(ttAnswerSelected(answer))
       setTimeout(function() {
-        dispatch(nextTTTurn(getTurnData(pkmnJson)))
+        dispatch(nextTTTurn(getTurnData()))
       }, TIME_TRIAL_TURN_DURATION)
     },
     onModeChanged: mode => {
       mode === STANDARD_MODE
-        ? dispatch(resetStandardMode(getTurnData(pkmnJson))) &&
-          dispatch(playMusicForSGStarted())
+        ? dispatch(resetStandardMode(getTurnData())) &&
+          dispatch(playMusicForSGStarted(getChillSong())) &&
+          dispatch(playTheMusic())
         : dispatch(resetTTMode())
       setTimeout(
         function() {
-          mode === TIME_TRIAL && dispatch(nextTTTurn(getTurnData(pkmnJson)))
-          mode === TIME_TRIAL && dispatch(playMusicForTTStarted())
+          mode === TIME_TRIAL && dispatch(nextTTTurn(getTurnData()))
+          mode === TIME_TRIAL &&
+            dispatch(playMusicForTTStarted(getIntenseSong()))
+          mode === TIME_TRIAL && dispatch(playTheMusic())
           dispatch(changeGameMode(mode))
         },
         mode === STANDARD_MODE ? 0 : 2000
@@ -79,26 +89,16 @@ function mapDispatchToProps(dispatch) {
       dispatch(naturalTimeCountdown())
     },
     onGameFinished: () => {
-      dispatch(cutTheMusic())
+      dispatch(stopTheMusic())
       dispatch(gameFinished())
       dispatch(ttGameFinished())
+      dispatch(showModal())
     },
     onGameInitializes: () => {
-      dispatch(resetStandardMode(getTurnData(pkmnJson)))
+      dispatch(resetStandardMode(getTurnData()))
+      dispatch(playMusicForSGStarted(getChillSong()))
+      dispatch(playTheMusic())
     },
-  }
-}
-
-function getTurnData(pkmnJson) {
-  const allPkmn = pkmnJson.reduce(function(p, c, i) {
-    return p.concat(c.ename)
-  }, [])
-  const fourPkmn = shuffle(allPkmn).slice(0, 4)
-  const answer = sample(fourPkmn)
-
-  return {
-    options: fourPkmn,
-    sprite: pkmnJson.find(pokemon => pokemon.ename === answer),
   }
 }
 

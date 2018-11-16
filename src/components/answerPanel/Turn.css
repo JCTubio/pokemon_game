@@ -120,3 +120,48 @@
   font-size: 21px;
   color: black;
 }
+.timeAdded {
+  position: absolute;
+  top: 80%;
+  left: 20.5%;
+  animation: blink 0.2s steps(1, start) infinite;
+}
+.timeAdded > .number {
+  font-family: calculator;
+  font-weight: bold;
+  font-size: 35px;
+  color: green;
+}
+.timeAdded > .unit {
+  font-family: pokemon;
+  font-weight: bold;
+  font-size: 21px;
+  color: green;
+}
+.timeDiscounted {
+  position: absolute;
+  top: 80%;
+  left: 20.5%;
+  animation: blink 0.3s steps(1, start) infinite;
+}
+.timeDiscounted > .number {
+  font-family: calculator;
+  font-weight: bold;
+  font-size: 35px;
+  color: red;
+}
+.timeDiscounted > .unit {
+  font-family: pokemon;
+  font-weight: bold;
+  font-size: 21px;
+  color: red;
+}
+
+@keyframes blink {
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

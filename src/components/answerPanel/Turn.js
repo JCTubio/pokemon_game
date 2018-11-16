@@ -9,6 +9,7 @@ import {
   TIME_TRIAL,
   GAME_FINISHED,
 } from '../../store/actions/Actions'
+import { POKEDEX_GLOW_COLOR_INCORRECT } from '../app/config'
 import ScoreBoard from './ScoreBoard'
 import EncounteredPokemonContainer from '../encounteredPokemon/EncounteredPokemonContainer'
 
@@ -55,11 +56,13 @@ export default class Turn extends React.Component {
         {isAnswerSelected && (
           <Sound
             url={
-              '/pokemonCries/' +
-              this.props.sprite.id +
-              ' - ' +
-              this.props.sprite.ename +
-              '.wav'
+              pokedexGlowColor === POKEDEX_GLOW_COLOR_INCORRECT
+                ? '/miscAudioFiles/Wrong_Answer.mp3'
+                : '/pokemonCries/' +
+                  this.props.sprite.id +
+                  ' - ' +
+                  this.props.sprite.ename +
+                  '.wav'
             }
             playStatus={Sound.status.PLAYING}
             volume={volume}
@@ -98,6 +101,7 @@ export default class Turn extends React.Component {
             currentScore={currentScore}
             highScore={highScore}
             gameMode={gameMode}
+            pokedexGlowColor={pokedexGlowColor}
           />
         )}
         {(gameMode === TIME_TRIAL || gameMode === GAME_FINISHED) && (
@@ -105,6 +109,7 @@ export default class Turn extends React.Component {
             panelToDisplay="/images/ttScorePanel.png"
             timeLeft={timeLeft}
             gameMode={gameMode}
+            pokedexGlowColor={pokedexGlowColor}
           />
         )}
       </div>

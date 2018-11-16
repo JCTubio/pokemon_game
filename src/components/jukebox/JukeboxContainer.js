@@ -1,6 +1,11 @@
 import { connect } from 'react-redux'
 import Jukebox from './Jukebox'
-import { songSelected, muteToggled } from '../../store/actions/Actions'
+import {
+  songSelected,
+  muteToggled,
+  stopTheMusic,
+  playTheMusic,
+} from '../../store/actions/Actions'
 
 function mapStateToProps(state) {
   return {
@@ -12,7 +17,11 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     onSongSelected: songName => {
+      dispatch(stopTheMusic())
       dispatch(songSelected(songName))
+      setTimeout(function() {
+        dispatch(playTheMusic())
+      }, 10)
     },
     onMuteToggled: () => {
       dispatch(muteToggled())
