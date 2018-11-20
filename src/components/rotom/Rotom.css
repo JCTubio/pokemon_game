@@ -4,6 +4,7 @@
   left: 100vw;
   width: 450px;
   pointer-events: none;
+  z-index: 500;
 }
 
 .rotomDexShowing {

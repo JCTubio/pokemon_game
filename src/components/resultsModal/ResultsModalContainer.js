@@ -24,13 +24,14 @@ function mapStateToProps(state) {
     isModalShowing: state.turn.isModalShowing,
     pokemonsEncountered: state.turn.pokemonsEncountered,
     timeSurvivedInTT: state.turn.timeSurvivedInTT,
+    generations: state.turn.generations,
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
-    onModeSelected: mode => {
+    onModeSelected: (mode, generations) => {
       if (mode === STANDARD_MODE) {
-        dispatch(resetStandardMode(getTurnData()))
+        dispatch(resetStandardMode(getTurnData(generations)))
         dispatch(playMusicForSGStarted(getChillSong()))
         dispatch(playTheMusic())
         dispatch(hideModal())
@@ -39,7 +40,7 @@ function mapDispatchToProps(dispatch) {
         dispatch(hideModal())
         dispatch(resetTTMode())
         setTimeout(function() {
-          dispatch(nextTTTurn(getTurnData()))
+          dispatch(nextTTTurn(getTurnData(generations)))
           dispatch(playMusicForTTStarted(getIntenseSong()))
           dispatch(playTheMusic())
           dispatch(changeGameMode(mode))

@@ -20,9 +20,11 @@ const App = ({
   timeLeft,
   volume,
   isModalShowing,
+  onGenerationChanged,
+  generations,
 }) => {
   function gameModeChangeHandler(mode) {
-    return gameMode === mode ? null : onModeChanged(mode)
+    return gameMode === mode ? null : onModeChanged(mode, generations)
   }
 
   return (
@@ -52,6 +54,7 @@ const App = ({
           gameMode={gameMode}
           timeLeft={timeLeft}
           volume={volume}
+          onGenerationChanged={onGenerationChanged}
         />
         <div className="rightSpace" />
       </div>

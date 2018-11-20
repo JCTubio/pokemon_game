@@ -12,6 +12,7 @@ import {
 import { POKEDEX_GLOW_COLOR_INCORRECT } from '../app/config'
 import ScoreBoard from './ScoreBoard'
 import EncounteredPokemonContainer from '../encounteredPokemon/EncounteredPokemonContainer'
+import GenerationFilter from '../generationFilter/GenerationFilter'
 
 export default class Turn extends React.Component {
   constructor(props) {
@@ -48,6 +49,7 @@ export default class Turn extends React.Component {
       gameMode,
       timeLeft,
       volume,
+      onGenerationChanged,
     } = this.props
 
     return (
@@ -112,6 +114,7 @@ export default class Turn extends React.Component {
             pokedexGlowColor={pokedexGlowColor}
           />
         )}
+        <GenerationFilter onGenerationChanged={onGenerationChanged} />
       </div>
     )
   }

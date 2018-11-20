@@ -1,0 +1,54 @@
+.genFilter {
+  z-index: 100;
+  position: absolute;
+  left: 102%;
+  top: 0;
+  height: 100%;
+}
+.genButton {
+  width: 150px;
+  height: 65px;
+}
+
+#tick {
+  position: absolute;
+  top: 55%;
+  left: 90%;
+  width: 25px;
+}
+
+#kanto {
+  position: absolute;
+  top: 0;
+}
+
+#johto {
+  position: absolute;
+  top: 13%;
+}
+
+#hoenn {
+  position: absolute;
+  top: 26%;
+}
+
+#sinnoh {
+  position: absolute;
+  top: 39%;
+}
+
+#unova {
+  position: absolute;
+  top: 52%;
+}
+
+#kalos {
+  position: absolute;
+  top: 65%;
+}
+
+#submit {
+  position: absolute;
+  top: 78%;
+  left: 10px;
+}

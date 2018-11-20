@@ -27,6 +27,7 @@ export const STOP_THE_MUSIC = 'STOP_THE_MUSIC'
 export const PAUSE_THE_MUSIC = 'PAUSE_THE_MUSIC'
 export const SHOW_MODAL = 'SHOW_MODAL'
 export const HIDE_MODAL = 'HIDE_MODAL'
+export const CHANGE_GENERATIONS = 'CHANGE_GENERATIONS'
 
 /*Action creators*/
 export function changeGameMode(mode) {
@@ -111,4 +112,8 @@ export function showModal() {
 
 export function hideModal() {
   return { type: HIDE_MODAL }
+}
+
+export function changeGenerations(generationsArray) {
+  return { type: CHANGE_GENERATIONS, generationsArray }
 }

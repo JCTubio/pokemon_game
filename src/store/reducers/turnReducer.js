@@ -10,6 +10,7 @@ import {
   ROTOM_TALK,
   SHOW_MODAL,
   HIDE_MODAL,
+  CHANGE_GENERATIONS,
 } from '../actions/Actions'
 import {
   QUICK_TURN_DURATION,
@@ -46,6 +47,7 @@ export default function turnReducer(
     rotomMessageStyle: ROTOM_STYLE_CLASS_DEFAULT,
     isModalShowing: false,
     pokemonsEncountered: [],
+    generations: [1, 2, 3],
   },
   action
 ) {
@@ -177,6 +179,10 @@ export default function turnReducer(
     case HIDE_MODAL:
       return Object.assign({}, state, {
         isModalShowing: false,
+      })
+    case CHANGE_GENERATIONS:
+      return Object.assign({}, state, {
+        generations: action.generationsArray,
       })
     default:
       return state

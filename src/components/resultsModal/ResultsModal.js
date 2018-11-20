@@ -7,6 +7,7 @@ export default function ResultsModal({
   pokemonsEncountered,
   timeSurvivedInTT,
   onModeSelected,
+  generations,
 }) {
   return (
     <div
@@ -46,14 +47,14 @@ export default function ResultsModal({
         <button
           id="modalMMButton"
           className="toMainModeButton"
-          onClick={() => onModeSelected(STANDARD_MODE)}
+          onClick={() => onModeSelected(STANDARD_MODE, generations)}
         >
           {'Standard\nMode'}
         </button>
         <button
           id="modalTTButton"
           className="toTimeTrialButton"
-          onClick={() => onModeSelected(TIME_TRIAL)}
+          onClick={() => onModeSelected(TIME_TRIAL, generations)}
         >
           {'Time\nTrial'}
         </button>

@@ -21,6 +21,7 @@ import {
   playMusicForSGStarted,
   showModal,
   playTheMusic,
+  changeGenerations,
 } from '../../store/actions/Actions'
 import {
   REGULAR_TURN_DURATION,
@@ -47,36 +48,37 @@ function mapStateToProps(state) {
     timeLeft: state.turn.timeLeft,
     isTimerActive: state.turn.timeLeft,
     isModalShowing: state.turn.isModalShowing,
+    generations: state.turn.generations,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onAnswerSelected: answer => {
+    onAnswerSelected: (answer, generations) => {
       dispatch(answerSelected(answer))
       dispatch(rotomTalk(answer))
       setTimeout(
         function() {
-          dispatch(nextTurn(getTurnData()))
+          dispatch(nextTurn(getTurnData(generations)))
         },
         answer ? QUICK_TURN_DURATION : REGULAR_TURN_DURATION
       )
     },
-    onTTAnswerSelected: answer => {
+    onTTAnswerSelected: (answer, generations) => {
       dispatch(ttAnswerSelected(answer))
       setTimeout(function() {
-        dispatch(nextTTTurn(getTurnData()))
+        dispatch(nextTTTurn(getTurnData(generations)))
       }, TIME_TRIAL_TURN_DURATION)
     },
-    onModeChanged: mode => {
+    onModeChanged: (mode, generations) => {
       mode === STANDARD_MODE
-        ? dispatch(resetStandardMode(getTurnData())) &&
+        ? dispatch(resetStandardMode(getTurnData(generations))) &&
           dispatch(playMusicForSGStarted(getChillSong())) &&
           dispatch(playTheMusic())
         : dispatch(resetTTMode())
       setTimeout(
         function() {
-          mode === TIME_TRIAL && dispatch(nextTTTurn(getTurnData()))
+          mode === TIME_TRIAL && dispatch(nextTTTurn(getTurnData(generations)))
           mode === TIME_TRIAL &&
             dispatch(playMusicForTTStarted(getIntenseSong()))
           mode === TIME_TRIAL && dispatch(playTheMusic())
@@ -94,10 +96,13 @@ function mapDispatchToProps(dispatch) {
       dispatch(ttGameFinished())
       dispatch(showModal())
     },
-    onGameInitializes: () => {
-      dispatch(resetStandardMode(getTurnData()))
+    onGameInitializes: generations => {
+      dispatch(resetStandardMode(getTurnData(generations)))
       dispatch(playMusicForSGStarted(getChillSong()))
       dispatch(playTheMusic())
+    },
+    onGenerationChanged: generationsFromFilter => {
+      dispatch(changeGenerations(generationsFromFilter))
     },
   }
 }
@@ -106,16 +111,16 @@ class AppContainer extends React.Component {
   handleSelect = answer => {
     switch (this.props.gameMode) {
       case STANDARD_MODE:
-        return this.props.onAnswerSelected(answer)
+        return this.props.onAnswerSelected(answer, this.props.generations)
       case TIME_TRIAL:
-        return this.props.onTTAnswerSelected(answer)
+        return this.props.onTTAnswerSelected(answer, this.props.generations)
       default:
-        return this.props.onAnswerSelected(answer)
+        return this.props.onAnswerSelected(answer, this.props.generations)
     }
   }
 
   componentDidMount() {
-    this.props.onGameInitializes()
+    this.props.onGameInitializes(this.props.generations)
     this.timerID = setInterval(() => this.tick(), 1000)
   }
 
