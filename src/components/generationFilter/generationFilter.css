@@ -25,13 +25,13 @@
     3px 3px 0 #000;
   line-height: 0.9em;
   font-family: game_version;
-  width: 170px;
-  height: 65px;
+  width: 165px;
+  height: 50px;
 }
 
 #kanto {
   position: absolute;
-  top: 10%;
+  top: 16%;
   left: 25%;
 }
 
@@ -44,7 +44,7 @@
 
 #johto {
   position: absolute;
-  top: 22%;
+  top: 28%;
   left: 25%;
 }
 
@@ -57,7 +57,7 @@
 
 #hoenn {
   position: absolute;
-  top: 34%;
+  top: 40%;
   left: 25%;
 }
 
@@ -70,7 +70,7 @@
 
 #sinnoh {
   position: absolute;
-  top: 46%;
+  top: 52%;
   left: 25%;
 }
 
@@ -83,7 +83,7 @@
 
 #unova {
   position: absolute;
-  top: 58%;
+  top: 64%;
   left: 25%;
 }
 
@@ -96,7 +96,7 @@
 
 #kalos {
   position: absolute;
-  top: 70%;
+  top: 76%;
   left: 25%;
 }
 
@@ -109,11 +109,16 @@
 
 #submit {
   position: absolute;
-  top: 78%;
-  left: 10px;
-}
-
-@font-face {
-  font-family: game_version;
-  src: url(../../resources/fonts/FuturaExtraBold.otf);
+  top: 84%;
+  left: 0;
+  padding: 0 10px 0 10px;
+  color: black;
+  display: inline-block;
+  background-color: white;
+  font-size: 2em;
+  text-align: center;
+  font-family: pixel;
+  white-space: pre;
+  margin-right: 10px;
+  margin-left: 10px;
 }

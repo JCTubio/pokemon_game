@@ -10,6 +10,11 @@
   border-bottom: 4px solid grey;
   transition: all 0.2s ease;
 }
+
+.answer:focus {
+  outline: none;
+}
+
 .answer > p {
   font-family: pokemon;
   color: black;
