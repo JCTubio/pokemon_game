@@ -99,13 +99,11 @@ class GenerationFilter extends Component {
   render() {
     return (
       <div className="genFilter">
+        <h2 className="genTitle">Gen Selector</h2>
         <div id="kanto">
-          <img
-            src="/images/generations/kanto.png"
-            alt="kanto"
-            className="genButton"
-            onClick={this.handleKantoClicked}
-          />
+          <h4 className="genButton" onClick={this.handleKantoClicked}>
+            {'RED&\nBLUE'}
+          </h4>
           <img
             src="/images/generations/tick.png"
             alt="kantoTick"
@@ -114,12 +112,9 @@ class GenerationFilter extends Component {
           />
         </div>
         <div id="johto">
-          <img
-            src="/images/generations/johto.png"
-            alt="johto"
-            className="genButton"
-            onClick={this.handleJohtoClicked}
-          />
+          <h4 className="genButton" onClick={this.handleJohtoClicked}>
+            {'GOLD&\nSILVER'}
+          </h4>
           <img
             src="/images/generations/tick.png"
             alt="johtoTick"
@@ -128,12 +123,9 @@ class GenerationFilter extends Component {
           />
         </div>
         <div id="hoenn">
-          <img
-            src="/images/generations/hoenn.png"
-            alt="hoenn"
-            className="genButton"
-            onClick={this.handleHoennClicked}
-          />
+          <h4 className="genButton" onClick={this.handleHoennClicked}>
+            {'RUBY&\nSAPPHIRE'}
+          </h4>
           <img
             src="/images/generations/tick.png"
             alt="hoennTick"
@@ -142,12 +134,9 @@ class GenerationFilter extends Component {
           />
         </div>
         <div id="sinnoh">
-          <img
-            src="/images/generations/sinnoh.png"
-            alt="sinnoh"
-            className="genButton"
-            onClick={this.handleSinnohClicked}
-          />
+          <h4 className="genButton" onClick={this.handleSinnohClicked}>
+            {'PEARL&\nDIAMOND'}
+          </h4>
           <img
             src="/images/generations/tick.png"
             alt="sinnohTick"
@@ -156,12 +145,9 @@ class GenerationFilter extends Component {
           />
         </div>
         <div id="unova">
-          <img
-            src="/images/generations/unova.png"
-            alt="unova"
-            className="genButton"
-            onClick={this.handleUnovaClicked}
-          />
+          <h4 className="genButton" onClick={this.handleUnovaClicked}>
+            {'BLACK&\nWHITE'}
+          </h4>
           <img
             src="/images/generations/tick.png"
             alt="unovaTick"
@@ -170,12 +156,9 @@ class GenerationFilter extends Component {
           />
         </div>
         <div id="kalos">
-          <img
-            src="/images/generations/kalos.png"
-            alt="kalos"
-            className="genButton"
-            onClick={this.handleKalosClicked}
-          />
+          <h4 className="genButton" onClick={this.handleKalosClicked}>
+            {'X&Y'}
+          </h4>
           <img
             src="/images/generations/tick.png"
             alt="kalosTick"

@@ -4,51 +4,116 @@
   left: 102%;
   top: 0;
   height: 100%;
-}
-.genButton {
-  width: 150px;
-  height: 65px;
+  width: 200px;
 }
 
-#tick {
+.genTitle {
   position: absolute;
-  top: 55%;
-  left: 90%;
-  width: 25px;
+  left: 10px;
+  top: 0px;
+  color: white;
+  border: none;
+  padding: 0;
+  text-align: center;
+  font-size: 1.3em;
+  line-height: 1.2em;
+}
+.genButton {
+  color: white;
+  font-size: 2em;
+  text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000,
+    3px 3px 0 #000;
+  line-height: 0.9em;
+  font-family: game_version;
+  width: 170px;
+  height: 65px;
 }
 
 #kanto {
   position: absolute;
-  top: 0;
+  top: 10%;
+  left: 25%;
+}
+
+#kanto > #tick {
+  position: absolute;
+  top: 17%;
+  left: -25%;
+  width: 30px;
 }
 
 #johto {
   position: absolute;
-  top: 13%;
+  top: 22%;
+  left: 25%;
+}
+
+#johto > #tick {
+  position: absolute;
+  top: 17%;
+  left: -25%;
+  width: 30px;
 }
 
 #hoenn {
   position: absolute;
-  top: 26%;
+  top: 34%;
+  left: 25%;
+}
+
+#hoenn > #tick {
+  position: absolute;
+  top: 17%;
+  left: -25%;
+  width: 30px;
 }
 
 #sinnoh {
   position: absolute;
-  top: 39%;
+  top: 46%;
+  left: 25%;
+}
+
+#sinnoh > #tick {
+  position: absolute;
+  top: 17%;
+  left: -25%;
+  width: 30px;
 }
 
 #unova {
   position: absolute;
-  top: 52%;
+  top: 58%;
+  left: 25%;
+}
+
+#unova > #tick {
+  position: absolute;
+  top: 17%;
+  left: -25%;
+  width: 30px;
 }
 
 #kalos {
   position: absolute;
-  top: 65%;
+  top: 70%;
+  left: 25%;
+}
+
+#kalos > #tick {
+  position: absolute;
+  top: -4%;
+  left: -25%;
+  width: 30px;
 }
 
 #submit {
   position: absolute;
   top: 78%;
   left: 10px;
+}
+
+@font-face {
+  font-family: game_version;
+  src: url(../../resources/fonts/FuturaExtraBold.otf);
 }
