@@ -16,15 +16,19 @@ import {
   getChillSong,
   getIntenseSong,
   getCreditsSong,
-} from '../../store/selectors/musicSelector'
-import getTurnData from '../../store/selectors/turnDataSelector'
+} from '../../store/selectors/musicHelper'
+import getTurnData from '../../store/selectors/turnDataHelper'
+import getIsModalShowing from '../../store/selectors/isModalShowingSelector'
+import getEncounteredPokemon from '../../store/selectors/pokemonEncounteredSelector'
+import getGenerations from '../../store/selectors/generationsSelector'
+import getTimeSurvivedInTT from '../../store/selectors/timeSurvivedInTTSelector'
 
 function mapStateToProps(state) {
   return {
-    isModalShowing: state.turn.isModalShowing,
-    pokemonsEncountered: state.turn.pokemonsEncountered,
-    timeSurvivedInTT: state.turn.timeSurvivedInTT,
-    generations: state.turn.generations,
+    isModalShowing: getIsModalShowing(state),
+    pokemonsEncountered: getEncounteredPokemon(state),
+    timeSurvivedInTT: getTimeSurvivedInTT(state),
+    generations: getGenerations(state),
   }
 }
 function mapDispatchToProps(dispatch) {

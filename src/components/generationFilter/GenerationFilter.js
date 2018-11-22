@@ -60,40 +60,46 @@ class GenerationFilter extends Component {
     this.props.onGenerationChanged(genArray)
   }
 
-  handleKantoClicked = () => {
+  handleKantoClicked = async () => {
     this.state.kanto
-      ? this.setState({ kanto: false })
-      : this.setState({ kanto: true })
+      ? await this.setState({ kanto: false })
+      : await this.setState({ kanto: true })
+    this.handleSubmit()
   }
 
-  handleJohtoClicked = () => {
+  handleJohtoClicked = async () => {
     this.state.johto
-      ? this.setState({ johto: false })
-      : this.setState({ johto: true })
+      ? await this.setState({ johto: false })
+      : await this.setState({ johto: true })
+    this.handleSubmit()
   }
 
-  handleHoennClicked = () => {
+  handleHoennClicked = async () => {
     this.state.hoenn
-      ? this.setState({ hoenn: false })
-      : this.setState({ hoenn: true })
+      ? await this.setState({ hoenn: false })
+      : await this.setState({ hoenn: true })
+    this.handleSubmit()
   }
 
-  handleSinnohClicked = () => {
+  handleSinnohClicked = async () => {
     this.state.sinnoh
-      ? this.setState({ sinnoh: false })
-      : this.setState({ sinnoh: true })
+      ? await this.setState({ sinnoh: false })
+      : await this.setState({ sinnoh: true })
+    this.handleSubmit()
   }
 
-  handleUnovaClicked = () => {
+  handleUnovaClicked = async () => {
     this.state.unova
-      ? this.setState({ unova: false })
-      : this.setState({ unova: true })
+      ? await this.setState({ unova: false })
+      : await this.setState({ unova: true })
+    this.handleSubmit()
   }
 
-  handleKalosClicked = () => {
+  handleKalosClicked = async () => {
     this.state.kalos
-      ? this.setState({ kalos: false })
-      : this.setState({ kalos: true })
+      ? await this.setState({ kalos: false })
+      : await this.setState({ kalos: true })
+    this.handleSubmit()
   }
 
   render() {
@@ -166,9 +172,6 @@ class GenerationFilter extends Component {
             style={this.state.kalos === true ? null : { display: 'none' }}
           />
         </div>
-        <button id="submit" onClick={this.handleSubmit}>
-          Submit
-        </button>
       </div>
     )
   }

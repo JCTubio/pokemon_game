@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
 import EncounteredPokemon from './EncounteredPokemon'
+import getEncounteredPokemon from '../../store/selectors/pokemonEncounteredSelector'
 
 function mapStateToProps(state) {
   return {
-    pokemonsEncountered: state.turn.pokemonsEncountered,
+    pokemonsEncountered: getEncounteredPokemon(state),
   }
 }
 function mapDispatchToProps(dispatch) {

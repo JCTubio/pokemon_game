@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import App from './App'
-import getTurnData from '../../store/selectors/turnDataSelector'
+import generateTurnData from '../../store/selectors/turnDataHelper'
 import {
   answerSelected,
   ttAnswerSelected,
@@ -23,6 +23,19 @@ import {
   playTheMusic,
   changeGenerations,
 } from '../../store/actions/Actions'
+import getGameMode from '../../store/selectors/gameModeSelector'
+import getVolume from '../../store/selectors/volumeSelector'
+import getTurnData from '../../store/selectors/turnDataSelector'
+import getIsAnswerSelected from '../../store/selectors/isAnswerSelectedSelector'
+import getTurnNumber from '../../store/selectors/turnNumberSelector'
+import getTurnDuration from '../../store/selectors/turnDurationSelector'
+import getCurrentScore from '../../store/selectors/currentScoreSelector'
+import getHighScore from '../../store/selectors/getHighScore'
+import getPokedexGlowColor from '../../store/selectors/pokedexGlowColorSelector'
+import getTimeLeft from '../../store/selectors/timeLeftSelector'
+import getIsTimerActive from '../../store/selectors/isTimerActiveSelector'
+import getIsModalShowing from '../../store/selectors/isModalShowingSelector'
+import getGenerations from '../../store/selectors/generationsSelector'
 import {
   REGULAR_TURN_DURATION,
   QUICK_TURN_DURATION,
@@ -32,23 +45,23 @@ import {
   getChillSong,
   getIntenseSong,
   getCreditsSong,
-} from '../../store/selectors/musicSelector'
+} from '../../store/selectors/musicHelper'
 
 function mapStateToProps(state) {
   return {
-    gameMode: state.app.gameMode,
-    volume: state.jukebox.volume,
-    turnData: state.turn.turnData,
-    isAnswerSelected: state.turn.isAnswerSelected,
-    turnNumber: state.turn.turnNumber,
-    turnDuration: state.turn.turnDuration,
-    currentScore: state.turn.currentScore,
-    highScore: state.turn.highScore,
-    pokedexGlowColor: state.turn.pokedexGlowColor,
-    timeLeft: state.turn.timeLeft,
-    isTimerActive: state.turn.timeLeft,
-    isModalShowing: state.turn.isModalShowing,
-    generations: state.turn.generations,
+    gameMode: getGameMode(state),
+    volume: getVolume(state),
+    turnData: getTurnData(state),
+    isAnswerSelected: getIsAnswerSelected(state),
+    turnNumber: getTurnNumber(state),
+    turnDuration: getTurnDuration(state),
+    currentScore: getCurrentScore(state),
+    highScore: getHighScore(state),
+    pokedexGlowColor: getPokedexGlowColor(state),
+    timeLeft: getTimeLeft(state),
+    isTimerActive: getIsTimerActive(state),
+    isModalShowing: getIsModalShowing(state),
+    generations: getGenerations(state),
   }
 }
 
@@ -59,7 +72,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(rotomTalk(answer))
       setTimeout(
         function() {
-          dispatch(nextTurn(getTurnData(generations)))
+          dispatch(nextTurn(generateTurnData(generations)))
         },
         answer ? QUICK_TURN_DURATION : REGULAR_TURN_DURATION
       )
@@ -67,18 +80,19 @@ function mapDispatchToProps(dispatch) {
     onTTAnswerSelected: (answer, generations) => {
       dispatch(ttAnswerSelected(answer))
       setTimeout(function() {
-        dispatch(nextTTTurn(getTurnData(generations)))
+        dispatch(nextTTTurn(generateTurnData(generations)))
       }, TIME_TRIAL_TURN_DURATION)
     },
     onModeChanged: (mode, generations) => {
       mode === STANDARD_MODE
-        ? dispatch(resetStandardMode(getTurnData(generations))) &&
+        ? dispatch(resetStandardMode(generateTurnData(generations))) &&
           dispatch(playMusicForSGStarted(getChillSong())) &&
           dispatch(playTheMusic())
         : dispatch(resetTTMode())
       setTimeout(
         function() {
-          mode === TIME_TRIAL && dispatch(nextTTTurn(getTurnData(generations)))
+          mode === TIME_TRIAL &&
+            dispatch(nextTTTurn(generateTurnData(generations)))
           mode === TIME_TRIAL &&
             dispatch(playMusicForTTStarted(getIntenseSong()))
           mode === TIME_TRIAL && dispatch(playTheMusic())
@@ -97,7 +111,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(showModal())
     },
     onGameInitializes: generations => {
-      dispatch(resetStandardMode(getTurnData(generations)))
+      dispatch(resetStandardMode(generateTurnData(generations)))
       dispatch(playMusicForSGStarted(getChillSong()))
       dispatch(playTheMusic())
     },

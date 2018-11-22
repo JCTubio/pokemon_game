@@ -6,12 +6,15 @@ import {
   stopTheMusic,
   playTheMusic,
 } from '../../store/actions/Actions'
+import getVolume from '../../store/selectors/volumeSelector'
+import getPlaybackStatus from '../../store/selectors/playbackStatusSelector'
+import getCurrentSong from '../../store/selectors/currentSongSelector'
 
 function mapStateToProps(state) {
   return {
-    currentSong: state.jukebox.currentSong,
-    playbackStatus: state.jukebox.playbackStatus,
-    volume: state.jukebox.volume,
+    currentSong: getCurrentSong(state),
+    playbackStatus: getPlaybackStatus(state),
+    volume: getVolume(state),
   }
 }
 function mapDispatchToProps(dispatch) {

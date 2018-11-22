@@ -47,7 +47,7 @@ export default function turnReducer(
     rotomMessageStyle: ROTOM_STYLE_CLASS_DEFAULT,
     isModalShowing: false,
     pokemonsEncountered: [],
-    generations: [1, 2, 3],
+    generations: [1, 2, 3, 4, 5, 6],
   },
   action
 ) {
