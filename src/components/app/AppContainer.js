@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import App from './App'
+import generateTurnData from '../../store/selectors/turnDataHelper'
 import {
   answerSelected,
   ttAnswerSelected,
@@ -15,57 +16,86 @@ import {
   rotomTalk,
   naturalTimeCountdown,
   ttGameFinished,
-  cutTheMusic,
+  stopTheMusic,
   gameFinished,
+  playMusicForSGStarted,
+  showModal,
+  playTheMusic,
+  changeGenerations,
 } from '../../store/actions/Actions'
+import getGameMode from '../../store/selectors/gameModeSelector'
+import getVolume from '../../store/selectors/volumeSelector'
+import getTurnData from '../../store/selectors/turnDataSelector'
+import getIsAnswerSelected from '../../store/selectors/isAnswerSelectedSelector'
+import getTurnNumber from '../../store/selectors/turnNumberSelector'
+import getTurnDuration from '../../store/selectors/turnDurationSelector'
+import getCurrentScore from '../../store/selectors/currentScoreSelector'
+import getHighScore from '../../store/selectors/getHighScore'
+import getPokedexGlowColor from '../../store/selectors/pokedexGlowColorSelector'
+import getTimeLeft from '../../store/selectors/timeLeftSelector'
+import getIsTimerActive from '../../store/selectors/isTimerActiveSelector'
+import getIsModalShowing from '../../store/selectors/isModalShowingSelector'
+import getGenerations from '../../store/selectors/generationsSelector'
 import {
   REGULAR_TURN_DURATION,
   QUICK_TURN_DURATION,
   TIME_TRIAL_TURN_DURATION,
 } from './config'
+import {
+  getChillSong,
+  getIntenseSong,
+  getCreditsSong,
+} from '../../store/selectors/musicHelper'
 
 function mapStateToProps(state) {
   return {
-    gameMode: state.app.gameMode,
-    turnData: state.turn.turnData,
-    highlight: state.turn.highlight,
-    turnNumber: state.turn.turnNumber,
-    turnDuration: state.turn.turnDuration,
-    clickedThisTurn: state.turn.clickedThisTurn,
-    correctAnswers: state.turn.correctAnswers,
-    bestStreak: state.turn.bestStreak,
-    pokedexGlow: state.turn.pokedexGlow,
-    timeLeft: state.turn.timeLeft,
-    timerActive: state.turn.timeLeft,
+    gameMode: getGameMode(state),
+    volume: getVolume(state),
+    turnData: getTurnData(state),
+    isAnswerSelected: getIsAnswerSelected(state),
+    turnNumber: getTurnNumber(state),
+    turnDuration: getTurnDuration(state),
+    currentScore: getCurrentScore(state),
+    highScore: getHighScore(state),
+    pokedexGlowColor: getPokedexGlowColor(state),
+    timeLeft: getTimeLeft(state),
+    isTimerActive: getIsTimerActive(state),
+    isModalShowing: getIsModalShowing(state),
+    generations: getGenerations(state),
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onAnswerSelected: answer => {
+    onAnswerSelected: (answer, generations) => {
       dispatch(answerSelected(answer))
       dispatch(rotomTalk(answer))
       setTimeout(
         function() {
-          dispatch(nextTurn())
+          dispatch(nextTurn(generateTurnData(generations)))
         },
         answer ? QUICK_TURN_DURATION : REGULAR_TURN_DURATION
       )
     },
-    onTTAnswerSelected: answer => {
+    onTTAnswerSelected: (answer, generations) => {
       dispatch(ttAnswerSelected(answer))
       setTimeout(function() {
-        dispatch(nextTTTurn())
+        dispatch(nextTTTurn(generateTurnData(generations)))
       }, TIME_TRIAL_TURN_DURATION)
     },
-    onModeChanged: mode => {
+    onModeChanged: (mode, generations) => {
       mode === STANDARD_MODE
-        ? dispatch(resetStandardMode())
+        ? dispatch(resetStandardMode(generateTurnData(generations))) &&
+          dispatch(playMusicForSGStarted(getChillSong())) &&
+          dispatch(playTheMusic())
         : dispatch(resetTTMode())
       setTimeout(
         function() {
-          mode === TIME_TRIAL && dispatch(nextTTTurn())
-          mode === TIME_TRIAL && dispatch(playMusicForTTStarted())
+          mode === TIME_TRIAL &&
+            dispatch(nextTTTurn(generateTurnData(generations)))
+          mode === TIME_TRIAL &&
+            dispatch(playMusicForTTStarted(getIntenseSong()))
+          mode === TIME_TRIAL && dispatch(playTheMusic())
           dispatch(changeGameMode(mode))
         },
         mode === STANDARD_MODE ? 0 : 2000
@@ -75,9 +105,18 @@ function mapDispatchToProps(dispatch) {
       dispatch(naturalTimeCountdown())
     },
     onGameFinished: () => {
-      dispatch(cutTheMusic())
+      dispatch(stopTheMusic())
       dispatch(gameFinished())
       dispatch(ttGameFinished())
+      dispatch(showModal())
+    },
+    onGameInitializes: generations => {
+      dispatch(resetStandardMode(generateTurnData(generations)))
+      dispatch(playMusicForSGStarted(getChillSong()))
+      dispatch(playTheMusic())
+    },
+    onGenerationChanged: generationsFromFilter => {
+      dispatch(changeGenerations(generationsFromFilter))
     },
   }
 }
@@ -86,15 +125,16 @@ class AppContainer extends React.Component {
   handleSelect = answer => {
     switch (this.props.gameMode) {
       case STANDARD_MODE:
-        return this.props.onAnswerSelected(answer)
+        return this.props.onAnswerSelected(answer, this.props.generations)
       case TIME_TRIAL:
-        return this.props.onTTAnswerSelected(answer)
+        return this.props.onTTAnswerSelected(answer, this.props.generations)
       default:
-        return this.props.onAnswerSelected(answer)
+        return this.props.onAnswerSelected(answer, this.props.generations)
     }
   }
 
   componentDidMount() {
+    this.props.onGameInitializes(this.props.generations)
     this.timerID = setInterval(() => this.tick(), 1000)
   }
 

@@ -1,0 +1,83 @@
+.resultsModal {
+  text-align: center;
+  z-index: 9000;
+  width: 75%;
+  height: 80%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(250, 205, 70, 1);
+  border-radius: 10px;
+  border: 5px solid rgb(58, 99, 167);
+}
+
+.modalPkmnEncounteredList {
+  display: inline-block;
+  margin-top: 5%;
+  width: 80%;
+}
+
+.modalEncounteredPokemonPanel {
+  border-radius: 10px;
+  border: 5px solid rgb(58, 99, 167);
+  overflow: hidden;
+  max-height: 40vh;
+}
+.modalPokemonsEncounteredTitle {
+  font-family: pokemon;
+  color: whitesmoke;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  max-width: 100%;
+  font-size: 1.8em;
+  display: block;
+  height: 10%;
+  text-align: center;
+  margin-bottom: 3%;
+}
+.modalScrollBarRemover {
+  height: 90%;
+  width: 100%;
+  overflow: hidden;
+}
+.modalEncounteredPokemonList {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-left: 1.7%;
+  padding-top: 1%;
+  padding-right: 20px; /* Increase/decrease this value for cross-browser compatibility */
+  box-sizing: content-box; /* So the width will be 100% + 17px */
+}
+.modalEncounteredPokemonList > li {
+  float: left;
+  width: 9%;
+  margin: 0.5%;
+}
+
+.modalEncounteredPokemon {
+  width: 100%;
+}
+
+.timeSurvivedDisplay {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+}
+
+.modalFooterButtons {
+  position: absolute;
+  left: 50%;
+  top: 85%;
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+
+#modalMMButton {
+  display: inline-block;
+}
+
+#modalTTButton {
+  display: inline-block;
+}

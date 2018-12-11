@@ -5,14 +5,14 @@ import { TIME_TRIAL } from '../../store/actions/Actions'
 function Rotom({
   gameMode,
   rotomMessageStyle,
-  showRotomMessage,
+  isRotomOnScreen,
   rotomMessage,
   turnDuration,
 }) {
   return (
     <div
       className={
-        showRotomMessage && gameMode !== TIME_TRIAL
+        isRotomOnScreen && gameMode !== TIME_TRIAL
           ? 'rotomDex rotomDexShowing'
           : 'rotomDex'
       }

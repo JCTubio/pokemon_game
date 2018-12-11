@@ -14,13 +14,26 @@ export const RESET_STANDARD_MODE = 'RESET_STANDARD_MODE'
 export const RESET_TT_MODE = 'RESET_TT_MODE'
 export const ROTOM_TALK = 'ROTOM_TALK'
 export const TT_GAME_FINISHED = 'TT_GAME_FINISHED'
-export const TIME_TRIAL_STARTED = 'TIME_TRIAL_STARTED'
-export const CUT_THE_MUSIC = 'CUT_THE_MUSIC'
+export const PLAY_TIME_TRIAL_BACKGROUND_MUSIC =
+  'PLAY_TIME_TRIAL_BACKGROUND_MUSIC'
+export const PLAY_STANDARD_GAME_BACKGROUND_MUSIC =
+  'PLAY_STANDARD_GAME_BACKGROUND_MUSIC'
+export const PLAY_CREDITS_MUSIC = 'PLAY_CREDITS_MUSIC'
+export const PLAYBACK_STATUS_PLAYING = 'PLAYING'
+export const PLAYBACK_STATUS_STOPPED = 'STOPPED'
+export const PLAYBACK_STATUS_PAUSED = 'PAUSED'
+export const PLAY_THE_MUSIC = 'PLAY_THE_MUSIC'
+export const STOP_THE_MUSIC = 'STOP_THE_MUSIC'
+export const PAUSE_THE_MUSIC = 'PAUSE_THE_MUSIC'
+export const SHOW_MODAL = 'SHOW_MODAL'
+export const HIDE_MODAL = 'HIDE_MODAL'
+export const CHANGE_GENERATIONS = 'CHANGE_GENERATIONS'
 
 /*Action creators*/
 export function changeGameMode(mode) {
   return { type: CHANGE_GAME_MODE, mode }
 }
+
 export function answerSelected(answer) {
   return { type: ANSWER_SELECTED, answer }
 }
@@ -32,21 +45,27 @@ export function ttAnswerSelected(answer) {
 export function naturalTimeCountdown() {
   return { type: NATURAL_TIME_COUNTDOWN }
 }
-export function nextTurn() {
-  return { type: CONTINUE }
+
+export function nextTurn(turnData) {
+  return { type: CONTINUE, turnData }
 }
-export function nextTTTurn() {
-  return { type: TT_CONTINUE }
+
+export function nextTTTurn(turnData) {
+  return { type: TT_CONTINUE, turnData }
 }
+
 export function songSelected(songName) {
   return { type: SONG_SELECTED, songName }
 }
-export function muteToggled(playbackStatus) {
-  return { type: MUTE_TOGGLED, playbackStatus }
+
+export function muteToggled() {
+  return { type: MUTE_TOGGLED }
 }
-export function resetStandardMode() {
-  return { type: RESET_STANDARD_MODE }
+
+export function resetStandardMode(turnData) {
+  return { type: RESET_STANDARD_MODE, turnData }
 }
+
 export function resetTTMode() {
   return { type: RESET_TT_MODE }
 }
@@ -58,12 +77,43 @@ export function rotomTalk(answer) {
 export function gameFinished() {
   return { type: GAME_FINISHED }
 }
+
 export function ttGameFinished() {
   return { type: TT_GAME_FINISHED }
 }
-export function playMusicForTTStarted() {
-  return { type: TIME_TRIAL_STARTED }
+
+export function playMusicForTTStarted(songName) {
+  return { type: PLAY_TIME_TRIAL_BACKGROUND_MUSIC, songName }
 }
-export function cutTheMusic() {
-  return { type: CUT_THE_MUSIC }
+
+export function playMusicForSGStarted(songName) {
+  return { type: PLAY_STANDARD_GAME_BACKGROUND_MUSIC, songName }
+}
+
+export function playMusicForCredits(songName) {
+  return { type: PLAY_CREDITS_MUSIC, songName }
+}
+
+export function stopTheMusic() {
+  return { type: STOP_THE_MUSIC }
+}
+
+export function pauseTheMusic() {
+  return { type: PAUSE_THE_MUSIC }
+}
+
+export function playTheMusic() {
+  return { type: PLAY_THE_MUSIC }
+}
+
+export function showModal() {
+  return { type: SHOW_MODAL }
+}
+
+export function hideModal() {
+  return { type: HIDE_MODAL }
+}
+
+export function changeGenerations(generationsArray) {
+  return { type: CHANGE_GENERATIONS, generationsArray }
 }

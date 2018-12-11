@@ -9,8 +9,10 @@ import {
   TIME_TRIAL,
   GAME_FINISHED,
 } from '../../store/actions/Actions'
+import { POKEDEX_GLOW_COLOR_INCORRECT } from '../app/config'
 import ScoreBoard from './ScoreBoard'
 import EncounteredPokemonContainer from '../encounteredPokemon/EncounteredPokemonContainer'
+import GenerationFilter from '../generationFilter/GenerationFilter'
 
 export default class Turn extends React.Component {
   constructor(props) {
@@ -40,29 +42,32 @@ export default class Turn extends React.Component {
   render() {
     const {
       options,
-      highlight,
-      clickedThisTurn,
-      pokedexGlow,
-      correctAnswers,
-      bestStreak,
+      isAnswerSelected,
+      pokedexGlowColor,
+      currentScore,
+      highScore,
       gameMode,
       timeLeft,
+      volume,
+      onGenerationChanged,
     } = this.props
 
     return (
       <div className="turn">
         <EncounteredPokemonContainer />
-        {highlight && (
+        {isAnswerSelected && (
           <Sound
             url={
-              '/pokemonCries/' +
-              this.props.sprite.id +
-              ' - ' +
-              this.props.sprite.ename +
-              '.wav'
+              pokedexGlowColor === POKEDEX_GLOW_COLOR_INCORRECT
+                ? '/miscAudioFiles/Wrong_Answer.mp3'
+                : '/pokemonCries/' +
+                  this.props.sprite.id +
+                  ' - ' +
+                  this.props.sprite.ename +
+                  '.wav'
             }
             playStatus={Sound.status.PLAYING}
-            volume={50}
+            volume={volume}
           />
         )}
         <img src="/images/pokedex.png" className="pokedex" alt="pokedex" />
@@ -70,24 +75,24 @@ export default class Turn extends React.Component {
           <img
             src={this.state.spriteImg}
             className={
-              highlight ? 'pkmnSprite pkmnSpriteShowing' : 'pkmnSprite'
+              isAnswerSelected ? 'pkmnSprite pkmnSpriteShowing' : 'pkmnSprite'
             }
             alt="sprite"
             style={{
-              filter: highlight ? '' : 'brightness(0)',
+              filter: isAnswerSelected ? '' : 'brightness(0)',
             }}
           />
         ) : (
           <div />
         )}
-        <PokedexGlow color={pokedexGlow} />
+        <PokedexGlow color={pokedexGlowColor} />
         <div className="respuestas">
           {options.map(name => (
             <PkmnOption
               key={name}
               name={name}
               onClick={this.validateAnswer}
-              disabled={clickedThisTurn}
+              disabled={isAnswerSelected}
             />
           ))}
         </div>
@@ -95,9 +100,10 @@ export default class Turn extends React.Component {
         {gameMode === STANDARD_MODE && (
           <ScoreBoard
             panelToDisplay="/images/scorePanel.png"
-            correctAnswers={correctAnswers}
-            bestStreak={bestStreak}
+            currentScore={currentScore}
+            highScore={highScore}
             gameMode={gameMode}
+            pokedexGlowColor={pokedexGlowColor}
           />
         )}
         {(gameMode === TIME_TRIAL || gameMode === GAME_FINISHED) && (
@@ -105,8 +111,10 @@ export default class Turn extends React.Component {
             panelToDisplay="/images/ttScorePanel.png"
             timeLeft={timeLeft}
             gameMode={gameMode}
+            pokedexGlowColor={pokedexGlowColor}
           />
         )}
+        <GenerationFilter onGenerationChanged={onGenerationChanged} />
       </div>
     )
   }

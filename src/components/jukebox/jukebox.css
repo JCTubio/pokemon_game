@@ -23,7 +23,7 @@
   display: none;
 }
 
-.ant-btn-primary {
+.jukeboxToggleButton {
   color: #fff;
   background-color: #4bc41c;
   border-color: #4bc41c;
@@ -33,14 +33,14 @@
   z-index: 20;
 }
 
-.ant-btn-primary:hover,
-.ant-btn-primary:focus {
+.jukeboxToggleButton:hover,
+.jukeboxToggleButton:focus {
   color: #fff;
   background-color: #4bc41c;
   border-color: #4bc41c;
 }
 
-.ant-btn-primary:active {
+.jukeboxToggleButton:active {
   color: #fff;
   background-color: #3d9e17;
   border-color: #3d9e17;
@@ -53,7 +53,7 @@
   z-index: 20;
 }
 
-.ant-btn {
+.jukeboxToggleButton {
   color: #fff;
   background-color: #4bc41c;
   border-color: #4bc41c;
@@ -61,14 +61,14 @@
   padding-right: 25px;
 }
 
-.ant-btn:hover,
-.ant-btn:focus {
+.jukeboxToggleButton:hover,
+.jukeboxToggleButton:focus {
   color: #fff;
   background-color: #4bc41c;
   border-color: #4bc41c;
 }
 
-.ant-btn:active {
+.jukeboxToggleButton:active {
   color: #fff;
   background-color: #3d9e17;
   border-color: #3d9e17;

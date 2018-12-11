@@ -8,175 +8,185 @@ import {
   NATURAL_TIME_COUNTDOWN,
   RESET_TT_MODE,
   ROTOM_TALK,
+  SHOW_MODAL,
+  HIDE_MODAL,
+  CHANGE_GENERATIONS,
 } from '../actions/Actions'
-import pkmnJson from '../../resources/pokedex'
-import { shuffle, sample } from 'underscore'
 import {
   QUICK_TURN_DURATION,
   REGULAR_TURN_DURATION,
   TIME_TRIAL_TURN_DURATION,
+  TIME_TRIAL_INITIAL_TIME,
+  POKEDEX_GLOW_COLOR_DEFAULT,
+  POKEDEX_GLOW_COLOR_CORRECT,
+  POKEDEX_GLOW_COLOR_INCORRECT,
+  ROTOM_STYLE_CLASS_DEFAULT,
+  ROTOM_STYLE_CLASS_CORRECT,
+  ROTOM_STYLE_CLASS_INCORRECT,
+  ROTOM_STYLE_CLASS_TTSTART,
+  ROTOM_STYLE_CLASS_TTEND,
 } from '../../components/app/config'
-
-function getTurnData(pkmnJson) {
-  const allPkmn = pkmnJson.reduce(function(p, c, i) {
-    return p.concat(c.ename)
-  }, [])
-  const fourPkmn = shuffle(allPkmn).slice(0, 4)
-  const answer = sample(fourPkmn)
-
-  return {
-    options: fourPkmn,
-    sprite: pkmnJson.find(pokemon => pokemon.ename === answer),
-  }
-}
 
 export default function turnReducer(
   state = {
-    pkmnJson,
-    turnData: getTurnData(pkmnJson),
-    highlight: false,
+    turnData: {
+      options: ['Oops!', 'Something', 'went', 'wrong!'],
+      sprite: 'xd',
+    },
+    isAnswerSelected: false,
     turnNumber: 1,
-    clickedThisTurn: false,
-    bestStreak: 0,
-    correctAnswers: 0,
-    pokedexGlow: 'rgb(0, 205, 255)',
+    highScore: 0,
+    currentScore: 0,
+    timeSurvivedInTT: 99,
+    pokedexGlowColor: POKEDEX_GLOW_COLOR_DEFAULT,
     rotomMessage: '',
     turnDuration: REGULAR_TURN_DURATION,
-    timeLeft: 15000,
-    timerActive: false,
-    showRotomMessage: false,
-    rotomMessageStyle: '',
+    timeLeft: TIME_TRIAL_INITIAL_TIME,
+    isTimerActive: false,
+    isRotomOnScreen: false,
+    rotomMessageStyle: ROTOM_STYLE_CLASS_DEFAULT,
+    isModalShowing: false,
     pokemonsEncountered: [],
+    generations: [1, 2, 3, 4, 5, 6],
   },
   action
 ) {
   switch (action.type) {
     case ANSWER_SELECTED:
       return Object.assign({}, state, {
-        highlight: true,
-        clickedThisTurn: true,
+        isAnswerSelected: true,
         pokemonsEncountered: [
           ...state.pokemonsEncountered,
           {
-            pokemon: getPkmnSprite(state.turnData.sprite.id),
+            pokemon:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' +
+              parseInt(state.turnData.sprite.id, 10) +
+              '.png',
             correct: action.answer,
           },
         ],
-        correctAnswers: action.answer ? state.correctAnswers + 1 : 0,
-        bestStreak:
-          action.answer && state.bestStreak <= state.correctAnswers
-            ? state.bestStreak + 1
-            : state.bestStreak,
-        pokedexGlow: action.answer ? '#00FF00' : '#FF0000',
+        currentScore: action.answer ? state.currentScore + 1 : 0,
+        highScore:
+          action.answer && state.highScore <= state.currentScore
+            ? state.highScore + 1
+            : state.highScore,
+        pokedexGlowColor: action.answer
+          ? POKEDEX_GLOW_COLOR_CORRECT
+          : POKEDEX_GLOW_COLOR_INCORRECT,
         turnDuration: action.answer
           ? QUICK_TURN_DURATION
           : REGULAR_TURN_DURATION,
       })
     case ROTOM_TALK:
       return Object.assign({}, state, {
-        showRotomMessage: true,
+        isRotomOnScreen: true,
         rotomMessageStyle: action.answer
-          ? 'rotomResponseForCorrectAnswer'
-          : 'rotomResponseForWrongAnswer',
+          ? ROTOM_STYLE_CLASS_CORRECT
+          : ROTOM_STYLE_CLASS_INCORRECT,
         rotomMessage: action.answer
           ? correctPokemonRotomMessage(state.turnData.sprite)
           : wrongPokemonRotomMessage(state.turnData.sprite),
       })
     case CONTINUE:
       return Object.assign({}, state, {
-        highlight: false,
-        turnData: getTurnData(state.pkmnJson),
+        isAnswerSelected: false,
+        turnData: action.turnData,
         turnNumber: state.turnNumber + 1,
-        clickedThisTurn: false,
-        pokedexGlow: 'rgb(0, 205, 255)',
+        pokedexGlowColor: POKEDEX_GLOW_COLOR_DEFAULT,
         rotomMessage: '',
-        showRotomMessage: false,
+        isRotomOnScreen: false,
         turnDuration: REGULAR_TURN_DURATION,
       })
     case RESET_STANDARD_MODE:
       return Object.assign({}, state, {
         pokemonsEncountered: [],
-        turnData: getTurnData(state.pkmnJson),
-        highlight: false,
+        turnData: action.turnData,
+        isAnswerSelected: false,
         turnNumber: state.turnNumber + 1,
-        clickedThisTurn: false,
-        bestStreak: 0,
-        correctAnswers: 0,
-        pokedexGlow: 'rgb(0, 205, 255)',
+        highScore: 0,
+        currentScore: 0,
+        pokedexGlowColor: POKEDEX_GLOW_COLOR_DEFAULT,
         rotomMessage: '',
-        showRotomMessage: false,
+        isRotomOnScreen: false,
         turnDuration: REGULAR_TURN_DURATION,
-        timerActive: false,
+        isTimerActive: false,
         timeLeft: 15000,
       })
     case TT_ANSWER_SELECTED:
       return Object.assign({}, state, {
-        highlight: true,
-        clickedThisTurn: true,
+        isAnswerSelected: true,
         pokemonsEncountered: [
           ...state.pokemonsEncountered,
           {
-            pokemon: getPkmnSprite(state.turnData.sprite.id),
+            pokemon:
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' +
+              parseInt(state.turnData.sprite.id, 10) +
+              '.png',
             correct: action.answer,
           },
         ],
         turnDuration: TIME_TRIAL_TURN_DURATION,
-        correctAnswers: action.answer
-          ? state.correctAnswers + 1
-          : state.correctAnswers,
-        timeLeft: action.answer ? state.timeLeft + 2000 : state.timeLeft - 2000,
-        pokedexGlow: action.answer ? '#00FF00' : '#FF0000',
-        timerActive: false,
-        showRotomMessage: false,
+        currentScore: action.answer
+          ? state.currentScore + 1
+          : state.currentScore,
+        timeLeft: action.answer ? state.timeLeft + 2000 : state.timeLeft - 3000,
+        pokedexGlowColor: action.answer
+          ? POKEDEX_GLOW_COLOR_CORRECT
+          : POKEDEX_GLOW_COLOR_INCORRECT,
+        isTimerActive: false,
+        isRotomOnScreen: false,
       })
     case TT_CONTINUE:
       return Object.assign({}, state, {
-        highlight: false,
-        turnData: getTurnData(state.pkmnJson),
+        isAnswerSelected: false,
+        turnData: action.turnData,
         turnNumber: state.turnNumber + 1,
-        clickedThisTurn: false,
-        pokedexGlow: 'rgb(0, 205, 255)',
-        timerActive: true,
+        pokedexGlowColor: POKEDEX_GLOW_COLOR_DEFAULT,
+        isTimerActive: true,
       })
     case NATURAL_TIME_COUNTDOWN:
       return Object.assign({}, state, {
-        timeLeft: state.timerActive ? state.timeLeft - 1000 : state.timeLeft,
+        timeSurvivedInTT: state.timeSurvivedInTT + 1,
+        timeLeft: state.isTimerActive ? state.timeLeft - 1000 : state.timeLeft,
       })
     case RESET_TT_MODE:
       return Object.assign({}, state, {
         pokemonsEncountered: [],
-        highlight: false,
+        timeSurvivedInTT: 0,
+        isAnswerSelected: false,
         turnNumber: state.turnNumber + 1,
-        clickedThisTurn: true,
-        pokedexGlow: 'rgb(0, 205, 255)',
+        pokedexGlowColor: POKEDEX_GLOW_COLOR_DEFAULT,
         turnDuration: 2000,
-        correctAnswers: 0,
+        currentScore: 0,
         timeLeft: 15000,
-        timerActive: false,
-        showRotomMessage: true,
+        isTimerActive: false,
+        isRotomOnScreen: true,
         rotomMessage: 'Get ready\nfor...\nTime Trial!',
-        rotomMessageStyle: 'rotomResponseForTimeTrialStart',
+        rotomMessageStyle: ROTOM_STYLE_CLASS_TTSTART,
       })
     case TT_GAME_FINISHED:
       return Object.assign({}, state, {
-        clickedThisTurn: true,
-        highlight: true,
-        timerActive: false,
+        isAnswerSelected: true,
+        isTimerActive: false,
         turnDuration: 3000,
         rotomMessage: "Time's up!\nLet's see how\nwell you did...",
-        rotomMessageStyle: 'rotomResponseForTimeTrialFinished',
+        rotomMessageStyle: ROTOM_STYLE_CLASS_TTEND,
+      })
+    case SHOW_MODAL:
+      return Object.assign({}, state, {
+        isModalShowing: true,
+      })
+    case HIDE_MODAL:
+      return Object.assign({}, state, {
+        isModalShowing: false,
+      })
+    case CHANGE_GENERATIONS:
+      return Object.assign({}, state, {
+        generations: action.generationsArray,
       })
     default:
       return state
   }
-}
-
-function getPkmnSprite(id) {
-  return (
-    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' +
-    parseInt(id, 10) +
-    '.png'
-  )
 }
 
 function correctPokemonRotomMessage(answer) {
@@ -184,17 +194,5 @@ function correctPokemonRotomMessage(answer) {
 }
 
 function wrongPokemonRotomMessage(answer) {
-  return answer.type.length > 1
-    ? "Incorrect!\nThat's " +
-        answer.ename +
-        '.\na ' +
-        answer.type[0] +
-        '/' +
-        answer.type[1] +
-        '\ntype pokemon!'
-    : "Incorrect!\nThat's " +
-        answer.ename +
-        '.\na ' +
-        answer.type[0] +
-        '\ntype pokemon!'
+  return "Incorrect!\nThat's\n" + answer.ename + '!'
 }

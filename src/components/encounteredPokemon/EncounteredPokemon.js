@@ -4,7 +4,7 @@ import './EncounteredPokemon.css'
 export default function EncounteredPokemon({ pokemonsEncountered }) {
   return (
     <div className="encounteredPokemonPanel">
-      <h2 className="pokemonsEncounteredTitle">Pokemons Encountered</h2>
+      <h2 className="pokemonsEncounteredTitle">Pokemon Encountered</h2>
       <div className="scrollBarRemover">
         <ul className="encounteredPokemonList">
           {pokemonsEncountered.map((pokemon, i) => (
