@@ -9,7 +9,6 @@ function Rotom({
   rotomMessage,
   turnDuration,
 }) {
-  console.log(rotomMessageStyle)
   return (
     <div
       className={
