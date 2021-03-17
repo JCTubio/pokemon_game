@@ -26,6 +26,18 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-analytics.js"></script>
+    <script>
+      soundManager.setup({
+        debugMode: false,
+        ignoreMobileRestrictions: false,
+        useHTML5Audio: true,
+        useHighPerformance: false,
+        waitForWindowLoad: true,
+        onready: function() {
+          // Ready to use; soundManager.createSound() etc. can now be called.
+        }
+      });
+      </script>
   <title>Who's that pokemon?</title>
 </head>
 

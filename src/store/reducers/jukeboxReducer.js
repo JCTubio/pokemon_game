@@ -17,7 +17,7 @@ export default function jukeboxReducer(
   state = {
     currentSong: '',
     playbackStatus: PLAYBACK_STATUS_STOPPED,
-    volume: 0, //CAMBIAR
+    volume: 20,
   },
   action
 ) {

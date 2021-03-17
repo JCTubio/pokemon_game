@@ -25,7 +25,7 @@ import {
   playTheMusic,
   changeGenerations,
   showLeaderboard,
-  hideLeaderboard
+  hideLeaderboard,
 } from '../../store/actions/Actions'
 import getGameMode from '../../store/selectors/gameModeSelector'
 import getVolume from '../../store/selectors/volumeSelector'
@@ -45,10 +45,7 @@ import {
   QUICK_TURN_DURATION,
   TIME_TRIAL_TURN_DURATION,
 } from './config'
-import {
-  getChillSong,
-  getIntenseSong
-} from '../../store/selectors/musicHelper'
+import { getChillSong, getIntenseSong } from '../../store/selectors/musicHelper'
 import { getIsLeaderboardShowing } from '../../store/selectors/leaderboardsSelectors'
 
 function mapStateToProps(state) {
@@ -66,7 +63,7 @@ function mapStateToProps(state) {
     isTimerActive: getIsTimerActive(state),
     isModalShowing: getIsModalShowing(state),
     generations: getGenerations(state),
-    isLeaderboardShowing: getIsLeaderboardShowing(state)
+    isLeaderboardShowing: getIsLeaderboardShowing(state),
   }
 }
 
@@ -81,12 +78,9 @@ function mapDispatchToProps(dispatch) {
     onAnswerSelected: (answer, generations) => {
       dispatch(answerSelected(answer))
       dispatch(rotomTalk(answer))
-      setTimeout(
-        function() {
-          dispatch(nextTurn(generateTurnData(generations)))
-        },
-        answer ? QUICK_TURN_DURATION : REGULAR_TURN_DURATION
-      )
+      setTimeout(function() {
+        dispatch(nextTurn(generateTurnData(generations)))
+      }, answer ? QUICK_TURN_DURATION : REGULAR_TURN_DURATION)
     },
     onTTAnswerSelected: (answer, generations) => {
       dispatch(ttAnswerSelected(answer))
@@ -100,17 +94,13 @@ function mapDispatchToProps(dispatch) {
           dispatch(playMusicForSGStarted(getChillSong())) &&
           dispatch(playTheMusic())
         : dispatch(resetTTMode())
-      setTimeout(
-        function() {
-          mode === TIME_TRIAL &&
-            dispatch(nextTTTurn(generateTurnData(generations)))
-          mode === TIME_TRIAL &&
-            dispatch(playMusicForTTStarted(getIntenseSong()))
-          mode === TIME_TRIAL && dispatch(playTheMusic())
-          dispatch(changeGameMode(mode))
-        },
-        mode === STANDARD_MODE ? 0 : 2000
-      )
+      setTimeout(function() {
+        mode === TIME_TRIAL &&
+          dispatch(nextTTTurn(generateTurnData(generations)))
+        mode === TIME_TRIAL && dispatch(playMusicForTTStarted(getIntenseSong()))
+        mode === TIME_TRIAL && dispatch(playTheMusic())
+        dispatch(changeGameMode(mode))
+      }, mode === STANDARD_MODE ? 0 : 2000)
     },
     onNaturalTimeCountdown: () => {
       dispatch(naturalTimeCountdown())
@@ -121,19 +111,19 @@ function mapDispatchToProps(dispatch) {
       dispatch(ttGameFinished())
       dispatch(showModal())
     },
-    onGameInitializes: generations => {
+    onGameInitializes: (generations) => {
       dispatch(resetStandardMode(generateTurnData(generations)))
       dispatch(playMusicForSGStarted(getChillSong()))
       dispatch(playTheMusic())
     },
-    onGenerationChanged: generationsFromFilter => {
+    onGenerationChanged: (generationsFromFilter) => {
       dispatch(changeGenerations(generationsFromFilter))
     },
   }
 }
 
 class AppContainer extends React.Component {
-  handleSelect = answer => {
+  handleSelect = (answer) => {
     switch (this.props.gameMode) {
       case STANDARD_MODE:
         return this.props.onAnswerSelected(answer, this.props.generations)
@@ -148,7 +138,12 @@ class AppContainer extends React.Component {
     this.props.onGameInitializes(this.props.generations)
     this.timerID = setInterval(() => this.tick(), 1000)
     Firebase.getLeaderboards()
-    window.soundManager.setup({debugMode: false})
+    window.soundManager.setup({
+      debugMode: false,
+      ignoreMobileRestrictions: false,
+      useHTML5Audio: true,
+      useHighPerformance: false
+    })
   }
 
   tick() {

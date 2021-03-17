@@ -8,6 +8,7 @@ import Turn from '../answerPanel/Turn'
 import JukeboxContainer from '../jukebox'
 import ResultsModal from '../resultsModal/ResultsModalContainer'
 import Leaderboard from '../leaderboard/LeaderboardContainer'
+import IntroDialog from '../introDialog/IntroDialogContainer'
 
 import { STANDARD_MODE, TIME_TRIAL } from '../../store/actions/Actions'
 
@@ -48,6 +49,7 @@ const App = ({
     <div className="container-fluid">
       <ResultsModal />
       <Leaderboard />
+      <IntroDialog />
       <div className="header" style={isModalShowing ? { display: 'none' } : {}}>
         <div className="buttons-container" >
         <JukeboxContainer />

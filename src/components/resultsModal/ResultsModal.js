@@ -31,11 +31,9 @@ export default function ResultsModal({
   useEffect(
     () => {
       setHasSumbittedHighscore(false)
-      if (checkIfQualified(currentScore, dailyLeaderboard)) {
-        setQualifies(true)
-      }
+      setQualifies(checkIfQualified(currentScore, dailyLeaderboard))
     },
-    [currentScore]
+    [isModalShowing]
   )
 
   const handleNameChange = (e) => {
