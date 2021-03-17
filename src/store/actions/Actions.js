@@ -28,8 +28,33 @@ export const PAUSE_THE_MUSIC = 'PAUSE_THE_MUSIC'
 export const SHOW_MODAL = 'SHOW_MODAL'
 export const HIDE_MODAL = 'HIDE_MODAL'
 export const CHANGE_GENERATIONS = 'CHANGE_GENERATIONS'
+export const UPDATE_DAILY_LEADERBOARD = 'UPDATE_DAILY_LEADERBOARD'
+export const UPDATE_MONTHLY_LEADERBOARD = 'UPDATE_MONTHLY_LEADERBOARD'
+export const UPDATE_ALL_TIME_LEADERBOARD = 'UPDATE_ALL_TIME_LEADERBOARD'
+export const SHOW_LEADERBOARD = 'SHOW_LEADERBOARD'
+export const HIDE_LEADERBOARD = 'HIDE_LEADERBOARD'
 
 /*Action creators*/
+export function showLeaderboard() {
+  return { type: SHOW_LEADERBOARD }
+}
+
+export function hideLeaderboard() {
+  return { type: HIDE_LEADERBOARD }
+}
+
+export function updateDailyLeaderboard(scores) {
+  return { type: UPDATE_DAILY_LEADERBOARD, scores }
+}
+
+export function updateMonthlyLeaderboard(scores) {
+  return { type: UPDATE_MONTHLY_LEADERBOARD, scores}
+}
+
+export function updateAllTimeLeaderboard(scores) {
+  return { type: UPDATE_ALL_TIME_LEADERBOARD, scores}
+}
+
 export function changeGameMode(mode) {
   return { type: CHANGE_GAME_MODE, mode }
 }

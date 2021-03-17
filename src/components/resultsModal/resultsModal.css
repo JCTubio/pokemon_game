@@ -1,40 +1,30 @@
 .resultsModal {
   text-align: center;
   z-index: 9000;
-  width: 75%;
-  height: 80%;
   position: fixed;
+  width: 850px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(250, 205, 70, 1);
+  background-color: rgba(0, 0, 0, 1);
   border-radius: 10px;
-  border: 5px solid rgb(58, 99, 167);
+  border: 5px double rgb(255, 255, 255);
+  padding: 35px;
 }
 
 .modalPkmnEncounteredList {
   display: inline-block;
-  margin-top: 5%;
   width: 80%;
+  margin-bottom: 15px;
 }
 
 .modalEncounteredPokemonPanel {
   border-radius: 10px;
-  border: 5px solid rgb(58, 99, 167);
+  border: 5px double white;
   overflow: hidden;
-  max-height: 40vh;
+  margin-bottom: 15px;
 }
-.modalPokemonsEncounteredTitle {
-  font-family: pokemon;
-  color: whitesmoke;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  max-width: 100%;
-  font-size: 1.8em;
-  display: block;
-  height: 10%;
-  text-align: center;
-  margin-bottom: 3%;
-}
+
 .modalScrollBarRemover {
   height: 90%;
   width: 100%;
@@ -55,23 +45,24 @@
   margin: 0.5%;
 }
 
+.timeSurvivedDisplay {
+  margin-bottom: 15px;
+  
+}
+
+.modalPokemonsEncounteredTitle {
+  font-family: pokemon;
+  color: whitesmoke;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  max-width: 100%;
+  font-size: 1.8em;
+  display: block;
+  height: 10%;
+  text-align: center;
+}
+
 .modalEncounteredPokemon {
   width: 100%;
-}
-
-.timeSurvivedDisplay {
-  position: absolute;
-  left: 50%;
-  top: 70%;
-  transform: translate(-50%, -50%);
-}
-
-.modalFooterButtons {
-  position: absolute;
-  left: 50%;
-  top: 85%;
-  transform: translate(-50%, -50%);
-  display: flex;
 }
 
 #modalMMButton {
@@ -80,4 +71,80 @@
 
 #modalTTButton {
   display: inline-block;
+}
+
+
+.new-rank-container {
+
+}
+
+.new-rank-title {
+  font-family: pokemon;
+  color: whitesmoke;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  max-width: 100%;
+  font-size: 1.8em;
+  display: block;
+  height: 10%;
+  text-align: center;
+}
+
+.new-rank-explainer {
+  font-family: pokemon;
+  color: whitesmoke;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  max-width: 100%;
+  font-size: 1em;
+  display: block;
+  height: 10%;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.new-rank-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.new-rank-label {
+  font-family: pokemon;
+  color: whitesmoke;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-size: 16px;
+  line-height: 1em;
+  display: block;
+  text-align: center;
+  margin: 0;
+  margin-right: 5px;
+}
+
+.new-rank-name-input, .new-rank-name-input:focus, .new-rank-name-input:active, .new-rank-name-input:hover {
+  background-color: white;
+  border: none;
+  font-size: 16px;
+  color: black;
+  font-family: arcade;
+  margin-bottom: 0;
+  text-align: center;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.new-rank-save-button {
+  padding: 5px 5px 5px 5px;
+  color: black;
+  display: inline-block;
+  background-color: white;
+  font-size: 14px;
+  text-align: center;
+  font-family: pokemon;
+  white-space: pre;
+  line-height: 1;
+  margin-right: 10px;
+  margin-left: 10px;
+  width: 100px;
+  margin-bottom: 25px;
 }

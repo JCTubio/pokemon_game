@@ -25,51 +25,42 @@
 
 .jukeboxToggleButton {
   color: #fff;
-  background-color: #4bc41c;
-  border-color: #4bc41c;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 20;
+  background-color: #4bc41c !important;
+  border-color: #4bc41c !important;
 }
 
 .jukeboxToggleButton:hover,
 .jukeboxToggleButton:focus {
   color: #fff;
-  background-color: #4bc41c;
-  border-color: #4bc41c;
+  background-color: #4bc41c !important;
+  border-color: #4bc41c !important;
 }
 
 .jukeboxToggleButton:active {
   color: #fff;
-  background-color: #3d9e17;
-  border-color: #3d9e17;
-}
-
-.muteToggle {
-  position: absolute;
-  top: 20px;
-  left: 114px;
-  z-index: 20;
+  background-color: #3d9e17 !important;
+  border-color: #3d9e17 !important;
 }
 
 .jukeboxToggleButton {
   color: #fff;
-  background-color: #4bc41c;
-  border-color: #4bc41c;
+  background-color: #4bc41c !important;
+  border-color: #4bc41c !important;
   padding-left: 25px;
   padding-right: 25px;
+  margin-left: 10px;
+  margin-right: 15px;
 }
 
 .jukeboxToggleButton:hover,
 .jukeboxToggleButton:focus {
   color: #fff;
-  background-color: #4bc41c;
-  border-color: #4bc41c;
+  background-color: #4bc41c !important;
+  border-color: #4bc41c !important;
 }
 
 .jukeboxToggleButton:active {
   color: #fff;
-  background-color: #3d9e17;
-  border-color: #3d9e17;
+  background-color: #3d9e17 !important;
+  border-color: #3d9e17 !important;
 }

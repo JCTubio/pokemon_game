@@ -140,7 +140,7 @@ body {
     #302b63,
     #0f0c29
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .container-fluid {
   padding: 0px 0px 0px 0px;
@@ -163,7 +163,7 @@ body {
   position: relative;
 }
 .leftSpace {
-  width: 15%;
+  width: 10%;
   height: 550px;
   display: inline-block;
 }
@@ -183,6 +183,10 @@ body {
 @font-face {
   font-family: pixel;
   src: url(../../resources/fonts/pokemonPixelFont.ttf);
+}
+@font-face {
+  font-family: arcade;
+  src: url(../../resources/fonts/ARCADE_N.TTF);
 }
 .footer {
   display: flex;
@@ -224,4 +228,19 @@ body {
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+}
+.buttons-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 20;
+  display: flex;
+}
+@media screen and (max-width: 600px), screen and (max-height: 600px) {
+  body {
+    zoom: 0.5;
+  }
+  .rotomDex {
+    display: none;
+  }
 }

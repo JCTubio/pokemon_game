@@ -1,11 +1,21 @@
 import React from 'react'
-import './App.css'
-import '../../resources/bootstrap.min.css'
-import 'antd/dist/antd.css'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrophy } from '@fortawesome/free-solid-svg-icons'
+import { Button } from 'antd'
+
 import Turn from '../answerPanel/Turn'
 import JukeboxContainer from '../jukebox'
 import ResultsModal from '../resultsModal/ResultsModalContainer'
+import Leaderboard from '../leaderboard/LeaderboardContainer'
+
 import { STANDARD_MODE, TIME_TRIAL } from '../../store/actions/Actions'
+
+import './App.css'
+import '../../resources/bootstrap.min.css'
+import 'antd/dist/antd.css'
+
+library.add(faTrophy)
 
 const App = ({
   turnData,
@@ -22,16 +32,35 @@ const App = ({
   isModalShowing,
   onGenerationChanged,
   generations,
+  isLeaderboardShowing,
+  hideLeaderboard,
+  showLeaderboard,
 }) => {
   function gameModeChangeHandler(mode) {
     return gameMode === mode ? null : onModeChanged(mode, generations)
   }
 
+  const toggleLeaderboard = () => {
+    isLeaderboardShowing ? hideLeaderboard() : showLeaderboard()
+  }
+
   return (
     <div className="container-fluid">
       <ResultsModal />
+      <Leaderboard />
       <div className="header" style={isModalShowing ? { display: 'none' } : {}}>
+        <div className="buttons-container" >
         <JukeboxContainer />
+        <Button
+          type="primary"
+          shape="circle"
+          size="large"
+          onClick={toggleLeaderboard}
+          className="leaderboards-button"
+        >
+          <FontAwesomeIcon icon={'trophy'} />
+        </Button>
+        </div>
         <img
           src="../../images/whosthatpokemon.png"
           alt="title"
