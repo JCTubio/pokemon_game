@@ -47,8 +47,7 @@ import {
 } from './config'
 import {
   getChillSong,
-  getIntenseSong,
-  getCreditsSong,
+  getIntenseSong
 } from '../../store/selectors/musicHelper'
 import { getIsLeaderboardShowing } from '../../store/selectors/leaderboardsSelectors'
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import leaderboardConstants from '../../constants/leaderboards'
 
@@ -20,7 +20,7 @@ export default function Leaderboard({
     [leaderboardConstants.MONTHLY]: monthlyLeaderboard,
     [leaderboardConstants.ALLTIME]: allTimeLeaderboard,
   }
-  
+
   return (
     <div
       className="leaderboard-shadow"

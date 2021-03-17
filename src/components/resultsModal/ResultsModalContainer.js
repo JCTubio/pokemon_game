@@ -15,7 +15,6 @@ import {
 import {
   getChillSong,
   getIntenseSong,
-  getCreditsSong,
 } from '../../store/selectors/musicHelper'
 import getTurnData from '../../store/selectors/turnDataHelper'
 import getIsModalShowing from '../../store/selectors/isModalShowingSelector'
