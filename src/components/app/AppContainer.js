@@ -142,7 +142,7 @@ class AppContainer extends React.Component {
       debugMode: false,
       ignoreMobileRestrictions: true,
       useHTML5Audio: true,
-      useHighPerformance: false
+      useHighPerformance: true
     })
   }
 
