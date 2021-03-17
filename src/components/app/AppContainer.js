@@ -140,7 +140,7 @@ class AppContainer extends React.Component {
     Firebase.getLeaderboards()
     window.soundManager.setup({
       debugMode: false,
-      ignoreMobileRestrictions: false,
+      ignoreMobileRestrictions: true,
       useHTML5Audio: true,
       useHighPerformance: false
     })
