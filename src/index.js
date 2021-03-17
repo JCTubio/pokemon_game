@@ -7,7 +7,7 @@ import * as Redux from 'redux'
 import * as ReactRedux from 'react-redux'
 import reducers from './store/reducers'
 
-const store = Redux.createStore(reducers)
+export const store = Redux.createStore(reducers)
 
 ReactDOM.render(
   <ReactRedux.Provider store={store}>

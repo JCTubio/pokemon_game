@@ -10,7 +10,7 @@ import {
   changeGameMode,
   resetTTMode,
   playTheMusic,
-  playMusicForSGStarted,
+  playMusicForSGStarted
 } from '../../store/actions/Actions'
 import {
   getChillSong,
@@ -21,14 +21,19 @@ import getTurnData from '../../store/selectors/turnDataHelper'
 import getIsModalShowing from '../../store/selectors/isModalShowingSelector'
 import getEncounteredPokemon from '../../store/selectors/pokemonEncounteredSelector'
 import getGenerations from '../../store/selectors/generationsSelector'
-import getTimeSurvivedInTT from '../../store/selectors/timeSurvivedInTTSelector'
+import getGuessesInTT from '../../store/selectors/guessesInTTSelector'
+import getCurrentScore from '../../store/selectors/currentScoreSelector'
+import { getDailyLeaderboard } from '../../store/selectors/leaderboardsSelectors'
+
 
 function mapStateToProps(state) {
   return {
     isModalShowing: getIsModalShowing(state),
-    pokemonsEncountered: getEncounteredPokemon(state),
-    timeSurvivedInTT: getTimeSurvivedInTT(state),
+    pokemonEncountered: getEncounteredPokemon(state),
+    guessesInTT: getGuessesInTT(state),
     generations: getGenerations(state),
+    currentScore: getCurrentScore(state),
+    dailyLeaderboard: getDailyLeaderboard(state),
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -50,7 +55,7 @@ function mapDispatchToProps(dispatch) {
           dispatch(changeGameMode(mode))
         }, 2000)
       }
-    },
+    }
   }
 }
 

@@ -37,7 +37,7 @@ export default function turnReducer(
     turnNumber: 1,
     highScore: 0,
     currentScore: 0,
-    timeSurvivedInTT: 99,
+    guessesInTT: 0,
     pokedexGlowColor: POKEDEX_GLOW_COLOR_DEFAULT,
     rotomMessage: '',
     turnDuration: REGULAR_TURN_DURATION,
@@ -146,13 +146,12 @@ export default function turnReducer(
       })
     case NATURAL_TIME_COUNTDOWN:
       return Object.assign({}, state, {
-        timeSurvivedInTT: state.timeSurvivedInTT + 1,
         timeLeft: state.isTimerActive ? state.timeLeft - 1000 : state.timeLeft,
       })
     case RESET_TT_MODE:
       return Object.assign({}, state, {
         pokemonsEncountered: [],
-        timeSurvivedInTT: 0,
+        guessesInTT: 0,
         isAnswerSelected: false,
         turnNumber: state.turnNumber + 1,
         pokedexGlowColor: POKEDEX_GLOW_COLOR_DEFAULT,
@@ -194,5 +193,5 @@ function correctPokemonRotomMessage(answer) {
 }
 
 function wrongPokemonRotomMessage(answer) {
-  return "Incorrect!\nThat's\n" + answer.ename + '!'
+  return "Oh no!\nThat's\n" + answer.ename + '!'
 }

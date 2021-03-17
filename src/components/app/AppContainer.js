@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Firebase from '../../firebase/FirebaseInstance'
+
 import App from './App'
 import generateTurnData from '../../store/selectors/turnDataHelper'
 import {
@@ -22,6 +24,8 @@ import {
   showModal,
   playTheMusic,
   changeGenerations,
+  showLeaderboard,
+  hideLeaderboard
 } from '../../store/actions/Actions'
 import getGameMode from '../../store/selectors/gameModeSelector'
 import getVolume from '../../store/selectors/volumeSelector'
@@ -46,6 +50,7 @@ import {
   getIntenseSong,
   getCreditsSong,
 } from '../../store/selectors/musicHelper'
+import { getIsLeaderboardShowing } from '../../store/selectors/leaderboardsSelectors'
 
 function mapStateToProps(state) {
   return {
@@ -62,11 +67,18 @@ function mapStateToProps(state) {
     isTimerActive: getIsTimerActive(state),
     isModalShowing: getIsModalShowing(state),
     generations: getGenerations(state),
+    isLeaderboardShowing: getIsLeaderboardShowing(state)
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    showLeaderboard: () => {
+      dispatch(showLeaderboard())
+    },
+    hideLeaderboard: () => {
+      dispatch(hideLeaderboard())
+    },
     onAnswerSelected: (answer, generations) => {
       dispatch(answerSelected(answer))
       dispatch(rotomTalk(answer))
@@ -136,6 +148,8 @@ class AppContainer extends React.Component {
   componentDidMount() {
     this.props.onGameInitializes(this.props.generations)
     this.timerID = setInterval(() => this.tick(), 1000)
+    Firebase.getLeaderboards()
+    window.soundManager.setup({debugMode: false})
   }
 
   tick() {

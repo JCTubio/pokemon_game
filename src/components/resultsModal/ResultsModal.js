@@ -1,14 +1,56 @@
-import React from 'react'
-import './resultsModal.css'
+import React, { useState, useEffect } from 'react'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faTrophy,
+  faCheck
+} from '@fortawesome/free-solid-svg-icons'
+
+import Firebase from '../../firebase/FirebaseInstance'
 import { STANDARD_MODE, TIME_TRIAL } from '../../store/actions/Actions'
+import { checkIfQualified } from '../../utils/helpers'
+
+import './resultsModal.css'
+
+library.add(faTrophy)
+library.add(faCheck)
 
 export default function ResultsModal({
   isModalShowing,
-  pokemonsEncountered,
-  timeSurvivedInTT,
+  pokemonEncountered,
   onModeSelected,
   generations,
+  dailyLeaderboard,
+  currentScore,
+  saveScore
 }) {
+  const [qualifies, setQualifies] = useState(false)
+  const [hasSumbittedHighscore, setHasSumbittedHighscore] = useState(false)
+  const [name, setName] = useState('')
+
+  useEffect(
+    () => {
+      setHasSumbittedHighscore(false)
+      if (checkIfQualified(currentScore, dailyLeaderboard)) {
+        setQualifies(true)
+      }
+    },
+    [currentScore]
+  )
+
+  const handleNameChange = (e) => {
+    if (e.target.value.length <= 3) {
+      setName(e.target.value)
+    }
+  }
+
+  const handleSubmitScore = () => {
+    if (!hasSumbittedHighscore) {
+      Firebase.saveScore({ name, score: currentScore})
+      setHasSumbittedHighscore(true)
+    }
+  }
+
   return (
     <div
       className="resultsModal"
@@ -19,7 +61,7 @@ export default function ResultsModal({
         <div className="modalEncounteredPokemonPanel">
           <div className="modalScrollBarRemover">
             <ul className="modalEncounteredPokemonList">
-              {pokemonsEncountered.map((pokemon, i) => (
+              {pokemonEncountered.map((pokemon, i) => (
                 <li key={i}>
                   <img
                     className="modalEncounteredPokemon"
@@ -40,9 +82,26 @@ export default function ResultsModal({
         </div>
       </div>
       <div className="timeSurvivedDisplay">
-        <h2 className="modalPokemonsEncounteredTitle">Time survived: </h2>
-        <p className="modalPokemonsEncounteredTitle">{timeSurvivedInTT}s</p>
+        <h2 className="modalPokemonsEncounteredTitle">Pokemon captured: </h2>
+        <p className="modalPokemonsEncounteredTitle">{currentScore}</p>
       </div>
+      {qualifies ? (
+        <div className="new-rank-container">
+          <h2 className="new-rank-title">Congratulations!</h2>
+          <p className="new-rank-explainer">
+            You've made it into the leaderboard
+          </p>
+          <div className="new-rank-input-container">
+            <label className="new-rank-label" htmlFor="name">
+              Name:
+            </label>
+            <input type="text" name="name" className="new-rank-name-input" value={name} onChange={handleNameChange} />
+          </div>
+          <button className="new-rank-save-button" onClick={handleSubmitScore}>Enter</button>
+          {hasSumbittedHighscore ? <FontAwesomeIcon style={{marginRight: '5px'}} color="yellow" icon={'trophy'} /> : null}
+          {hasSumbittedHighscore ? <FontAwesomeIcon color="green" icon={'check'} /> : null}
+        </div>
+      ) : null}
       <div className="modalFooterButtons">
         <button
           id="modalMMButton"
