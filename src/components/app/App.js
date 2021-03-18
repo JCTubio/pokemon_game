@@ -1,7 +1,7 @@
 import React from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrophy } from '@fortawesome/free-solid-svg-icons'
+import { faTrophy, faDonate } from '@fortawesome/free-solid-svg-icons'
 import { Button } from 'antd'
 
 import Turn from '../answerPanel/Turn'
@@ -17,6 +17,7 @@ import '../../resources/bootstrap.min.css'
 import 'antd/dist/antd.css'
 
 library.add(faTrophy)
+library.add(faDonate)
 
 const App = ({
   turnData,
@@ -61,6 +62,16 @@ const App = ({
           className="leaderboards-button"
         >
           <FontAwesomeIcon icon={'trophy'} />
+        </Button>
+        <Button
+          type="primary"
+          shape="circle"
+          size="large"
+          href="https://streamlabs.com/iamjaysee/tip"
+          target="_blank"
+          className="donation-button"
+        >
+          <FontAwesomeIcon icon={'donate'} />
         </Button>
         </div>
         <img

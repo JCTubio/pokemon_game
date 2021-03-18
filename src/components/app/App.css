@@ -244,3 +244,26 @@ body {
     display: none;
   }
 }
+
+.leaderboards-button {
+  margin-right: 15px;
+}
+
+.donation-button {
+  color: #fff;
+  background-color: rgb(251, 202, 60) !important;
+  border-color: rgb(251, 202, 60) !important;
+}
+
+.donation-button:hover,
+.donation-button:focus {
+  color: #fff;
+  background-color: rgb(251, 202, 60) !important;
+  border-color: rgb(251, 202, 60) !important;
+}
+
+.donation-button:active {
+  color: #fff;
+  background-color: rgb(232, 187, 58) !important;
+  border-color: rgb(232, 187, 58) !important;
+}
