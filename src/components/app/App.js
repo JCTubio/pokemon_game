@@ -10,8 +10,6 @@ import ResultsModal from '../resultsModal/ResultsModalContainer'
 import Leaderboard from '../leaderboard/LeaderboardContainer'
 import IntroDialog from '../introDialog/IntroDialogContainer'
 
-import { STANDARD_MODE, TIME_TRIAL } from '../../store/actions/Actions'
-
 import './App.css'
 import '../../resources/bootstrap.min.css'
 import 'antd/dist/antd.css'
