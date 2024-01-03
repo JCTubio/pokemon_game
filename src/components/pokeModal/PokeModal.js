@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faTrophy,
   faCheck
 } from '@fortawesome/free-solid-svg-icons'
 
-import Firebase from '../../firebase/FirebaseInstance'
-import { STANDARD_MODE, TIME_TRIAL } from '../../store/actions/Actions'
-import { checkIfQualified } from '../../utils/helpers'
 import GenerationFilter from '../generationFilter/GenerationFilter'
 
 import './pokeModal.css'
@@ -18,12 +14,7 @@ library.add(faCheck)
 
 export default function PokeModal({
   displaying,
-  isModalShowing,
   pokemonEncountered,
-  onModeSelected,
-  generations,
-  currentScore,
-  handleModalBackButtonClicked
 }) {
 
   console.log(pokemonEncountered)

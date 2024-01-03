@@ -25,20 +25,15 @@ const App = ({
   currentScore,
   highScore,
   pokedexGlowColor,
-  onModeChanged,
   gameMode,
   timeLeft,
   volume,
   isModalShowing,
   onGenerationChanged,
-  generations,
   isLeaderboardShowing,
   hideLeaderboard,
   showLeaderboard,
 }) => {
-  function gameModeChangeHandler(mode) {
-    return gameMode === mode ? null : onModeChanged(mode, generations)
-  }
 
   const toggleLeaderboard = () => {
     isLeaderboardShowing ? hideLeaderboard() : showLeaderboard()
