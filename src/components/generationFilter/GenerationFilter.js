@@ -105,72 +105,72 @@ class GenerationFilter extends Component {
   render() {
     return (
       <div className="genFilter">
-        <h2 className="genTitle">Gen Selector</h2>
-        <div id="kanto">
-          <h4 className="genButton" onClick={this.handleKantoClicked}>
-            {'RED&\nBLUE'}
-          </h4>
+        <h2 className='genSelectTitle'>GEN SELECTOR</h2>
+        <div id="kanto" className="genButton" onClick={this.handleKantoClicked}>
           <img
             src="/images/generations/tick.png"
             alt="kantoTick"
             id="tick"
             style={this.state.kanto === true ? null : { display: 'none' }}
           />
-        </div>
-        <div id="johto">
-          <h4 className="genButton" onClick={this.handleJohtoClicked}>
-            {'GOLD&\nSILVER'}
+          <h4>
+            {'RED&\nBLUE'}
           </h4>
+        </div>
+        <div id="johto" className="genButton" onClick={this.handleJohtoClicked}>
           <img
             src="/images/generations/tick.png"
             alt="johtoTick"
             id="tick"
             style={this.state.johto === true ? null : { display: 'none' }}
           />
-        </div>
-        <div id="hoenn">
-          <h4 className="genButton" onClick={this.handleHoennClicked}>
-            {'RUBY&\nSAPPHIRE'}
+          <h4>
+            {'GOLD&\nSILVER'}
           </h4>
+        </div>
+        <div id="hoenn" className="genButton" onClick={this.handleHoennClicked}>
           <img
             src="/images/generations/tick.png"
             alt="hoennTick"
             id="tick"
             style={this.state.hoenn === true ? null : { display: 'none' }}
           />
-        </div>
-        <div id="sinnoh">
-          <h4 className="genButton" onClick={this.handleSinnohClicked}>
-            {'PEARL&\nDIAMOND'}
+          <h4>
+            {'RUBY&\nSAPPHIRE'}
           </h4>
+        </div>
+        <div id="sinnoh" className="genButton" onClick={this.handleSinnohClicked}>
           <img
             src="/images/generations/tick.png"
             alt="sinnohTick"
             id="tick"
             style={this.state.sinnoh === true ? null : { display: 'none' }}
           />
-        </div>
-        <div id="unova">
-          <h4 className="genButton" onClick={this.handleUnovaClicked}>
-            {'BLACK&\nWHITE'}
+          <h4>
+            {'PEARL&\nDIAMOND'}
           </h4>
+        </div>
+        <div id="unova" className="genButton" onClick={this.handleUnovaClicked}>
           <img
             src="/images/generations/tick.png"
             alt="unovaTick"
             id="tick"
             style={this.state.unova === true ? null : { display: 'none' }}
           />
-        </div>
-        <div id="kalos">
-          <h4 className="genButton" onClick={this.handleKalosClicked}>
-            {'X&Y'}
+          <h4>
+            {'BLACK&\nWHITE'}
           </h4>
+        </div>
+        <div id="kalos" className="genButton" onClick={this.handleKalosClicked}>
           <img
             src="/images/generations/tick.png"
             alt="kalosTick"
             id="tick"
             style={this.state.kalos === true ? null : { display: 'none' }}
           />
+          <h4>
+            {'X&Y'}
+          </h4>
         </div>
       </div>
     )

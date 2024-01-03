@@ -3,11 +3,11 @@ import {
   STANDARD_MODE,
   TIME_TRIAL,
   GAME_FINISHED,
-} from '../../store/actions/Actions'
+} from '../../../store/actions/Actions'
 import {
   POKEDEX_GLOW_COLOR_CORRECT,
   POKEDEX_GLOW_COLOR_INCORRECT,
-} from '../../components/app/config'
+} from '../../app/config'
 
 export default function ScoreBoard({
   panelToDisplay,

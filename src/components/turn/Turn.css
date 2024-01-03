@@ -1,8 +1,71 @@
 .turn {
+  width: 100%;
   height: 550px;
   position: relative;
   display: inline-block;
   margin-bottom: 10px;
+}
+
+.menuToggle {
+  z-index: 9999999;
+  position: absolute;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  border-width: 1px;
+  border-color: black;
+  height: 82px;
+  width: 83px;
+  left: 25px;
+  top: 5px;
+  cursor: pointer;
+
+  &:active {
+    &::after {
+      content: " ";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      border: none;
+    }
+  }
+}
+
+.timeTrialToggle {
+  z-index: 9999999;
+  position: absolute;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 50%;
+  border-width: 1px;
+  border-color: black;
+  height: 46px;
+  width: 40px;
+  left: 32px;
+  bottom: 138px;
+  cursor: pointer;
+
+  &:active {
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 50%;
+    border-width: 1px;
+    border-color: black;
+    cursor: pointer;
+    &::after {
+      content: " ";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.2);
+      border-color: black;
+      border-radius: 50%;
+      border: none;
+    }
+  }
 }
 
 .pkmnSprite {
@@ -29,16 +92,6 @@
   }
 }
 
-.pokedex {
-  z-index: -999;
-}
-
-.respuestas {
-  position: absolute;
-  top: 33%;
-  left: 59.5%;
-}
-
 .pokedexGlow {
   position: absolute;
   left: 3.3%;
@@ -54,14 +107,14 @@
 
 .scorePanel {
   position: absolute;
-  top: 78.6%;
-  left: 11.5%;
+  top: 420px;
+  left: 60px;
 }
 
 .currentScoreLabel {
   position: absolute;
-  top: 74.5%;
-  left: 14%;
+  top: 420px;
+  left: 75px;
   font-family: calculator;
   font-weight: bold;
   font-size: 20px;
@@ -69,29 +122,29 @@
 }
 .highScoreLabel {
   position: absolute;
-  top: 88.8%;
-  left: 23.5%;
+  top: 453px;
+  left: 127px;
   font-family: calculator;
   font-weight: bold;
   font-size: 20px;
-  color: black;
+  color: white;
 }
 .currentScore {
   position: absolute;
-  top: 78%;
-  left: 14%;
+  top: 435px;
+  left: 75px;
   font-family: calculator;
   font-weight: bold;
-  font-size: 35px;
+  font-size: 30px;
   color: black;
 }
 .highScore {
   position: absolute;
-  top: 81.5%;
-  left: 24%;
+  top: 446px;
+  left: 169px;
   font-family: calculator;
   font-weight: bold;
-  font-size: 35px;
+  font-size: 27px;
   color: white;
 }
 

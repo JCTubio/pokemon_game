@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrophy, faDonate } from '@fortawesome/free-solid-svg-icons'
 import { Button } from 'antd'
 
-import Turn from '../answerPanel/Turn'
+import Turn from '../turn/TurnContainer'
 import JukeboxContainer from '../jukebox'
 import ResultsModal from '../resultsModal/ResultsModalContainer'
 import Leaderboard from '../leaderboard/LeaderboardContainer'
@@ -48,19 +48,22 @@ const App = ({
 
   return (
     <div className="container-fluid">
+      <div className='pokedex-wrapper' >
+        <div className='pokedex' >
+
       <ResultsModal />
       <Leaderboard />
       <IntroDialog />
-      <div className="header" style={isModalShowing ? { display: 'none' } : {}}>
+
+      <div className="header" >
         <div className="buttons-container" >
         <JukeboxContainer />
         <Button
           type="primary"
           shape="circle"
-          size="large"
           onClick={toggleLeaderboard}
           className="leaderboards-button"
-        >
+          >
           <FontAwesomeIcon icon={'trophy'} />
         </Button>
         <Button
@@ -78,13 +81,12 @@ const App = ({
           src="../../images/whosthatpokemon.png"
           alt="title"
           className="headerImg"
-        />
+          />
       </div>
       <div
         className="turnContainer"
         style={isModalShowing ? { display: 'none' } : {}}
-      >
-        <div className="leftSpace" />
+        >
         <Turn
           key={turnNumber}
           {...turnData}
@@ -97,25 +99,11 @@ const App = ({
           timeLeft={timeLeft}
           volume={volume}
           onGenerationChanged={onGenerationChanged}
-        />
-        <div className="rightSpace" />
+          />
+          </div>
+        </div>
       </div>
-      <div className="footer" style={isModalShowing ? { display: 'none' } : {}}>
-        <button
-          className="toMainModeButton"
-          onClick={() => gameModeChangeHandler(STANDARD_MODE)}
-          style={gameMode === TIME_TRIAL ? null : { display: 'none' }}
-        >
-          {'Standard\nMode'}
-        </button>
-        <button
-          className="toTimeTrialButton"
-          onClick={() => gameModeChangeHandler(TIME_TRIAL)}
-          style={gameMode === STANDARD_MODE ? null : { display: 'none' }}
-        >
-          {'Time\nTrial'}
-        </button>
-      </div>
+      <p className='hiddenMessage'>ROTATE YOUR PHONE</p>
     </div>
   )
 }

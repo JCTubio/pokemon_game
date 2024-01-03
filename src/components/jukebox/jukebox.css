@@ -23,12 +23,6 @@
   display: none;
 }
 
-.jukeboxToggleButton {
-  color: #fff;
-  background-color: #4bc41c !important;
-  border-color: #4bc41c !important;
-}
-
 .jukeboxToggleButton:hover,
 .jukeboxToggleButton:focus {
   color: #fff;

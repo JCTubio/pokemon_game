@@ -144,33 +144,31 @@ body {
 }
 .container-fluid {
   padding: 0px 0px 0px 0px;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
 }
+
 .header {
   align-content: center;
-}
-.headerImg {
-  width: 325px;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  
+  & > img {
+    width: 180px;
+    position: absolute;
+    right: 0;
+    margin-top: 25px;
+  }
 }
 .turnContainer {
   display: flex;
   padding-top: 15px;
   justify-content: space-between;
   position: relative;
-}
-.leftSpace {
-  width: 10%;
-  height: 550px;
-  display: inline-block;
-}
-.rightSpace {
-  width: 15%;
-  height: 550px;
-  display: inline-block;
 }
 @font-face {
   font-family: pokemon;
@@ -234,7 +232,6 @@ body {
   top: 20px;
   left: 20px;
   z-index: 20;
-  display: flex;
 }
 @media screen and (max-width: 600px), screen and (max-height: 600px) {
   body {
@@ -245,6 +242,95 @@ body {
   }
 }
 
+.pokedex {
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  overflow: hidden;
+  width: 650px;
+  height: 520px;
+}
+
+.pokedex-wrapper {
+  width: 100%;
+  height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-height: 600px){
+    zoom: 1.4;
+    margin-top: 6%;
+  }
+}
+
+.leaderboards-button {
+  position: absolute;
+
+  width: 22px !important;
+  height: 22px !important;
+  top: 0px;
+  left: 58px;
+  border: 1px solid black !important;
+  
+  & > * {
+    width: 10px;
+    height: 10px;
+    overflow: hidden;
+    margin-bottom: 5px;
+  }
+
+  &:active {
+    border: 2px solid black !important;
+  }
+}
+
+.jukeboxToggleButton {
+  position: absolute;
+  
+  width: 22px !important;
+  height: 22px !important;
+  top: 3px;
+  left: 120px;
+
+  color: #fff;
+  background-color: #4bc41c !important;
+  border-color: #4bc41c !important;
+  border: 2px solid black !important;
+  
+  &:active {
+    border: 2px solid black !important;
+  }
+  
+  & > * {
+    width: 10px;
+    height: 10px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+}
+
+.hiddenMessage {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-100%, 0);
+  color: white;
+  font-size: 1.5em;
+  text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000,
+    3px 3px 0 #000;
+  line-height: 0.95em;
+  font-family: game_version;
+  width: 125px;
+  height: 30px;
+  white-space: pre;
+  padding: 10px;
+  z-index: -10;
+
+  @media screen and (min-width: 700px){
+    display: none;
+  }
+}
 .leaderboards-button {
   margin-right: 15px;
 }

@@ -1,8 +1,8 @@
 import React from 'react'
-import PkmnOption from './PkmnOption'
+import PkmnOption from './answerPanel/PkmnOption'
 import Sound from 'react-sound'
 import './Turn.css'
-import PokedexGlow from './pokedexGlow'
+import PokedexGlow from './answerPanel/pokedexGlow'
 import RotomContainer from '../rotom/RotomContainer'
 import {
   STANDARD_MODE,
@@ -10,16 +10,20 @@ import {
   GAME_FINISHED,
 } from '../../store/actions/Actions'
 import { POKEDEX_GLOW_COLOR_INCORRECT } from '../app/config'
-import ScoreBoard from './ScoreBoard'
-import EncounteredPokemonContainer from '../encounteredPokemon/EncounteredPokemonContainer'
-import GenerationFilter from '../generationFilter/GenerationFilter'
+
+import ScoreBoard from './answerPanel/ScoreBoard'
+import PokeModal from '../pokeModal/PokeModalContainer'
 
 export default class Turn extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       spriteImg: null,
+      modalDisplaying: false
     }
+    this.handleModalBackButtonClicked = this.handleModalBackButtonClicked.bind(this)
+    this.handleModalToggleClicked = this.handleModalToggleClicked.bind(this)
+    this.gameModeChangeHandler = this.gameModeChangeHandler.bind(this)
   }
 
   validateAnswer = answer => {
@@ -39,6 +43,24 @@ export default class Turn extends React.Component {
     })
   }
 
+  handleModalBackButtonClicked = () => {
+    this.setState({
+      modalDisplaying: false
+    })
+  }
+
+  handleModalToggleClicked = () => {
+    const  newValue = !this.state.modalDisplaying
+
+    this.setState({
+      modalDisplaying: newValue
+    })
+  }
+
+  gameModeChangeHandler = () => {
+    return this.props.gameMode === TIME_TRIAL ? this.props.onModeSelected(STANDARD_MODE, this.props.generations) : this.props.onModeSelected(TIME_TRIAL, this.props.generations)
+  }
+
   render() {
     const {
       options,
@@ -54,7 +76,8 @@ export default class Turn extends React.Component {
 
     return (
       <div className="turn">
-        <EncounteredPokemonContainer />
+        <button className='menuToggle' onClick={this.handleModalToggleClicked} />
+        <button className='timeTrialToggle' onClick={this.gameModeChangeHandler} />
         {isAnswerSelected && (
           <Sound
             url={
@@ -96,6 +119,7 @@ export default class Turn extends React.Component {
             />
           ))}
         </div>
+        <PokeModal handleModalBackButtonClicked={this.handleModalBackButtonClicked} onGenerationChanged={onGenerationChanged}  displaying={this.state.modalDisplaying} />
         <RotomContainer />
         {gameMode === STANDARD_MODE && (
           <ScoreBoard
@@ -114,7 +138,6 @@ export default class Turn extends React.Component {
             pokedexGlowColor={pokedexGlowColor}
           />
         )}
-        <GenerationFilter onGenerationChanged={onGenerationChanged} />
       </div>
     )
   }
