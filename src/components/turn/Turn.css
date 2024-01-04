@@ -67,6 +67,12 @@
       border: none;
     }
   }
+  @media screen and (max-height: 400px){
+    height: 46px;
+    width: 36px;
+    left: 29px;
+    bottom: 138px;
+  }
 }
 
 .pkmnSprite {
@@ -120,6 +126,12 @@
   font-weight: bold;
   font-size: 20px;
   color: black;
+
+  @media screen and (max-height: 400px){
+    top: 422px;
+    left: 76px;
+    font-size: 12px;
+  }
 }
 .highScoreLabel {
   position: absolute;
@@ -129,6 +141,12 @@
   font-weight: bold;
   font-size: 20px;
   color: white;
+
+  @media screen and (max-height: 400px){
+    top: 455px;
+    left: 150px;
+    font-size: 12px;
+  }
 }
 .currentScore {
   position: absolute;
@@ -138,6 +156,12 @@
   font-weight: bold;
   font-size: 30px;
   color: black;
+
+  @media screen and (max-height: 400px){
+    top: 435px;
+    left: 75px;
+    font-size: 16px;
+  }
 }
 .highScore {
   position: absolute;
@@ -147,6 +171,12 @@
   font-weight: bold;
   font-size: 27px;
   color: white;
+
+  @media screen and (max-height: 400px){
+    top: 432px;
+    left: 164px;
+    font-size: 16px;
+  }
 }
 
 .timeLeftLabel {
@@ -157,6 +187,10 @@
   font-weight: bold;
   font-size: 20px;
   color: black;
+
+  @media screen and (max-height: 400px){
+    font-size: 12px;
+  }
 }
 .timeLeft {
   position: absolute;
@@ -168,12 +202,20 @@
   font-weight: bold;
   font-size: 35px;
   color: black;
+
+  @media screen and (max-height: 400px){
+    font-size: 20px;
+  }
 }
 .timeLeft > .unit {
   font-family: pokemon;
   font-weight: bold;
   font-size: 21px;
   color: black;
+
+  @media screen and (max-height: 400px){
+    font-size: 10px;
+  }
 }
 .timeAdded {
   position: absolute;
@@ -186,12 +228,20 @@
   font-weight: bold;
   font-size: 35px;
   color: green;
+
+  @media screen and (max-height: 400px){
+    font-size: 20px;
+  }
 }
 .timeAdded > .unit {
   font-family: pokemon;
   font-weight: bold;
   font-size: 21px;
   color: green;
+
+  @media screen and (max-height: 400px){
+    font-size: 10px;
+  }
 }
 .timeDiscounted {
   position: absolute;
@@ -204,12 +254,20 @@
   font-weight: bold;
   font-size: 35px;
   color: red;
+
+  @media screen and (max-height: 400px){
+    font-size: 20px;
+  }
 }
 .timeDiscounted > .unit {
   font-family: pokemon;
   font-weight: bold;
   font-size: 21px;
   color: red;
+
+  @media screen and (max-height: 400px){
+    font-size: 10px;
+  }
 }
 
 @keyframes blink {

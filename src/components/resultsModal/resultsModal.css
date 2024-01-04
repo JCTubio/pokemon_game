@@ -10,6 +10,7 @@
   border-radius: 10px;
   border: 5px double rgb(255, 255, 255);
   padding: 35px;
+  overflow-y: scroll;
 }
 
 .modalPkmnEncounteredList {
@@ -45,9 +46,11 @@
   margin: 0.5%;
 }
 
-.timeSurvivedDisplay {
+.pkmnCampturedLabel {
   margin-bottom: 15px;
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .modalPokemonsEncounteredTitle {
@@ -59,6 +62,10 @@
   display: block;
   height: 10%;
   text-align: center;
+
+  @media screen and (max-height: 400px){
+    font-size: 16px;
+  }
 }
 
 .modalEncounteredPokemon {
@@ -67,15 +74,26 @@
 
 #modalMMButton {
   display: inline-block;
+
+  @media screen and (max-height: 400px){
+    font-size: 10px;
+  }
 }
 
 #modalTTButton {
   display: inline-block;
+
+  @media screen and (max-height: 400px){
+    font-size: 10px;
+  }
 }
 
 
 .new-rank-container {
-
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .new-rank-title {
@@ -87,6 +105,10 @@
   display: block;
   height: 10%;
   text-align: center;
+
+  @media screen and (max-height: 400px){
+    font-size: 20px;
+  }
 }
 
 .new-rank-explainer {
@@ -147,4 +169,8 @@
   margin-left: 10px;
   width: 100px;
   margin-bottom: 25px;
+
+  @media screen and (max-height: 400px){
+    font-size: 10px;
+  }
 }

@@ -79,7 +79,7 @@ export default function ResultsModal({
           </div>
         </div>
       </div>
-      <div className="timeSurvivedDisplay">
+      <div className="pkmnCampturedLabel">
         <h2 className="modalPokemonsEncounteredTitle">Pokemon captured: </h2>
         <p className="modalPokemonsEncounteredTitle">{currentScore}</p>
       </div>

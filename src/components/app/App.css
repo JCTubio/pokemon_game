@@ -256,8 +256,8 @@ body {
   }
 
   @media screen and (max-height: 400px){
-    zoom: 0.7;
-    margin-top: 7%;
+    zoom: 0.65;
+    margin-top: -1%;
   }
 }
 
@@ -269,16 +269,25 @@ body {
   top: -5px;
   left: 58px;
   border: 2px solid black !important;
-  
-  & > * {
-    width: 10px;
-    height: 10px;
-    overflow: hidden;
-    margin-bottom: 6px;
-  }
 
   &:active {
     border: 2px solid black !important;
+  }
+
+  & > svg {
+    width: 12px !important;
+    height: 12px !important;
+    font-size: 12px !important;
+    line-height: 12px;
+    margin-bottom: 4px;
+  }
+
+  @media screen and (max-height: 400px){
+    width: 22px !important;
+    height: 22px !important;
+    top: -4px;
+    left: 57px;
+    font-size: 12px !important;
   }
 }
 
@@ -298,12 +307,21 @@ body {
   &:active {
     border: 2px solid black !important;
   }
-  
-  & > * {
-    width: 10px;
-    height: 10px;
-    overflow: hidden;
-    margin-bottom: 8px;
+
+  & > svg {
+    width: 12px !important;
+    height: 12px !important;
+    font-size: 12px !important;
+    line-height: 12px;
+    margin-bottom: 6px;
+  }
+
+  @media screen and (max-height: 400px){
+    width: 22px !important;
+    height: 22px !important;
+    top: -3px;
+    left: 120px;
+    font-size: 12px !important;
   }
 }
 
@@ -355,5 +373,13 @@ body {
     height: 10px;
     overflow: hidden;
     margin-bottom: 14px;
+  }
+
+  @media screen and (max-height: 400px){
+    width: 22px !important;
+    height: 22px !important;
+    top: 3px;
+    left: -6px;
+    font-size: 12px !important;
   }
 }
