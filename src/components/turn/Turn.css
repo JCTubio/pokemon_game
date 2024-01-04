@@ -67,7 +67,7 @@
       border: none;
     }
   }
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     height: 46px;
     width: 36px;
     left: 29px;
@@ -127,7 +127,7 @@
   font-size: 20px;
   color: black;
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     top: 422px;
     left: 76px;
     font-size: 12px;
@@ -142,7 +142,7 @@
   font-size: 20px;
   color: white;
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     top: 455px;
     left: 150px;
     font-size: 12px;
@@ -157,7 +157,7 @@
   font-size: 30px;
   color: black;
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     top: 435px;
     left: 75px;
     font-size: 16px;
@@ -172,7 +172,7 @@
   font-size: 27px;
   color: white;
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     top: 432px;
     left: 164px;
     font-size: 16px;
@@ -188,7 +188,7 @@
   font-size: 20px;
   color: black;
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     font-size: 12px;
   }
 }
@@ -203,7 +203,7 @@
   font-size: 35px;
   color: black;
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     font-size: 20px;
   }
 }
@@ -213,7 +213,7 @@
   font-size: 21px;
   color: black;
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     font-size: 10px;
   }
 }
@@ -229,7 +229,7 @@
   font-size: 35px;
   color: green;
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     font-size: 20px;
   }
 }
@@ -239,7 +239,7 @@
   font-size: 21px;
   color: green;
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     font-size: 10px;
   }
 }
@@ -255,7 +255,7 @@
   font-size: 35px;
   color: red;
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     font-size: 20px;
   }
 }
@@ -265,7 +265,7 @@
   font-size: 21px;
   color: red;
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     font-size: 10px;
   }
 }

@@ -255,7 +255,7 @@ body {
     margin-top: 4%;
   }
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     zoom: 0.65;
     margin-top: -1%;
   }
@@ -282,7 +282,7 @@ body {
     margin-bottom: 4px;
   }
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     width: 22px !important;
     height: 22px !important;
     top: -4px;
@@ -316,7 +316,7 @@ body {
     margin-bottom: 6px;
   }
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     width: 22px !important;
     height: 22px !important;
     top: -3px;
@@ -375,7 +375,7 @@ body {
     margin-bottom: 14px;
   }
 
-  @media screen and (max-height: 400px){
+  @media screen and (max-width: 500px){
     width: 22px !important;
     height: 22px !important;
     top: 3px;
