@@ -233,14 +233,6 @@ body {
   left: 20px;
   z-index: 20;
 }
-@media screen and (max-width: 600px), screen and (max-height: 600px) {
-  body {
-    zoom: 0.5;
-  }
-  .rotomDex {
-    display: none;
-  }
-}
 
 .pokedex {
   padding: 0;
@@ -259,8 +251,13 @@ body {
   align-items: center;
 
   @media screen and (max-height: 600px){
-    zoom: 1.4;
-    margin-top: 6%;
+    zoom: 0.8;
+    margin-top: 4%;
+  }
+
+  @media screen and (max-height: 400px){
+    zoom: 0.7;
+    margin-top: 7%;
   }
 }
 

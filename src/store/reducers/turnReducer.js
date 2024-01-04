@@ -47,7 +47,7 @@ export default function turnReducer(
     rotomMessageStyle: ROTOM_STYLE_CLASS_DEFAULT,
     isModalShowing: false,
     pokemonsEncountered: [],
-    generations: [1, 2, 3, 4, 5, 6],
+    generations: [1],
   },
   action
 ) {
@@ -189,9 +189,9 @@ export default function turnReducer(
 }
 
 function correctPokemonRotomMessage(answer) {
-  return "Good Job!\nThat's\n" + answer.ename + '!'
+  return "That's right!\nGood job!"
 }
 
 function wrongPokemonRotomMessage(answer) {
-  return "Oh no!\nThat's\n" + answer.ename + '!'
+  return "Oh oh!\nThat's\n" + answer.ename + '!'
 }

@@ -1,12 +1,13 @@
 import {
   STANDARD_MODE,
   CHANGE_GAME_MODE,
+  TIME_TRIAL,
   GAME_FINISHED,
 } from '../actions/Actions'
 
 export default function turnReducer(
   state = {
-    gameMode: STANDARD_MODE,
+    gameMode: TIME_TRIAL,
   },
   action
 ) {

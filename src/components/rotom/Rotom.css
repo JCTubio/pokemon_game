@@ -1,10 +1,10 @@
 .rotomDex {
   position: absolute;
-  top: -13%;
+  top: 43%;
   left: 100vw;
   width: 450px;
   pointer-events: none;
-  z-index: 500;
+  z-index: 99999500;
 }
 
 .rotomDexShowing {
@@ -18,11 +18,11 @@
   }
 
   10% {
-    left: 71%;
+    left: 30%;
   }
 
   90% {
-    left: 71%;
+    left: 30%;
   }
 
   100% {
@@ -40,7 +40,7 @@
   color: black;
   position: absolute;
   top: 10%;
-  left: 5%;
+  left: 4%;
   width: 200px;
   height: 90px;
   overflow: hidden;

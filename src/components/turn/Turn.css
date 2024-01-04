@@ -151,8 +151,8 @@
 
 .timeLeftLabel {
   position: absolute;
-  top: 74.5%;
-  left: 14%;
+  top: 422px;
+  left: 80px;
   font-family: calculator;
   font-weight: bold;
   font-size: 20px;
@@ -160,8 +160,8 @@
 }
 .timeLeft {
   position: absolute;
-  top: 80%;
-  left: 14.5%;
+  top: 436px;
+  left: 80px;
 }
 .timeLeft > .number {
   font-family: calculator;
@@ -177,8 +177,8 @@
 }
 .timeAdded {
   position: absolute;
-  top: 80%;
-  left: 20.5%;
+  top: 436px;
+  left: 128px;
   animation: blink 0.2s steps(1, start) infinite;
 }
 .timeAdded > .number {
@@ -195,8 +195,8 @@
 }
 .timeDiscounted {
   position: absolute;
-  top: 80%;
-  left: 20.5%;
+  top: 436px;
+  left: 128px;
   animation: blink 0.3s steps(1, start) infinite;
 }
 .timeDiscounted > .number {
