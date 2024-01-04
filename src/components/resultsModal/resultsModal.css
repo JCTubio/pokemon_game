@@ -63,7 +63,7 @@
   height: 10%;
   text-align: center;
 
-  @media screen and (max-width: 700px){
+  @media screen and (max-width: 999px){
     font-size: 16px;
   }
 }
@@ -75,7 +75,7 @@
 #modalMMButton {
   display: inline-block;
 
-  @media screen and (max-width: 700px){
+  @media screen and (max-width: 999px){
     font-size: 10px;
   }
 }
@@ -83,7 +83,7 @@
 #modalTTButton {
   display: inline-block;
 
-  @media screen and (max-width: 700px){
+  @media screen and (max-width: 999px){
     font-size: 10px;
   }
 }
@@ -106,7 +106,7 @@
   height: 10%;
   text-align: center;
 
-  @media screen and (max-width: 700px){
+  @media screen and (max-width: 999px){
     font-size: 20px;
   }
 }
@@ -170,7 +170,7 @@
   width: 100px;
   margin-bottom: 25px;
 
-  @media screen and (max-width: 700px){
+  @media screen and (max-width: 999px){
     font-size: 10px;
   }
 }
