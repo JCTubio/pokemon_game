@@ -233,14 +233,6 @@ body {
   left: 20px;
   z-index: 20;
 }
-@media screen and (max-width: 600px), screen and (max-height: 600px) {
-  body {
-    zoom: 0.5;
-  }
-  .rotomDex {
-    display: none;
-  }
-}
 
 .pokedex {
   padding: 0;
@@ -258,9 +250,9 @@ body {
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-height: 600px){
-    zoom: 1.4;
-    margin-top: 6%;
+  @media screen and (max-width: 999px){
+    zoom: 0.65;
+    margin-top: -1%;
   }
 }
 
@@ -269,19 +261,28 @@ body {
 
   width: 22px !important;
   height: 22px !important;
-  top: 0px;
+  top: -5px;
   left: 58px;
-  border: 1px solid black !important;
-  
-  & > * {
-    width: 10px;
-    height: 10px;
-    overflow: hidden;
-    margin-bottom: 5px;
-  }
+  border: 2px solid black !important;
 
   &:active {
     border: 2px solid black !important;
+  }
+
+  & > svg {
+    width: 12px !important;
+    height: 12px !important;
+    font-size: 12px !important;
+    line-height: 12px;
+    margin-bottom: 4px;
+  }
+
+  @media screen and (max-width: 999px){
+    width: 22px !important;
+    height: 22px !important;
+    top: -4px;
+    left: 57px;
+    font-size: 12px !important;
   }
 }
 
@@ -290,7 +291,7 @@ body {
   
   width: 22px !important;
   height: 22px !important;
-  top: 3px;
+  top: -3px;
   left: 120px;
 
   color: #fff;
@@ -301,12 +302,21 @@ body {
   &:active {
     border: 2px solid black !important;
   }
-  
-  & > * {
-    width: 10px;
-    height: 10px;
-    overflow: hidden;
-    margin-bottom: 8px;
+
+  & > svg {
+    width: 12px !important;
+    height: 12px !important;
+    font-size: 12px !important;
+    line-height: 12px;
+    margin-bottom: 6px;
+  }
+
+  @media screen and (max-width: 999px){
+    width: 22px !important;
+    height: 22px !important;
+    top: -3px;
+    left: 120px;
+    font-size: 12px !important;
   }
 }
 
@@ -336,20 +346,35 @@ body {
 }
 
 .donation-button {
+  position: absolute;
+  z-index: 5000;
+  
+  width: 22px !important;
+  height: 22px !important;
+  top: 3px;
+  left: -7px;
+
   color: #fff;
   background-color: rgb(251, 202, 60) !important;
-  border-color: rgb(251, 202, 60) !important;
-}
+  border: 2px solid black !important;
 
-.donation-button:hover,
-.donation-button:focus {
-  color: #fff;
-  background-color: rgb(251, 202, 60) !important;
-  border-color: rgb(251, 202, 60) !important;
-}
+  
+  &:active {
+    border: 2px solid black !important;
+  }
+  
+  & > * {
+    width: 10px;
+    height: 10px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
 
-.donation-button:active {
-  color: #fff;
-  background-color: rgb(232, 187, 58) !important;
-  border-color: rgb(232, 187, 58) !important;
+  @media screen and (max-width: 999px){
+    width: 22px !important;
+    height: 22px !important;
+    top: 3px;
+    left: -6px;
+    font-size: 12px !important;
+  }
 }

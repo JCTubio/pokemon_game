@@ -10,8 +10,6 @@ import ResultsModal from '../resultsModal/ResultsModalContainer'
 import Leaderboard from '../leaderboard/LeaderboardContainer'
 import IntroDialog from '../introDialog/IntroDialogContainer'
 
-import { STANDARD_MODE, TIME_TRIAL } from '../../store/actions/Actions'
-
 import './App.css'
 import '../../resources/bootstrap.min.css'
 import 'antd/dist/antd.css'
@@ -27,20 +25,15 @@ const App = ({
   currentScore,
   highScore,
   pokedexGlowColor,
-  onModeChanged,
   gameMode,
   timeLeft,
   volume,
   isModalShowing,
   onGenerationChanged,
-  generations,
   isLeaderboardShowing,
   hideLeaderboard,
   showLeaderboard,
 }) => {
-  function gameModeChangeHandler(mode) {
-    return gameMode === mode ? null : onModeChanged(mode, generations)
-  }
 
   const toggleLeaderboard = () => {
     isLeaderboardShowing ? hideLeaderboard() : showLeaderboard()
