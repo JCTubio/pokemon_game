@@ -14,20 +14,25 @@ import {
   GIVE_CONSENT
 } from '../actions/Actions'
 
+import listAvailableMusic from '../../components/jukebox/availableMusic'
+
+const chillSongs = listAvailableMusic().chillSongs
+const initialSong = '/pokemonMusic/Chill/' + chillSongs[Math.floor(Math.random() * chillSongs.length)]
+
 export default function jukeboxReducer(
   state = {
-    currentSong: '',
+    currentSong: initialSong,
     playbackStatus: PLAYBACK_STATUS_STOPPED,
-    volume: 20,
+    volume: 15,
     musicConsent: false
   },
   action
 ) {
   switch (action.type) {
     case GIVE_CONSENT: 
-      alert("gave consent")
       return  Object.assign({}, state, {
-        musicConsent: true
+        musicConsent: true,
+        playbackStatus: PLAYBACK_STATUS_PLAYING,
       })
     case ANSWER_SELECTED:
       return Object.assign({}, state, {
@@ -64,7 +69,6 @@ export default function jukeboxReducer(
           playbackStatus: PLAYBACK_STATUS_PLAYING,
         })
       }
-      alert("musicConsent " + state.musicConsent)
       return state
     case PAUSE_THE_MUSIC:
       return Object.assign({}, state, {

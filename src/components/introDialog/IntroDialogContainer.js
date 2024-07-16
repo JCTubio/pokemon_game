@@ -2,18 +2,13 @@ import { connect } from 'react-redux'
 import IntroDialog from './IntroDialog'
 import {
   stopTheMusic,
-  playTheMusic,
-  playMusicForSGStarted
+  giveConsent
 } from '../../store/actions/Actions'
-import {
-  getChillSong
-} from '../../store/selectors/musicHelper'
 
 function mapDispatchToProps(dispatch) {
   return {
     onOkSelected: () => {
-      dispatch(playTheMusic())
-      dispatch(playMusicForSGStarted(getChillSong()))
+      dispatch(giveConsent())
     },
     onNoSelected: () => {
       dispatch(stopTheMusic())

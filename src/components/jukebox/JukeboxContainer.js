@@ -4,7 +4,7 @@ import {
   songSelected,
   muteToggled,
   stopTheMusic,
-  playTheMusic,
+  playTheMusic
 } from '../../store/actions/Actions'
 import getVolume from '../../store/selectors/volumeSelector'
 import getPlaybackStatus from '../../store/selectors/playbackStatusSelector'
@@ -28,7 +28,7 @@ function mapDispatchToProps(dispatch) {
     },
     onMuteToggled: () => {
       dispatch(muteToggled())
-    },
+    }
   }
 }
 
