@@ -37,6 +37,7 @@ const App = ({
   isLeaderboardShowing,
   hideLeaderboard,
   showLeaderboard,
+  approveConsent
 }) => {
   function gameModeChangeHandler(mode) {
     return gameMode === mode ? null : onModeChanged(mode, generations)
@@ -50,7 +51,7 @@ const App = ({
     <div className="container-fluid">
       <ResultsModal />
       <Leaderboard />
-      <IntroDialog />
+      <IntroDialog  onOkSelected={approveConsent} onNoSelected={null} />
       <div className="header" style={isModalShowing ? { display: 'none' } : {}}>
         <div className="buttons-container" >
         <JukeboxContainer />

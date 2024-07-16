@@ -33,6 +33,7 @@ export const UPDATE_MONTHLY_LEADERBOARD = 'UPDATE_MONTHLY_LEADERBOARD'
 export const UPDATE_ALL_TIME_LEADERBOARD = 'UPDATE_ALL_TIME_LEADERBOARD'
 export const SHOW_LEADERBOARD = 'SHOW_LEADERBOARD'
 export const HIDE_LEADERBOARD = 'HIDE_LEADERBOARD'
+export const GIVE_CONSENT = 'GIVE_CONSENT'
 
 /*Action creators*/
 export function showLeaderboard() {
@@ -141,4 +142,8 @@ export function hideModal() {
 
 export function changeGenerations(generationsArray) {
   return { type: CHANGE_GENERATIONS, generationsArray }
+}
+
+export function giveConsent() {
+  return { type: GIVE_CONSENT }
 }

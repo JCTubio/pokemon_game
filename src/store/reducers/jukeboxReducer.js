@@ -11,6 +11,7 @@ import {
   PLAY_THE_MUSIC,
   STOP_THE_MUSIC,
   PAUSE_THE_MUSIC,
+  GIVE_CONSENT
 } from '../actions/Actions'
 
 export default function jukeboxReducer(
@@ -18,10 +19,16 @@ export default function jukeboxReducer(
     currentSong: '',
     playbackStatus: PLAYBACK_STATUS_STOPPED,
     volume: 20,
+    musicConsent: false
   },
   action
 ) {
   switch (action.type) {
+    case GIVE_CONSENT: 
+      alert("gave consent")
+      return  Object.assign({}, state, {
+        musicConsent: true
+      })
     case ANSWER_SELECTED:
       return Object.assign({}, state, {
         playbackStatus: action.answer
@@ -29,9 +36,12 @@ export default function jukeboxReducer(
           : PLAYBACK_STATUS_PAUSED,
       })
     case CONTINUE:
-      return Object.assign({}, state, {
-        playbackStatus: PLAYBACK_STATUS_PLAYING,
-      })
+      if(state.musicConsent) {
+        return Object.assign({}, state, {
+          playbackStatus: PLAYBACK_STATUS_PLAYING,
+        })
+      } 
+      return state
     case SONG_SELECTED:
       return Object.assign({}, state, {
         currentSong: action.songName,
@@ -49,9 +59,13 @@ export default function jukeboxReducer(
         currentSong: '/pokemonMusic/Chill/' + action.songName,
       })
     case PLAY_THE_MUSIC:
-      return Object.assign({}, state, {
-        playbackStatus: PLAYBACK_STATUS_PLAYING,
-      })
+      if(state.musicConsent) {
+        return Object.assign({}, state, {
+          playbackStatus: PLAYBACK_STATUS_PLAYING,
+        })
+      }
+      alert("musicConsent " + state.musicConsent)
+      return state
     case PAUSE_THE_MUSIC:
       return Object.assign({}, state, {
         playbackStatus: PLAYBACK_STATUS_PAUSED,

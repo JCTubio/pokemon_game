@@ -6,9 +6,9 @@ export default function IntroDialog({ onOkSelected, onNoSelected }) {
   const [displaying, setDisplaying] = useState(true)
 
   const handleClick = (fun) => {
+    fun()
     const context = new AudioContext()
     context.resume()
-    fun()
     setDisplaying(false)
   }
 

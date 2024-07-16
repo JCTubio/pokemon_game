@@ -26,6 +26,7 @@ import {
   changeGenerations,
   showLeaderboard,
   hideLeaderboard,
+  giveConsent
 } from '../../store/actions/Actions'
 import getGameMode from '../../store/selectors/gameModeSelector'
 import getVolume from '../../store/selectors/volumeSelector'
@@ -69,6 +70,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    approveConsent: () => {
+      dispatch(giveConsent())
+    },
     showLeaderboard: () => {
       dispatch(showLeaderboard())
     },
