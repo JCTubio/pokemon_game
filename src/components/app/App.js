@@ -1,8 +1,6 @@
 import React from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrophy, faDonate } from '@fortawesome/free-solid-svg-icons'
-import { Button } from 'antd'
 
 import Game from '../answerPanel/Game'
 import JukeboxContainer from '../jukebox'
@@ -31,7 +29,6 @@ const App = ({
   gameMode,
   timeLeft,
   volume,
-  isModalShowing,
   onGenerationChanged,
   generations,
   isLeaderboardShowing,
@@ -43,12 +40,17 @@ const App = ({
     return gameMode === mode ? null : onModeChanged(mode, generations)
   }
 
+  /*
   const toggleLeaderboard = () => {
     isLeaderboardShowing ? hideLeaderboard() : showLeaderboard()
   }
+  */
 
   return (
     <div className="container-fluid">
+      <ResultsModal />
+      <Leaderboard />
+      <JukeboxContainer />
       <IntroDialog  onOkSelected={approveConsent} onNoSelected={null} />
       <Game
         key={turnNumber}
@@ -63,61 +65,7 @@ const App = ({
         volume={volume}
         onGenerationChanged={onGenerationChanged}
         />
-    </div>
-  )
-}
-
-export default App
-
-  /*
-  return (
-    <div className="container-fluid">
-      <ResultsModal />
-      <Leaderboard />
-      
-      <div className="header" style={{ display: 'none' }}>
-        <div className="buttons-container" >
-        <JukeboxContainer />
-        <Button
-          type="primary"
-          shape="circle"
-          size="large"
-          onClick={toggleLeaderboard}
-          className="leaderboards-button"
-        >
-          <FontAwesomeIcon icon={'trophy'} />
-        </Button>
-        <Button
-          type="primary"
-          shape="circle"
-          size="large"
-          href="https://streamlabs.com/iamjaysee/tip"
-          target="_blank"
-          className="donation-button"
-        >
-          <FontAwesomeIcon icon={'donate'} />
-        </Button>
-        </div>
-      </div>
-      <div
-        className="turnContainer"
-        style={isModalShowing ? { display: 'none' } : {}}
-      >
-        <Game
-          key={turnNumber}
-          {...turnData}
-          isAnswerSelected={isAnswerSelected}
-          handleSelect={handleSelect}
-          pokedexGlowColor={pokedexGlowColor}
-          currentScore={currentScore}
-          highScore={highScore}
-          gameMode={gameMode}
-          timeLeft={timeLeft}
-          volume={volume}
-          onGenerationChanged={onGenerationChanged}
-        />
-      </div>
-      <div className="footer" style={{ display: 'none' }}>
+        <div className="footer" style={{ display: 'none' }}>
         <button
           className="toMainModeButton"
           onClick={() => gameModeChangeHandler(STANDARD_MODE)}
@@ -138,4 +86,3 @@ export default App
 }
 
 export default App
-*/

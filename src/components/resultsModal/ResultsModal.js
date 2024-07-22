@@ -33,7 +33,7 @@ export default function ResultsModal({
       setHasSumbittedHighscore(false)
       setQualifies(checkIfQualified(currentScore, dailyLeaderboard))
     },
-    [isModalShowing]
+    [isModalShowing, currentScore, dailyLeaderboard]
   )
 
   const handleNameChange = (e) => {

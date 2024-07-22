@@ -4,7 +4,6 @@ import Sound from 'react-sound'
 import PkmnOption from './PkmnOption'
 import './Game.css'
 import PokedexGlow from './pokedexGlow'
-import RotomContainer from '../rotom/RotomContainer'
 import {
   STANDARD_MODE,
   TIME_TRIAL,
@@ -36,7 +35,7 @@ const Game = props => {
 
   useEffect(() => {
     getPkmnSprite()
-  }, []);
+  });
 
   const validateAnswer = answer => {
     return props.handleSelect(props.sprite.ename === answer)
