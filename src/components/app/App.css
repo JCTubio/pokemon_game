@@ -140,37 +140,6 @@ body {
     #302b63,
     #0f0c29
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  overflow-x: hidden;
-}
-.container-fluid {
-  padding: 0px 0px 0px 0px;
-}
-.header {
-  align-content: center;
-}
-.headerImg {
-  width: 325px;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-.turnContainer {
-  display: flex;
-  padding-top: 15px;
-  justify-content: space-between;
-  position: relative;
-}
-.leftSpace {
-  width: 10%;
-  height: 550px;
-  display: inline-block;
-}
-.rightSpace {
-  width: 15%;
-  height: 550px;
-  display: inline-block;
 }
 @font-face {
   font-family: pokemon;
@@ -236,14 +205,6 @@ body {
   z-index: 20;
   display: flex;
 }
-@media screen and (max-width: 600px), screen and (max-height: 600px) {
-  body {
-    zoom: 0.5;
-  }
-  .rotomDex {
-    display: none;
-  }
-}
 
 .leaderboards-button {
   margin-right: 15px;
@@ -266,4 +227,8 @@ body {
   color: #fff;
   background-color: rgb(232, 187, 58) !important;
   border-color: rgb(232, 187, 58) !important;
+}
+
+html {
+  overflow-y: hidden;
 }

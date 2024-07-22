@@ -106,71 +106,61 @@ class GenerationFilter extends Component {
     return (
       <div className="genFilter">
         <h2 className="genTitle">Gen Selector</h2>
-        <div id="kanto">
-          <h4 className="genButton" onClick={this.handleKantoClicked}>
-            {'RED&\nBLUE'}
-          </h4>
-          <img
-            src="/images/generations/tick.png"
-            alt="kantoTick"
-            id="tick"
-            style={this.state.kanto === true ? null : { display: 'none' }}
-          />
-        </div>
-        <div id="johto">
-          <h4 className="genButton" onClick={this.handleJohtoClicked}>
-            {'GOLD&\nSILVER'}
-          </h4>
-          <img
-            src="/images/generations/tick.png"
-            alt="johtoTick"
-            id="tick"
-            style={this.state.johto === true ? null : { display: 'none' }}
-          />
-        </div>
-        <div id="hoenn">
-          <h4 className="genButton" onClick={this.handleHoennClicked}>
-            {'RUBY&\nSAPPHIRE'}
-          </h4>
-          <img
-            src="/images/generations/tick.png"
-            alt="hoennTick"
-            id="tick"
-            style={this.state.hoenn === true ? null : { display: 'none' }}
-          />
-        </div>
-        <div id="sinnoh">
-          <h4 className="genButton" onClick={this.handleSinnohClicked}>
-            {'PEARL&\nDIAMOND'}
-          </h4>
-          <img
-            src="/images/generations/tick.png"
-            alt="sinnohTick"
-            id="tick"
-            style={this.state.sinnoh === true ? null : { display: 'none' }}
-          />
-        </div>
-        <div id="unova">
-          <h4 className="genButton" onClick={this.handleUnovaClicked}>
-            {'BLACK&\nWHITE'}
-          </h4>
-          <img
-            src="/images/generations/tick.png"
-            alt="unovaTick"
-            id="tick"
-            style={this.state.unova === true ? null : { display: 'none' }}
-          />
-        </div>
-        <div id="kalos">
-          <h4 className="genButton" onClick={this.handleKalosClicked}>
-            {'X&Y'}
-          </h4>
-          <img
-            src="/images/generations/tick.png"
-            alt="kalosTick"
-            id="tick"
-            style={this.state.kalos === true ? null : { display: 'none' }}
-          />
+        <div className="genButtonContainer">
+          <div id="kanto" className="genButtonWrapper" onClick={this.handleKantoClicked}>
+            <h4 className="genButton">RED&<br />BLUE</h4>
+            <img
+              src="/images/generations/tick.png"
+              alt="kantoTick"
+              className="tick"
+              style={this.state.kanto === true ? null : { opacity: '0' }}
+            />
+          </div>
+          <div id="johto" className="genButtonWrapper" onClick={this.handleJohtoClicked}>
+            <h4 className="genButton">GOLD&<br />SILVER</h4>
+            <img
+              src="/images/generations/tick.png"
+              alt="johtoTick"
+              className="tick"
+              style={this.state.johto === true ? null : { opacity: '0' }}
+            />
+          </div>
+          <div id="hoenn" className="genButtonWrapper" onClick={this.handleHoennClicked}>
+            <h4 className="genButton">RUBY&<br />SAPPHIRE</h4>
+            <img
+              src="/images/generations/tick.png"
+              alt="hoennTick"
+              className="tick"
+              style={this.state.hoenn === true ? null : { opacity: '0' }}
+            />
+          </div>
+          <div id="sinnoh" className="genButtonWrapper" onClick={this.handleSinnohClicked}>
+            <h4 className="genButton">PEARL&<br />DIAMOND</h4>
+            <img
+              src="/images/generations/tick.png"
+              alt="sinnohTick"
+              className="tick"
+              style={this.state.sinnoh === true ? null : { opacity: '0' }}
+            />
+          </div>
+          <div id="unova" className="genButtonWrapper" onClick={this.handleUnovaClicked}>
+            <h4 className="genButton">BLACK&<br />WHITE</h4>
+            <img
+              src="/images/generations/tick.png"
+              alt="unovaTick"
+              className="tick"
+              style={this.state.unova === true ? null : { opacity: '0' }}
+            />
+          </div>
+          <div id="kalos" className="genButtonWrapper" onClick={this.handleKalosClicked}>
+            <h4 className="genButton">X&Y</h4>
+            <img
+              src="/images/generations/tick.png"
+              alt="kalosTick"
+              className="tick"
+              style={this.state.kalos === true ? null : { opacity: '0' }}
+            />
+          </div>
         </div>
       </div>
     )

@@ -1,124 +1,52 @@
 .genFilter {
-  z-index: 100;
-  position: absolute;
-  left: 102%;
-  top: 0;
-  height: 100%;
-  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding-left: 20px;
 }
 
 .genTitle {
-  position: absolute;
-  left: 10px;
-  top: 0px;
   color: white;
   border: none;
   padding: 0;
   text-align: center;
   font-size: 1.3em;
   line-height: 1.2em;
+  margin: 10px 0;
 }
+
+.genButtonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.genButtonWrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  position: relative;
+}
+
 .genButton {
   color: white;
   font-size: 2em;
   text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000,
-    3px 3px 0 #000;
+  3px 3px 0 #000;
   line-height: 0.9em;
   font-family: game_version;
-  width: 165px;
+  width: 120px;
   height: 50px;
-}
-
-#kanto {
-  position: absolute;
-  top: 16%;
-  left: 25%;
-}
-
-#kanto > #tick {
-  position: absolute;
-  top: 17%;
-  left: -25%;
-  width: 30px;
-}
-
-#johto {
-  position: absolute;
-  top: 28%;
-  left: 25%;
-}
-
-#johto > #tick {
-  position: absolute;
-  top: 17%;
-  left: -25%;
-  width: 30px;
-}
-
-#hoenn {
-  position: absolute;
-  top: 40%;
-  left: 25%;
-}
-
-#hoenn > #tick {
-  position: absolute;
-  top: 17%;
-  left: -25%;
-  width: 30px;
-}
-
-#sinnoh {
-  position: absolute;
-  top: 52%;
-  left: 25%;
-}
-
-#sinnoh > #tick {
-  position: absolute;
-  top: 17%;
-  left: -25%;
-  width: 30px;
-}
-
-#unova {
-  position: absolute;
-  top: 64%;
-  left: 25%;
-}
-
-#unova > #tick {
-  position: absolute;
-  top: 17%;
-  left: -25%;
-  width: 30px;
-}
-
-#kalos {
-  position: absolute;
-  top: 76%;
-  left: 25%;
-}
-
-#kalos > #tick {
-  position: absolute;
-  top: -4%;
-  left: -25%;
-  width: 30px;
-}
-
-#submit {
-  position: absolute;
-  top: 84%;
-  left: 0;
-  padding: 0 10px 0 10px;
-  color: black;
-  display: inline-block;
-  background-color: white;
-  font-size: 2em;
+  padding-left: 15px;
   text-align: center;
-  font-family: pixel;
-  white-space: pre;
-  margin-right: 10px;
-  margin-left: 10px;
+}
+
+.tick {
+  width: 30px;
+  height: 2em;
+  margin-top: 15px;
+  min-width: 30px;
 }

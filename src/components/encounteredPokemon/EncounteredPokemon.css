@@ -1,11 +1,10 @@
 .encounteredPokemonPanel {
-  position: absolute;
   z-index: 250;
   left: -16%;
   top: 0%;
   width: 110px;
-  height: 535px;
   overflow: hidden;
+  margin-right: 30px;
 }
 .pokemonsEncounteredTitle {
   color: whitesmoke;

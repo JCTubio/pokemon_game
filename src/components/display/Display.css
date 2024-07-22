@@ -1,0 +1,85 @@
+.gameboy {
+  background-color: #DC272A;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  padding-top: 75px;
+}
+
+.display {
+  width: 100%;
+  background-image: url('/images/display.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 80%;
+  position: relative;
+}
+
+.headerImg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 75px;
+}
+
+.options {
+  max-width: 100%;
+  margin: 0px 20px;
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+  border: #000 solid 3px;
+  border-radius: 10px;
+  background-color: #73F74B;
+}
+
+.pkmnSprite {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 45%;
+  left: 50%;
+}
+
+.pkmnSpriteMobileShowing {
+  animation: appear 0.5s reverse;
+}
+
+@keyframes appear {
+  from {
+    width: 130px;
+    top: 45%;
+    left: 50%;
+  }
+  to {
+    width: 170px;
+    top: 42%;
+    left: 49%;
+  }
+}
+
+.horizontal-top-screen {
+  width: 50%;
+}
+
+.horizontal-bottom-screen {
+  width: 50%;
+}
+
+.horizontal-gameboy {
+    background-color: #DC272A;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    padding-top: 75px;
+    display: flex;
+  }

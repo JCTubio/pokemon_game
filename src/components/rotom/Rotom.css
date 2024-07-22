@@ -1,7 +1,7 @@
 .rotomDex {
   position: absolute;
   top: -13%;
-  left: 100vw;
+  left: 0vw;
   width: 450px;
   pointer-events: none;
   z-index: 500;

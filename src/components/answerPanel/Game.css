@@ -1,42 +1,37 @@
 .turn {
-  height: 550px;
   position: relative;
-  display: inline-block;
+  display: flex;
   margin-bottom: 10px;
+  margin-top: 100px;
 }
 
-.pkmnSprite {
-  position: absolute;
-
-  top: 32%;
-  left: 16%;
-  width: 130px;
-  height: auto;
+.turn > .headerImg {
+  position: fixed;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
 }
+
+.turn-content {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
 .pkmnSpriteShowing {
-  animation: appear 0.5s reverse;
-}
-@keyframes appear {
-  from {
-    width: 130px;
-    top: 32%;
-    left: 16%;
-  }
-  to {
-    width: 170px;
-    top: 29%;
-    left: 13%;
-  }
+  animation: appearfullscreen 0.5s reverse;
 }
 
 .pokedex {
-  z-index: -999;
+  width: 750px;
+  position: relative;
 }
 
 .respuestas {
   position: absolute;
+  width: 250px;
   top: 33%;
-  left: 59.5%;
+  left: 59.4%;
 }
 
 .pokedexGlow {
@@ -52,25 +47,26 @@
   src: url(../../resources/fonts/digital-7.ttf);
 }
 
-.scorePanel {
+.scoreboard {
   position: absolute;
-  top: 78.6%;
-  left: 11.5%;
+  top: 81.5%;
+  left: 10%;
 }
 
 .currentScoreLabel {
   position: absolute;
-  top: 74.5%;
-  left: 14%;
+  top: -36.7%;
+  left: 12.7%;
   font-family: calculator;
   font-weight: bold;
   font-size: 20px;
   color: black;
 }
+
 .highScoreLabel {
   position: absolute;
-  top: 88.8%;
-  left: 23.5%;
+  top: 45.5%;
+  left: 97%;
   font-family: calculator;
   font-weight: bold;
   font-size: 20px;
@@ -78,8 +74,8 @@
 }
 .currentScore {
   position: absolute;
-  top: 78%;
-  left: 14%;
+  top: -5%;
+  left: 13%;
   font-family: calculator;
   font-weight: bold;
   font-size: 35px;
@@ -87,8 +83,8 @@
 }
 .highScore {
   position: absolute;
-  top: 81.5%;
-  left: 24%;
+  top: 24.5%;
+  left: 66%;
   font-family: calculator;
   font-weight: bold;
   font-size: 35px;
@@ -164,5 +160,27 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+.pkmnSprite {
+  &.fullscreen {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 45%;
+    left: 25%;
+  }
+}
+
+@keyframes appearfullscreen {
+  from {
+    width: 130px;
+    top: 45%;
+    left: 25%;
+  }
+  to {
+    width: 170px;
+    top: 44%;
+    left: 25%;
   }
 }
